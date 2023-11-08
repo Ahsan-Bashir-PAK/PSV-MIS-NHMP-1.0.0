@@ -53,6 +53,7 @@ const MyTabs = () => {
          <Tab.Screen name="Add Condition"  component={AddCondition}
         options={{
           unmountOnBlur:true,
+         
           tabBarIcon:()=>(
             <ShieldQuestion stroke="#0332BB" size={25} fill='white' />
           )

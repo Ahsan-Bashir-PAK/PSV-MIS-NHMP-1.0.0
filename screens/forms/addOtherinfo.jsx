@@ -221,8 +221,8 @@ async function clearPsvSession() {
   };
   //==================================================
   return (
-    <ScrollView className=" border">
-      <View className="bg-slate-100  flex flex-col  justify-center border  ">
+    <ScrollView className=" ">
+      <View className="bg-slate-100  flex flex-col  justify-center   ">
         <KeyboardAvoidingView style={{backgroundColor: 'white'}}>
           {/* Other Information Tab */}
           <View className=" w-full h-screen mt-5 P-3 ">

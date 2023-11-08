@@ -37,11 +37,12 @@ async function validate(){
 
   .catch(error => console.error(error));
   clearAll()
+  navigation.navigate('Login');
   
         } else {
             Alert.alert(" Please fill All fields");
         }
-        navigation.navigate('Login');
+        
     }
 
 

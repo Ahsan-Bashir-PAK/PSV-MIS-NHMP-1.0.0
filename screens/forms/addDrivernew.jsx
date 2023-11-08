@@ -418,7 +418,7 @@ getSubCompany()
                 className=' text-black rounded-md  text-lg text-center' />
                 
             </View>
-            <TouchableOpacity onPress={()=>getDriver()}  className="flex flex-row-reverse  bg-green-600  justify-center items-center w-2/6">
+            <TouchableOpacity onPress={()=>getDriver()}  className="flex flex-row-reverse rounded-md bg-orange-400  justify-center items-center w-2/6">
             <View><Text className="text-black text-lg  font-bold">Search</Text>
             </View>
             </TouchableOpacity>

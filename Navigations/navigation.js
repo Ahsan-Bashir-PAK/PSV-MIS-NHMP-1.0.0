@@ -53,13 +53,16 @@ const MyStack = () => {
          <Stack.Screen name="SignUp" component={SignUp} /> 
         <Stack.Screen name="MyTabs" component={MyTabs} 
         options={{
-          headerShown:false
+          headerShown:false,
          
         }}
         />
          
-         <Stack.Screen name="Add Vehicle" component={AddVehicle} />
+         <Stack.Screen name="Add Vehicle" component={AddVehicle} 
+         options={{
+          headerShown:true,
          
+        }}/>
          <Stack.Screen name="Add Documentation" component={AddDocumentation} />
          <Stack.Screen name="Add Condition" component={AddCondition} />
          <Stack.Screen name="Other Info" component={AddOtherInfo} />
