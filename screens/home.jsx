@@ -193,7 +193,7 @@ function Home() {
             style={{backgroundColor: 'white'}}
             placeholderTextColor={'grey'}
             autoCapitalize={'characters'}
-            placeholder="0000000000000 {CNIC without dashes}"
+            placeholder="0000000000000 {Driver CNIC}"
             maxLength={13}
             keyboardType="number-pad"
             value={dvrCnic}
@@ -257,7 +257,7 @@ function Home() {
               <ArrowDownToLine stroke="purple" size={40} />
               <View className="flex justify-center items-center flex-row gap-1">
                 <Text className=" font-bold font-white  text-lg text-black">
-                  Downloads
+                  E-Library
                 </Text>
               </View>
             </View>

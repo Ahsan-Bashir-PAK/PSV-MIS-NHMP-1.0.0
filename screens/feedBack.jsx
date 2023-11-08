@@ -94,7 +94,7 @@ const saveFeedBack = async () => {
                     
 
                     <View className='flex flex-row mt-3 justify-center'>
-                        <TouchableOpacity onPress={() => clearAll()} className='bg-[#fc4343] px-5 py-2 rounded-md m-2'><Text className='text-white font-extrabold'>RESET</Text></   TouchableOpacity>
+                        <TouchableOpacity onPress={() => clearAll()} className='bg-[#fc4343] px-5 py-2 rounded-md m-2'><Text className='text-white font-extrabold'>Clear</Text></   TouchableOpacity>
                     <TouchableOpacity onPress={()=>saveFeedBack()} className='bg-[#29378a] px-5 py-2 rounded-md m-2'><Text className='text-white font-extrabold'>Sumbit Feed Back</Text></TouchableOpacity>
                      </View>
 

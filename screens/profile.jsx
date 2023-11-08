@@ -5,12 +5,14 @@ import EncryptedStorage from 'react-native-encrypted-storage';
 import { CircleDot, FileDown, FileSymlink, User, UserCircle,Dot, Circle } from 'lucide-react-native';
 import { retrieveUserSession } from '../config/functions';
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 
 const Profile = () => {
 
+    const navigation = useNavigation();
     const [currentUser, setCurrentUser] = useState('');
     const [oldpwd, setOldPwd] = useState('');
     const [newpwd, setNewPwd] = useState('');
@@ -31,14 +33,15 @@ const newpassword = {userPwd:newpwd}
 async function validate(){
         if((oldpwd == currentUser.pwd)  && (newpwd == confirmpwd)) {
            await  axios.patch(`${global.BASE_URL}/users/updatePwd/${currentUser.userName}`, newpassword )
-  .then(response => Alert.alert("Password  Updated"))
+  .then(response => Alert.alert("Password has been updated, Re-Login to continue"))
 
   .catch(error => console.error(error));
   clearAll()
+  
         } else {
             Alert.alert(" Please fill All fields");
         }
-
+        navigation.navigate('Login');
     }
 
 
@@ -46,16 +49,22 @@ if(!currentUser){
     return(
        
             <View className="flex justify-center,items-center">
-              <Text className ='text-2xl font-bold'>Loadind ......</Text>
+              <Text className ='text-2xl font-bold'>Loading ......</Text>
               </View>
           )
 }
 else{
    // console.log(currentUser.pwd,newpwd)
     return (
-        <ScrollView >
+    
+        <KeyboardAvoidingView
+        behavior={Platform.OS === 'android' ? 'height' : null}
+         enabled>
+     
+          <ScrollView keyboardShouldPersistTaps='handled'>
+
             <View className="  flex flex-col   p-2 justify-start">
-                <KeyboardAvoidingView style={{ backgroundColor: 'white' }}>
+               
                     {/* User Profile TAB*/}
                     <View className=" mt-1 w-full  ">
 
@@ -79,7 +88,7 @@ else{
                     
                      {/* Old Password */}
                     <View className={`${styles.outerview} mt-2`}>
-                    <View className={styles.labelstyle}><Text className="text-black font-bold">Old Password</Text></View>
+                    <View className={styles.labelstyle}><Text className="text-black font-bold">Old Password*</Text></View>
                     <View className="w-4/6 items-center">
                         <TextInput
                         placeholderTextColor={'grey'}
@@ -95,7 +104,7 @@ else{
 
                     {/* New Password */}
                     <View className={styles.outerview}>
-                    <View className={styles.labelstyle}><Text className="text-black font-bold">New Password</Text></View>
+                    <View className={styles.labelstyle}><Text className="text-black font-bold">New Password*</Text></View>
                     <View className="w-4/6 items-center">
                         <TextInput
                         placeholderTextColor={'grey'}
@@ -111,7 +120,7 @@ else{
 
                     {/* Confirm Password */}
                     <View className={styles.outerview}>
-                        <View className={styles.labelstyle}><Text className="text-black font-bold">Confirm Password</Text></View>
+                        <View className={styles.labelstyle}><Text className="text-black font-bold">Confirm Password*</Text></View>
                     <View className="w-4/6 items-center">
                         <TextInput
                         placeholderTextColor={'grey'}
@@ -120,7 +129,7 @@ else{
                         secureTextEntry={true}
                         value={confirmpwd}
                         onChangeText={e=>setConfirmPwd(e)}
-                        className='w-8/12 bg-white border-black text-black rounded-md  text-lg text-center ' />
+                        className='w-10/12 bg-white border-black text-black rounded-md  text-lg text-center ' />
 
                     </View>
                     </View>   
@@ -132,13 +141,14 @@ else{
                     
 
                     <View className='flex flex-row mt-3 justify-center'>
-                        <TouchableOpacity onPress={() => clearAll()} className='bg-[#fc4343] px-5 py-2 rounded-md m-2'><Text className='text-white font-extrabold'>RESET</Text></   TouchableOpacity>
-                    <TouchableOpacity onPress={()=>validate()} className='bg-[#29378a] px-5 py-2 rounded-md m-2'><Text className='text-white font-extrabold'>SAVE</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={() => clearAll()} className='bg-[#fc4343] px-5 py-2 rounded-md m-2'><Text className='text-white font-extrabold'>Clear</Text></   TouchableOpacity>
+                    <TouchableOpacity onPress={()=>validate()} className='bg-[#298a3e] px-5 py-2 rounded-md m-2'><Text className='text-white font-extrabold'>Update Password</Text></TouchableOpacity>
                      </View>
 
-                </KeyboardAvoidingView>
+                
             </View>
         </ScrollView>
+        </KeyboardAvoidingView>
     );
 }
 };

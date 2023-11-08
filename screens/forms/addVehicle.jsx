@@ -631,7 +631,7 @@ if(value != ""){
 
           {/* Tracker Installed (Yes / No) */}
           <View className={styles.outerview}>
-            <View className={styles.labelstyle}><Text className="text-black font-bold">Tracker Installed</Text></View>
+            <View className={styles.labelstyle}><Text className="text-black font-bold">Tracker Status</Text></View>
             <View className="w-4/6 items-center">
             <TouchableOpacity onPress={()=>vehcile_tracker==""?setTracker("1"):setTracker("")}
                  className={`p-2 flex-row gap-1 text-center items-center`}>
@@ -655,7 +655,7 @@ if(value != ""){
 
            {/* Manufacturing Year */}
            <View className={styles.outerview}>
-            <View className={styles.labelstyle}><Text className="text-black font-bold">Manufacturing Year*</Text></View>
+            <View className={styles.labelstyle}><Text className="text-black font-bold">Manufactured  Year*</Text></View>
             <View className="w-4/6 items-center">
               <TextInput
                 placeholderTextColor={'grey'}

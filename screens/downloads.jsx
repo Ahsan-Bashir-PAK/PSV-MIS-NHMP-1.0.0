@@ -18,8 +18,8 @@ const Downloads = () => {
                     <View className=" mt-1 w-full  ">
 
                         <View className=" border bg-yellow-400  rounded-md p-5  w-fit items-center justify-center flex flex-row">
-                            <FileDown stroke="black" size={35} />
-                            <Text className="text-black text-lg rounded-md font-bold ">Downloads</Text>
+                           
+                            <Text className="text-black text-xl rounded-md font-bold ">E-library</Text>
                         </View>
 
                         {/* NHSO */}
@@ -40,6 +40,17 @@ const Downloads = () => {
                             <TouchableOpacity onPress={() => Linking.openURL('https://nhmp.pitb.gov.pk/system/files/National%20Highways%20Dimension%20Rules.pdf#overlay-context=RightToAccess')}>
                                 <Text style={{ color: 'blue' }}>
                                     Dimesnion Rules, Click Here 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                         {/* Tracker SOPs for PSVs*/}
+                         <View className="border  bg-slate-100 p-2 mt-2">
+                            <Text className="text-black text-lg font-bold"> SOP For Regulation, Control and Managment for PSVs on the National Highways & Motorways</Text>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity onPress={() => Linking.openURL('https://drive.google.com/file/d/13hhuu04bzxRWjcT8UJ73aBYpjShw8h5G/view?usp=sharing')}>
+                                <Text style={{ color: 'blue' }}>
+                                    PSVs SOP, Click Here 
                                 </Text>
                             </TouchableOpacity>
                         </View>

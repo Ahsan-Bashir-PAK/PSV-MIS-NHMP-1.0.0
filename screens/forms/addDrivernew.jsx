@@ -533,7 +533,7 @@ getSubCompany()
 
           {/* Disability */}
           <View className={styles.outerview}>
-            <View className={styles.labelstyle}><Text className="text-black font-bold">Disability</Text></View>
+            <View className={styles.labelstyle}><Text className="text-black font-bold">Disability (if any)</Text></View>
             <View className="w-4/6 items-center">
             <TextInput
                 placeholderTextColor={'grey'}
