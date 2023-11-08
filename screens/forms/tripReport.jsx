@@ -528,7 +528,7 @@ function setTripData(tripdata){
                 {/* on Boarded Passenger */}
                 <View className={styles.outerview}>
               <View className={`${styles.labelstyle} text-center items-center`}>
-                <Text className="text-black font-bold ">On Boarded Passenger *</Text>
+                <Text className="text-black font-bold ">On Boarded Passengers*</Text>
               </View>
             <View className={`${styles.outerview}  text-center justify-center items-center  w-3/5`}>
               <View className="text-center items-center flex">

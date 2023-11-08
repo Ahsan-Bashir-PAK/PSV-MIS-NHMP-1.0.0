@@ -22,9 +22,11 @@ import {
   ImageBackground,
   Alert,
   KeyboardAvoidingView,
+  BackHandler,
 } from 'react-native';
 import { LinearGradient } from 'react-native-svg';
 import SignUp from './forms/signUp';
+import { BookOpenCheck } from 'lucide-react-native';
 
 
 
@@ -48,7 +50,33 @@ function Home() {
   useEffect(() => {
     retrieveUserSession(setCurrentUser);
     clearAll()
-  }, []);
+// Back handler
+
+  // const backAction = () => {
+  //   Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
+  //     {
+  //       text: 'Cancel',
+  //       onPress: () => null,
+  //       style: 'cancel',
+  //     },
+  //     {text: 'YES', onPress: () => logoutSesion()},
+  //   ]);
+  //   return true;
+  // };
+
+  // const backHandler = BackHandler.addEventListener(
+  //   'hardwareBackPress',
+  //   backAction,
+  // );
+
+  // return () => backHandler.remove();
+}, []);
+
+
+
+
+
+
 
   // logout clear all sessions
 
@@ -130,20 +158,32 @@ function Home() {
    
     <View className="p-2  w-full bg-white">
     
-      <View className="flex flex-row    h-[120]  w-full  text-center items-center  overflow-hidden rounded-md">
-       <ImageBackground source={require('../img/bg.png')}  resizeMode="cover" style={{ height:'100%', width:518, opacity:0.9, flex:1, justifyContent:'center'}}  />
-        <Image
-          source={require('../img/logo.png')}
-          style={{width: 60, height: 60}}
-          className="pl-2"
-        />
-         
-        <View className=" w-5/6  ">
-          <Text className="text-yellow-300 text-center font-extrabold text-2xl  ">
-            PSV-MIS (NHMP)          </Text>
+      <View className="  flex flex-row    h-[120]  w-full  r  overflow-hidden rounded-md">
+      
+      <ImageBackground source={require('../img/bg.png')}  resizeMode="cover" style={{ height:'100%', width:518, opacity:0.9, flex:1, justifyContent:'center'}}  />
+        <View className="   w-full ">
+        
+
+            <View className="   w-fit  flex flex-row p-4 ">
+            <Image
+                        source={require('../img/logo.png')}
+                        style={{width: 60, height: 60}}
+                        className="pl-1"
+                      />
+              <Text className="text-yellow-300 text-center font-extrabold text-2xl ml-8 mt-3 ">
+                PSV-MIS (NHMP)          </Text>
+                
+            </View>
+
+            <View className="  w-fit bg-yellow-400 justify-center items-right pr-2 " >
+                <Text className="text-black text-right font-extrabold text-sm">
+                {`${currentUser.rank}  ${currentUser.name}`}</Text>
+            </View>
         </View>
+        
       </View>
       <View className="   mt-5 rounded-m  h-2/8  w-full text-center">
+     
     
         {/* View Input Type */}
         <View className=" flex-row m-2">
@@ -254,7 +294,7 @@ function Home() {
            onPress={() => navigation.navigate('Downloads')}
             className="  w-2/5 flex-row shadow-md shadow-slate-950  rounded-lg  flex justify-around items-center border border-slate-400  bg-white">
             <View className="  items-center gap-1 justify-center mt-2 ">
-              <ArrowDownToLine stroke="purple" size={40} />
+              <BookOpenCheck stroke="purple" size={40} />
               <View className="flex justify-center items-center flex-row gap-1">
                 <Text className=" font-bold font-white  text-lg text-black">
                   E-Library
