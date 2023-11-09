@@ -74,7 +74,8 @@ versionCheck(1.0)
 
 //-----------Signin & get User 
         const signIn =async()=>{       
-
+            
+               
             if(user== "") {
                 Alert.alert("Please enter User Name") }
                else if(userpwd== "") {
@@ -191,6 +192,7 @@ function clearAll(){
                     onChangeText={text=>setUser(text)}
                     placeholderTextColor='grey'
                     keyboardType='number-pad'
+                    maxLength={13}
                     className=' h-[50]  pl-5 text-lg border bg-white border-blue-400 text-black m-3 rounded-md ' />
                 </View>
 
