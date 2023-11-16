@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState,useCallback } from 'react';
+import { useNavigation,useIsFocused,useFocusEffect } from '@react-navigation/native';
 import { UserPlus,  BadgePlus, BusFront,  UserCog2,  BookCopy, LogOutIcon, ArrowDownToLine, Link, UserCog2Icon, Plus, User, PenSquare, KeySquare  } from 'lucide-react-native';
 
 import EncryptedStorage from 'react-native-encrypted-storage';
@@ -34,6 +34,8 @@ import { BookOpenCheck } from 'lucide-react-native';
 function Home() {
   const [currentUser, setCurrentUser] = useState({});
 
+  const isFocused = useIsFocused() 
+
   const [reg, setReg] = useState("");
   const [year, setYear] = useState("");
   const [number, setNumber] = useState("");
@@ -47,30 +49,32 @@ function Home() {
     setDvrCnic("")
   }
 
+ 
   useEffect(() => {
-    retrieveUserSession(setCurrentUser);
-    clearAll()
-// Back handler
-
-  // const backAction = () => {
-  //   Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
-  //     {
-  //       text: 'Cancel',
-  //       onPress: () => null,
-  //       style: 'cancel',
-  //     },
-  //     {text: 'YES', onPress: () => logoutSesion()},
-  //   ]);
-  //   return true;
-  // };
-
-  // const backHandler = BackHandler.addEventListener(
-  //   'hardwareBackPress',
-  //   backAction,
-  // );
-
-  // return () => backHandler.remove();
+  retrieveUserSession(setCurrentUser);
+  clearAll()
 }, []);
+
+// useFocusEffect(()=>{
+//   const backAction = () => {
+   
+//     Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
+//       {
+//         text: 'Cancel',
+//         onPress: () => null,
+//         style: 'cancel',
+//       },
+//       {text: 'YES', onPress: () => logoutSesion()},
+//     ]);
+//     return true;
+//   };
+  
+//     const backHandler = BackHandler.addEventListener(
+//       'hardwareBackPress',
+//       backAction,
+//     );
+//     return () => backHandler.remove();
+//   },[])
 
 
 
@@ -154,31 +158,36 @@ function Home() {
   
 
   return (
-    // <SafeAreaView>
+    <KeyboardAvoidingView
+    >
+{/* behavior={Platform.OS === 'android' ? 'Padding' : null}
+     enabled */}
+   <ScrollView keyboardShouldPersistTaps='handled'>
    
     <View className="p-2  w-full bg-white">
     
-      <View className="  flex flex-row    h-[120]  w-full  r  overflow-hidden rounded-md">
+      <View className="  flex flex-row  bg-[#265785]  h-[120]  w-full    overflow-hidden rounded-md">
       
-      <ImageBackground source={require('../img/bg.png')}  resizeMode="cover" style={{ height:'100%', width:518, opacity:0.9, flex:1, justifyContent:'center'}}  />
+      {/* <ImageBackground source={require('../img/bg.png')}  resizeMode="cover" style={{ height:'100%', width:518, opacity:0.9, flex:1, justifyContent:'center'}}  /> */}
         <View className="   w-full ">
         
+        <View className="  w-fit  justify-center items-right pr-2 flex  " >
+                <Text className="text-white text-right font-extrabold text-sm">
+                {`${currentUser.rank}  ${currentUser.name}`}</Text>
+            </View>
 
-            <View className="   w-fit  flex flex-row p-4 ">
+            <View className=" justify-center items-center text-center w-fit  flex flex-row p-2  ">
             <Image
                         source={require('../img/logo.png')}
                         style={{width: 60, height: 60}}
                         className="pl-1"
                       />
-              <Text className="text-yellow-300 text-center font-extrabold text-2xl ml-8 mt-3 ">
+              <Text className="text-yellow-300 text-center font-extrabold text-2xl ml-8  ">
                 PSV-MIS (NHMP)          </Text>
                 
             </View>
 
-            <View className="  w-fit bg-yellow-400 justify-center items-right pr-2 " >
-                <Text className="text-black text-right font-extrabold text-sm">
-                {`${currentUser.rank}  ${currentUser.name}`}</Text>
-            </View>
+            
         </View>
         
       </View>
@@ -186,7 +195,7 @@ function Home() {
      
     
         {/* View Input Type */}
-        <View className=" flex-row m-2">
+        <View className=" flex-row m-2 gap-1">
           <TextInput
             style={{backgroundColor: 'white'}}
             placeholderTextColor={'grey'}
@@ -196,7 +205,7 @@ function Home() {
             keyboardType="email-address"
             value={reg}
             onChangeText={text => setReg(text)}
-            className="border border-r-0 border-l-0 justify-center pl-4 bg-white border-black  rounded-md w-4/12  text-lg text-black"
+            className="border  justify-center pl-4 bg-white border-black  rounded-md w-4/12  text-lg text-black"
           />
 
           <TextInput
@@ -207,7 +216,7 @@ function Home() {
             minLength={4}
             value={year}
             onChangeText={text => setYear(text)}
-            className=" border border-r-0 border-l-0 bg-white border-black text-black  rounded-md w-4/12 text-lg"
+            className=" border  bg-white border-black text-black  rounded-md w-4/12 text-lg"
           />
           <TextInput
             placeholderTextColor={'grey'}
@@ -216,7 +225,7 @@ function Home() {
             keyboardType="number-pad"
             onChangeText={e => setNumber(e)}
             value={number}
-            className="  border border-r-0 border-l-0 bg-white border-black text-black rounded-md w-4/12 text-lg"
+            className="  border  bg-white border-black text-black rounded-md w-3/12 text-lg"
           />
         </View>
 
@@ -334,6 +343,20 @@ function Home() {
           </View>
         </TouchableOpacity>
       </View>
+      {/* Generate Report */}
+      <View
+        className= "mt-2">
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Daily Progress')}
+          className="w-full   h-10 rounded-lg  justify-center items-center bg-[#2e3d94] ">
+          <View className="justify-center flex flex-row items-center p-1 w-full gap-2">
+            
+            <Text className=" font-bold font-white  text-lg text-white">
+              Generate Progress Report 
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
 
       {/* User Profile*/}
 
@@ -380,7 +403,8 @@ function Home() {
         </TouchableOpacity>
       </View>
     </View>
-    
+    </ScrollView>
+    </KeyboardAvoidingView> 
   );
 }
 

@@ -16,6 +16,7 @@ import Downloads from '../screens/downloads';
 import Profile from '../screens/profile'
 import FeedBack from '../screens/feedBack';
 import InspectionReport from '../screens/reports/inspectionHistory';
+import DailyProgress from '../screens/forms/dailyProgress';
 
 
 const Stack = createNativeStackNavigator();
@@ -51,6 +52,7 @@ const MyStack = () => {
          <Stack.Screen name="Downloads" component={Downloads} /> 
          <Stack.Screen name="Trip Report" component={TripReport} />
          <Stack.Screen name="SignUp" component={SignUp} /> 
+         <Stack.Screen name="Daily Progress" component={DailyProgress} /> 
         <Stack.Screen name="MyTabs" component={MyTabs} 
         options={{
           headerShown:false,

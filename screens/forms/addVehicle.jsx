@@ -275,16 +275,16 @@ const getPsv = async()=>{
     
 
     const addPsvFormOne = async()=>{
-  //     let letter_exp= new RegExp('/^[A-Z]/');
-  //   //  const number_exp = new RegExp('[0-9]');
-  //  console.log("------"+ letter_exp.test(Vehicle_letter));
-    
-      if( Vehicle_letter == "") {
-         
+       let regx= new RegExp("[0-9]+$" , "ig");
+        //console.log("---^^^---"+ regx.test(Vehicle_letter));
+         //regex.replace(Vehicle_letter, "");
+
+      if( Vehicle_letter != "") {
+        console.log("------"+ regx.test(Vehicle_letter));
         Alert.alert("Please enter all Alphabet e.g. LES")
       }
       
-        else if(number_exp.test(Vehicle_year)==false && Vehicle_year == "" ) 
+        else if(Vehicle_year == "" ) 
             {Alert.alert("Please enter Registeration Year e.g 2015")}
         else if(Vehicle_number == "" ) {Alert.alert("Please enter Registeration Number e.g. 1234")}
         else if(Vehicle_type == "" ) {Alert.alert("Please select vehicle type")}
