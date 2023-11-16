@@ -3,8 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingVi
 import DatePicker from 'react-native-date-picker';
 import { BusFront, Scroll, User, Square, CheckSquare, Search, Calendar,Building2 } from 'lucide-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-//import DropDownPicker from 'react-native-dropdown-picker';
-import { Bus } from 'lucide-react-native';
+
 import SelectDropdown from 'react-native-select-dropdown'
 import EncryptedStorage from 'react-native-encrypted-storage';
 import axios from 'axios';
