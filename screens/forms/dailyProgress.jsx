@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native';
+import React, { useEffect, useState  } from 'react';
+import { View, Text, TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native';
 import DatePicker from 'react-native-date-picker';
-import { User } from 'lucide-react-native';
+
 import '../../config'
-import {Calendar,Building2 } from 'lucide-react-native';
+import {Calendar, Clock2, Clock4  } from 'lucide-react-native';
 
 
 import SelectDropdown from 'react-native-select-dropdown';
@@ -20,11 +20,15 @@ const [dobdate, setdobDate] = useState(new Date())
   const [endopen, setdOpen] = useState(false)
   const [enddate, setdDate] = useState(new Date())
 
-  // Start Time
- // const [timeopen, setTime] = useState(false)
-  const [timeopen, setTime] = useState(false)
-  const [timeset, setTimes] = useState(new Date().toLocaleTimeString())
+ 
 
+ 
+  // Start Time
+  const [timeopen, setTime] = useState(false)
+  const [timeset, setTimes] = useState(new Date())
+ // End Time
+const [timeopenend, setendTime] = useState(false)
+const [timesetend, setendTimes] = useState(new Date())
 
 
 
@@ -111,34 +115,63 @@ return (
         </View>
 {/* {/* Start Time */}
 <View className={styles.outerview}>
-                    <View className="border w-2/6 justify-center items-center" ><Text className="text-black">Start Time</Text></View>
+                    <View className=" w-2/6 justify-center items-center rounded-md bg-slate-200" ><Text className="text-black">Start Time</Text></View>
                     <View className="  w-4/6 items-center ">
                     <View className="flex flex-row gap-1">
-                    
-                    <DatePicker
-                      modal
-                      mode="time"
-                      open={timeopen}
-                      date={timeset}
-                      onConfirm={value => {
-                        setTime(false);
-                        setTimes(value);
-                      }}
-                      onCancel={() => {
-                        setTime(false);
-                      }}
-                    />
-
-                    <Text className="rounded-md  w-4/6   text-black text-center font-bold p-2">
-                      {timeset}
+              <DatePicker
+              modal
+              mode="time"
+              open={timeopen}
+              date={timeset}
+              is24hourSource='locale'
+              onConfirm={value => {
+                setTime(false);
+                setTimes(value);
+              }}
+              onCancel={() => {
+                setTime(false);
+              }}
+              />
+<Text className="rounded-md  w-4/6   text-black text-center font-bold p-2">
+                      {timeset.toLocaleTimeString()}
                     </Text>
                     <TouchableOpacity onPress={() => setTime(true)}>
-                      <Calendar stroke="black" fill="white" size={30}></Calendar>
+                      <Clock2 stroke="black" fill="white" size={30} />
                     </TouchableOpacity>
-                  </View>
-                    </View>
-        </View> 
+              
+</View>
+</View>
+</View>
 
+{/* {/* End Time */}
+<View className={styles.outerview}>
+                    <View className=" w-2/6 justify-center items-center rounded-md bg-slate-200" ><Text className="text-black">End Time</Text></View>
+                    <View className="  w-4/6 items-center ">
+                    <View className="flex flex-row gap-1">
+              <DatePicker
+              modal
+              mode="time"
+              open={timeopenend}
+              date={timesetend}
+              is24hourSource='locale'
+              onConfirm={value => {
+                setendTime(false);
+                setendTimes(value);
+              }}
+              onCancel={() => {
+                setendTime(false);
+              }}
+              />
+<Text className="rounded-md  w-4/6   text-black text-center font-bold p-2">
+                      {timesetend.toLocaleTimeString()}
+                    </Text>
+                    <TouchableOpacity onPress={() => setendTime(true)}>
+                      <Clock4 stroke="black" fill="white" size={30} />
+                    </TouchableOpacity>
+              
+</View>
+</View>
+</View> 
 
         <View className="   w-fit  ">
           <View className=" bg-[#7f9ab8] rounded-md p-2 m-1 w-fit items-center justify-center flex-col ">
@@ -241,11 +274,12 @@ return (
           </View>
         </View>
 {/* End of Report*/}
-<View className="justify-center items-center mt-5 mb-10" >
+<View className="justify-center items-center mt-5 mb-5" >
           <Text className="text-black text-lg">-----------------End-----------------</Text>
         </View>
       </KeyboardAvoidingView>
     </View>
+    
   </ScrollView>
   );
 };

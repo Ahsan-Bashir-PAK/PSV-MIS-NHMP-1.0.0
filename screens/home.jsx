@@ -166,13 +166,13 @@ function Home() {
    
     <View className="p-2  w-full bg-white">
     
-      <View className="  flex flex-row  bg-[#265785]  h-[120]  w-full    overflow-hidden rounded-md">
+      <View className="  flex flex-row  bg-[#29378a]   h-[120]  w-full    overflow-hidden rounded-md">
       
       {/* <ImageBackground source={require('../img/bg.png')}  resizeMode="cover" style={{ height:'100%', width:518, opacity:0.9, flex:1, justifyContent:'center'}}  /> */}
         <View className="   w-full ">
         
-        <View className="  w-fit  justify-center items-right pr-2 flex  " >
-                <Text className="text-white text-right font-extrabold text-sm">
+        <View className="  w-fit  justify-center items-right pr-3 pt-1 flex  " >
+                <Text className="text-white text-right font-extrabold text-sm  font-serif ">
                 {`${currentUser.rank}  ${currentUser.name}`}</Text>
             </View>
 
@@ -195,7 +195,7 @@ function Home() {
      
     
         {/* View Input Type */}
-        <View className=" flex-row m-2 gap-1">
+        <View className="  flex flex-row gap-2  ">
           <TextInput
             style={{backgroundColor: 'white'}}
             placeholderTextColor={'grey'}
@@ -205,7 +205,7 @@ function Home() {
             keyboardType="email-address"
             value={reg}
             onChangeText={text => setReg(text)}
-            className="border  justify-center pl-4 bg-white border-black  rounded-md w-4/12  text-lg text-black"
+            className="border  justify-center pl-4 bg-white border-black  rounded-md w-2/6  text-lg text-black"
           />
 
           <TextInput
@@ -216,7 +216,7 @@ function Home() {
             minLength={4}
             value={year}
             onChangeText={text => setYear(text)}
-            className=" border  bg-white border-black text-black  rounded-md w-4/12 text-lg"
+            className=" border  bg-white border-black text-black  rounded-md w-1/4 text-lg"
           />
           <TextInput
             placeholderTextColor={'grey'}
@@ -225,7 +225,7 @@ function Home() {
             keyboardType="number-pad"
             onChangeText={e => setNumber(e)}
             value={number}
-            className="  border  bg-white border-black text-black rounded-md w-3/12 text-lg"
+            className="  border  bg-white border-black text-black rounded-md w-2/6 text-lg"
           />
         </View>
 

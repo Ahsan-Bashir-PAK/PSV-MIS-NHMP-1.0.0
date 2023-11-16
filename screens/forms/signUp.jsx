@@ -182,12 +182,12 @@ return (
     <View className=" flex flex-col   ">
       <KeyboardAvoidingView style={{ backgroundColor: 'white' }}>
 
-        {/* Sing Up page */}
+        {/* Sign Up page */}
         <View className="  mt-1 w-full  ">
 
           <View className=" bg-yellow-400  rounded-md p-1 m-1 w-fit items-center justify-center flex-row-reverse ">
-            <Text className="text-black text-lg rounded-md font-bold ">User SignUp</Text>
-            <User stroke="black" size={30}></User>
+            <Text className="text-black text-lg rounded-md font-bold ">User Sign Up</Text>
+            
           </View>
         </View>
 
