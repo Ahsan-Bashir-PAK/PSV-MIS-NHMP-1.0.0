@@ -94,8 +94,8 @@ versionCheck(1.0)
           if(result) {
            
           if(userpwd == result.userPwd){
-           
-            storeUserSession(user,result.role,result.userName,result.rank,result.userPwd)
+         
+            storeUserSession(user,result.role,result.userName,result.rank,result.userPwd ,result.zoneId,result.sectorId,result.beatId)
             
             navigation.navigate("Home")
             clearAll()
@@ -131,7 +131,7 @@ function clearAll(){
 
     
 
-     async function storeUserSession(user,role,officer,rank,pwd) {
+     async function storeUserSession(user,role,officer,rank,pwd,beat,sector,zone) {
          try {
              await EncryptedStorage.setItem(
                  "user_session",
@@ -141,7 +141,11 @@ function clearAll(){
                      location:location+userbound,
                      name:officer,
                      rank:rank,
-                     pwd:pwd
+                     pwd:pwd,
+                     zone:zone,
+                     sector:sector,
+                     beat:beat
+                     
 
                     
                  })
