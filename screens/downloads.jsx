@@ -19,7 +19,7 @@ const Downloads = () => {
 
                         <View className="  bg-yellow-400  rounded-md p-5  w-fit items-center justify-center flex flex-row">
                            
-                            <Text className="text-black text-xl rounded-md font-bold ">E-library</Text>
+                            <Text className="text-black text-xl rounded-md font-bold ">E-Library</Text>
                         </View>
 
                         {/* NHSO */}
@@ -60,6 +60,19 @@ const Downloads = () => {
                                 </Text>
                             </TouchableOpacity>
                         </View>
+
+                         {/* Tracker SOPs for PSVs*/}
+                         <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4">
+                            <Text className="text-black text-sm"> SOP for Vehicle Ban</Text>
+                            </View>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('')}>
+                            <Text className="text-white">
+                                    Download 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>   
 
                         {/* FIRs Pattern*/}
                         <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
@@ -113,10 +126,57 @@ const Downloads = () => {
                             </TouchableOpacity>
                         </View>
 
+                             {/* MVO*/}
+                        <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4">
+                            <Text className="text-black text-sm"> Motor Vehicle Ordinance- 1965</Text>
+                            </View>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('')}>
+                            <Text className="text-white">
+                                    Download 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
 
+                           {/* MVO Rules*/}
+                           <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4">
+                            <Text className="text-black text-sm"> Motor Vehicle Rules 1969</Text>
+                            </View>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('')}>
+                            <Text className="text-white">
+                                    Download 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+   {/* OGRA Rules*/}
+   <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4">
+                            <Text className="text-black text-sm"> OGRA Rules</Text>
+                            </View>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('')}>
+                            <Text className="text-white">
+                                    Download 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
 
                     </View>
-
+   {/* MVO*/}
+   <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4">
+                            <Text className="text-black text-sm"> Road Transport Work Ordinance</Text>
+                            </View>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('')}>
+                            <Text className="text-white">
+                                    Download 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
 
 
                 </KeyboardAvoidingView>
