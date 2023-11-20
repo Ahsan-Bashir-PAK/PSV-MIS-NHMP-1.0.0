@@ -12,6 +12,9 @@ import { retrieveUserSession } from '../../config/functions';
 
 
 const DailyProgress = () => {
+
+  const [showReport, setReport] = useState(true)
+
   const [currentUser,setCurrentUser] = useState('')
   //const time = new Date().toLocaleTimeString();
   // Start Date
@@ -44,8 +47,9 @@ const endTime = timesetend.toLocaleTimeString()
 
 const getProgress = async()=>{ 
 
-  console.log(`${global.BASE_URL}/web/daily/officerwisedsr/${startDate}/${endDate}/${startTime}/${endTime}/${currentUser.userName}`)
-  await axios.get(`${global.BASE_URL}/web/daily/officerwisedsr/${startDate}/${endDate}/${startTime}/${endTime}/${currentUser.userName}`)
+ // console.log(`${global.BASE_URL}/web/daily/officerwisedsr/${startDate}/${endDate}/${startTime}/${endTime}/${currentUser.userName}`)
+
+ await axios.get(`${global.BASE_URL}/web/daily/officerwisedsr/${startDate}/${endDate}/${startTime}/${endTime}/${currentUser.userName}`)
   .then(
     (response) =>{
       const result = response.data
@@ -54,8 +58,8 @@ const getProgress = async()=>{
       setvehicleData(result.vehicles[0])
       setinspectionData(result.inspection[0])
       // setinspectionData(result.inspections[0])
-
-      console.log('dvr',driverData,'vhcle',vehicleData,'insp',inspectionData)
+        setReport(false)
+      // console.log('dvr',driverData["added"],'vhcle',vehicleData,'insp',inspectionData)
       }
       else {
         Alert.alert("Not Record Found.")
@@ -63,7 +67,7 @@ const getProgress = async()=>{
         
       }
   })
- 
+
 }
 useEffect(()=>{
   retrieveUserSession(setCurrentUser)
@@ -211,19 +215,26 @@ return (
 </View> 
 
         <View className="   w-fit  ">
-          <View className=" bg-[#7f9ab8] rounded-md p-2 m-1 w-fit items-center justify-center flex-col ">
-            <TouchableOpacity onPress={()=>getProgress()}>
+            <TouchableOpacity className ="w-fit" onPress={()=>getProgress()}>
+          <View className=" bg-[#7f9ab8]  rounded-md p-2 m-1 w-fit items-center justify-center flex-col ">
                       <Text className="font-bold text-white">Generate Progress Report</Text>
-            </TouchableOpacity>
           </View>
+            </TouchableOpacity>
         </View>
 
+{/* Report Form */}
+<View className={`${showReport ? " hidden": "block"}`} >
 {/*  PSV Added */}
 <View className={styles.outerview} >
           <View className={styles.labelstyle}>
             <Text className="text-black  font-bold">Total Inspections</Text></View>
           <View className=" w-3/6  items-center">
-          <Text className={styles.resultfield} ></Text>
+          <Text className={styles.resultfield} >
+            {inspectionData?inspectionData["inspections"]:"-"}
+             {/* {` ${inspectionData["inspections"] ? "Zero" : "yes"} `} */}
+            
+            </Text>
+
           </View>
         </View>
 
@@ -232,7 +243,7 @@ return (
           <View className={styles.labelstyle}>
             <Text className="text-black  font-bold">New PSVs Added</Text></View>
           <View className=" w-3/6  items-center">
-          <Text className={styles.resultfield} >{driverData[0]}</Text>
+          <Text className={styles.resultfield} >{vehicleData?vehicleData["added"]:"-"}</Text>
           </View>
         </View>
 
@@ -241,7 +252,7 @@ return (
           <View className={styles.labelstyle}>
             <Text className="text-black  font-bold"> PSVs Updated</Text></View>
           <View className=" w-3/6  items-center">
-          <Text className={styles.resultfield} >{driverData}</Text>
+          <Text className={styles.resultfield} >{vehicleData?vehicleData["updated"]:"-"}</Text>
           </View>
         </View>
 {/* Driver Added */}
@@ -249,7 +260,7 @@ return (
           <View className={styles.labelstyle}>
             <Text className="text-black  font-bold">New Drivers Added</Text></View>
           <View className=" w-3/6  items-center">
-          <Text className={styles.resultfield} >{driverData}</Text>
+          <Text className={styles.resultfield} >{driverData?driverData["added"]:"-"}</Text>
           </View>
         </View>
 {/* Driver Updated */}
@@ -257,7 +268,7 @@ return (
           <View className={styles.labelstyle}>
             <Text className="text-black  font-bold">Drivers Updated</Text></View>
           <View className=" w-3/6  items-center">
-          <Text className={styles.resultfield} >{driverData}</Text>
+          <Text className={styles.resultfield} >{driverData?driverData["updated"]:"-"}</Text>
           </View>
         </View>
 {/* Road Worthy */}
@@ -265,7 +276,7 @@ return (
           <View className={styles.labelstyle}>
             <Text className="text-black  font-bold">Road Worthy</Text></View>
           <View className=" w-3/6  items-center">
-          <Text className={styles.resultfield} >{driverData}</Text>
+          <Text className={styles.resultfield} >{inspectionData?inspectionData["RoadWorthy"]:"-"}</Text>
           </View>
         </View>
 {/* Warned */}
@@ -273,7 +284,7 @@ return (
           <View className={styles.labelstyle}>
             <Text className="text-black  font-bold">Warned</Text></View>
           <View className=" w-3/6  items-center">
-          <Text className={styles.resultfield} >{driverData}</Text>
+          <Text className={styles.resultfield} >{inspectionData?inspectionData["warned"]:"-"}</Text>
           </View>
         </View>
 {/* Returned */}
@@ -281,7 +292,7 @@ return (
           <View className={styles.labelstyle}>
             <Text className="text-black  font-bold">Returned</Text></View>
           <View className=" w-3/6  items-center">
-          <Text className={styles.resultfield} >{driverData}</Text>
+          <Text className={styles.resultfield} >{inspectionData?inspectionData["Returned"]:"-"}</Text>
           </View>
         </View>
 {/* Enforced*/}
@@ -290,15 +301,15 @@ return (
             <Text className="text-black  font-bold">Enforced</Text>
           </View>
           <View className=" w-3/6  items-center">
-          <Text className={styles.resultfield} >{driverData}</Text>
+          <Text className={styles.resultfield} >{inspectionData?inspectionData["Enforced"]:"-"}</Text>
           </View>
         </View>
 {/* Enforced & Returned */}
 <View className={styles.outerview} >
           <View className={styles.labelstyle}>
-            <Text className="text-black  font-bold">Enforced & Returned</Text></View>
+            <Text className="text-black  font-bold">Returned & Enforced</Text></View>
           <View className=" w-3/6  items-center">
-          <Text className={styles.resultfield} >{driverData}</Text>
+          <Text className={styles.resultfield} >{inspectionData?inspectionData["ReturnedEnforced"]:"-"}</Text>
           </View>
         </View>
 {/* Warned & Returned */}
@@ -307,13 +318,14 @@ return (
             <Text className="text-black  font-bold">Warned & Returned</Text>
           </View>
           <View className=" w-3/6  items-center">
-           <Text className={styles.resultfield} >{driverData}</Text>
+           <Text className={styles.resultfield} >{inspectionData?inspectionData["WarnedReturned"]:"-"}</Text>
           </View>
         </View>
 {/* End of Report*/}
 <View className="justify-center items-center mt-5 mb-5" >
           <Text className="text-black text-lg">-----------------End-----------------</Text>
         </View>
+</View>
       </KeyboardAvoidingView>
     </View>
     
