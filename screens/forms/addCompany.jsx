@@ -79,6 +79,21 @@ const company ={
     setCompanyAddres('');
   }
 
+
+  // Show Company Form
+const [copmanyForm , setCompanyForm] = useState(true)
+const [terminalForm, setTerminalForm] = useState(false)
+
+function showCopmanyForm() {
+      setCompanyForm(true)
+      setTerminalForm(false)
+  }
+function showTerminalForm() {
+  setCompanyForm(false)
+  setTerminalForm(true)
+  
+}
+
   return (
     
     <KeyboardAvoidingView
@@ -98,7 +113,12 @@ const company ={
         <Building2 stroke="black" size={35} / >
         </View>
         </View>
-
+        <View className="w-full gap-1 rounded-md flex flex-row  justify-between items-center">
+              <TouchableOpacity onPress={showCopmanyForm} className="bg-green-700 w-2/4  rounded-md  justify-center items-center p-1"><Text className="text-white">Add Company</Text></TouchableOpacity>
+              <TouchableOpacity onPress={showTerminalForm} className="bg-green-700 w-2/4  rounded-md  justify-center items-center p-1"><Text className="text-white">Add Terminal</Text></TouchableOpacity>
+        </View>
+        {/* Add Copmany Form */}
+     <View className={`${copmanyForm?'block' :'hidden'}`}> 
       <Text style={styles.label}>Company Name:</Text>
       <TextInput
         style={styles.input}
@@ -186,6 +206,41 @@ const company ={
         <TouchableOpacity onPress={clearAllData} style={[styles.button, { backgroundColor: 'gray' }]}>
           <Text style={{ color: 'white' }}>Reset</Text>
         </TouchableOpacity>
+      </View>
+      </View>
+      {/* Add Terminal Form */}
+     <View className={`${terminalForm?'block' :'hidden'}`}> 
+      <Text style={styles.label}>Company Name:</Text>
+      <TextInput
+        style={styles.input}
+        value={companyName}
+        onChangeText={text => setCompanyName(text)}
+        placeholder="Enter company name"
+        placeholderTextColor={'grey'}
+        className="text-black"
+      />
+
+      <Text style={styles.label}>Terminal:</Text>
+      <TextInput
+        style={styles.input}
+        value={subCompany}
+        onChangeText={text => setSubCompany(text)}
+        placeholder="Enter sub company"
+        placeholderTextColor={'grey'}
+        className="text-black"
+      />
+
+
+
+      <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity onPress={()=>AddCompanyData()} style={[styles.button, { marginRight: 10 }]}>
+          <Text style={{ color: 'white' }}>Save Company</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={clearAllData} style={[styles.button, { backgroundColor: 'gray' }]}>
+          <Text style={{ color: 'white' }}>Reset</Text>
+        </TouchableOpacity>
+      </View>
       </View>
     </View>
       

@@ -225,7 +225,7 @@ function Home() {
             keyboardType="number-pad"
             onChangeText={e => setNumber(e)}
             value={number}
-            className="  border  bg-white border-black text-black rounded-md w-2/6 text-lg"
+            className="  border  bg-white border-black text-black rounded-md  w-56 text-lg"
           />
         </View>
 
@@ -237,7 +237,7 @@ function Home() {
           </TouchableOpacity>
         </View> */}
 
-        <View className=" mt-2 flex-row p-1 justify-center  w-full ">
+        <View className=" mt-2 flex-row  justify-center  w-full ">
           <TextInput
             style={{backgroundColor: 'white'}}
             placeholderTextColor={'grey'}

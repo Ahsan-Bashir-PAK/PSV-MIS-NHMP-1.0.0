@@ -12,45 +12,103 @@ const Downloads = () => {
 
     return (
         <ScrollView >
-            <View className="bg-slate-100  flex flex-col  border p-2 justify-start">
+            <View className=" flex flex-col   p-2 justify-start">
                 <KeyboardAvoidingView style={{ backgroundColor: 'white' }}>
                     {/* Vehicle Information Design Tab */}
-                    <View className=" mt-1 w-full  ">
+                    <View className=" mt-1 w-full  divide-dotted divide-red-600 ">
 
-                        <View className=" border bg-yellow-400  rounded-md p-5  w-fit items-center justify-center flex flex-row">
+                        <View className="  bg-yellow-400  rounded-md p-5  w-fit items-center justify-center flex flex-row">
                            
                             <Text className="text-black text-xl rounded-md font-bold ">E-library</Text>
                         </View>
 
                         {/* NHSO */}
-                        <View className="border  bg-slate-100 p-2 mt-2">
-                            <Text className="text-black text-lg font-bold"> National Highway Safety Ordinance-2000</Text>
+                        <View className=" bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                            <View className="w-3/4">
+                                <Text className="text-black text-sm "> National Highway Safety Ordinance-2000</Text>
+                            </View>
                             {/* <Text></Text> */}
-                            <TouchableOpacity onPress={() => Linking.openURL('https://nhmp.pitb.gov.pk/system/files/NHSO.pdf#overlay-context=RightToAccess')}>
-                                <Text style={{ color: 'blue' }}>
-                                    NHSO-2000, Click Here 
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://nhmp.pitb.gov.pk/system/files/NHSO.pdf#overlay-context=RightToAccess')}>
+                                <Text className="text-white">
+                                    Download 
                                 </Text>
                             </TouchableOpacity>
                         </View>
 
                         {/* Goods Dimension*/}
-                        <View className="border  bg-slate-100 p-2 mt-2">
-                            <Text className="text-black text-lg font-bold">National Highway & Motorway (Dimensions of Goods Transport vehicles) Rules, 2017</Text>
+                        <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                        <View className="w-3/4">
+                            <Text className="text-black text-sm flex-wrap ">National Highway & Motorway (Dimensions of Goods Transport vehicles) Rules, 2017</Text>
+                           </View> 
                             {/* <Text></Text> */}
-                            <TouchableOpacity onPress={() => Linking.openURL('https://nhmp.pitb.gov.pk/system/files/National%20Highways%20Dimension%20Rules.pdf#overlay-context=RightToAccess')}>
-                                <Text style={{ color: 'blue' }}>
-                                    Dimesnion Rules, Click Here 
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://nhmp.pitb.gov.pk/system/files/National%20Highways%20Dimension%20Rules.pdf#overlay-context=RightToAccess')}>
+                            <Text className="text-white">
+                                    Download 
                                 </Text>
                             </TouchableOpacity>
                         </View>
 
                          {/* Tracker SOPs for PSVs*/}
-                         <View className="border  bg-slate-100 p-2 mt-2">
-                            <Text className="text-black text-lg font-bold"> SOP For Regulation, Control and Managment for PSVs on the National Highways & Motorways</Text>
+                         <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4">
+                            <Text className="text-black text-sm"> SOP For Regulation, Control and Managment for PSVs on the National Highways & Motorways</Text>
+                            </View>
                             {/* <Text></Text> */}
-                            <TouchableOpacity onPress={() => Linking.openURL('https://drive.google.com/file/d/13hhuu04bzxRWjcT8UJ73aBYpjShw8h5G/view?usp=sharing')}>
-                                <Text style={{ color: 'blue' }}>
-                                    PSVs SOP, Click Here 
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/13hhuu04bzxRWjcT8UJ73aBYpjShw8h5G/view?usp=sharing')}>
+                            <Text className="text-white">
+                                    Download 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        {/* FIRs Pattern*/}
+                        <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4">
+                            <Text className="text-black text-sm"> Isteghasa (استغاثہ)</Text>
+                            </View>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1zj-Qv2KLPpRnuMbMyI3ABnkvXCCTUDzw/view?usp=sharing')}>
+                            <Text className="text-white">
+                                    Download 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        {/* Fard Maqboozgi*/}
+                        <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4">
+                            <Text className="text-black text-sm"> Sample Fard Maqboozgi (نمونہ فرد مقبوضگی )</Text>
+                            </View>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1jlPNl9TNWOMpd1gUAXXKLUwKx4-mFzGG/view?usp=sharing')}>
+                            <Text className="text-white">
+                                    Download 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        {/* Fard Hawalgi*/}
+                        <View className="bg-slate-100  p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4 ">
+                            <Text className="text-black text-sm"> Sample Fard Hawalgi ( نمونہ فرد حوالگی)</Text>
+                            </View>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1GEO_6KPrHogyLYERliND90kqteSzfE1M/view?usp=sharing')}>
+                            <Text className="text-white">
+                                    Download 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        {/* Kalandra*/}
+                        <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4">
+                            <Text className="text-black text-sm"> Kalandra (کلندرہ)</Text>
+                            </View>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1O3gycLx59qRvNLiu2y-t9b-MI8H2XCmW/view?usp=sharing')}>
+                            <Text className="text-white">
+                                    Download 
                                 </Text>
                             </TouchableOpacity>
                         </View>

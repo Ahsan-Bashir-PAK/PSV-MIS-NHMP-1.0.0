@@ -13,23 +13,22 @@ import { retrieveUserSession } from '../../config/functions';
 
 const DailyProgress = () => {
 
-  const [showReport, setReport] = useState(true)
+const [showReport, setReport] = useState(true)
 
-  const [currentUser,setCurrentUser] = useState('')
+const [currentUser,setCurrentUser] = useState('')
   //const time = new Date().toLocaleTimeString();
+  
   // Start Date
 const [dobopen, setdobOpen] = useState(false)
 const [dobdate, setdobDate] = useState(new Date())
   // End Date
-  const [endopen, setdOpen] = useState(false)
-  const [enddate, setdDate] = useState(new Date())
-
- 
+const [endopen, setdOpen] = useState(false)
+const [enddate, setdDate] = useState(new Date())
 
  
   // Start Time
-  const [timeopen, setTime] = useState(false)
-  const [timeset, setTimes] = useState(new Date())
+const [timeopen, setTime] = useState(false)
+const [timeset, setTimes] = useState(new Date())
  // End Time
 const [timeopenend, setendTime] = useState(false)
 const [timesetend, setendTimes] = useState(new Date())
@@ -75,7 +74,7 @@ useEffect(()=>{
 
 
 return (
-    <ScrollView className=" ">
+    <ScrollView className="">
     <View className=" flex flex-col   ">
       <KeyboardAvoidingView style={{ backgroundColor: 'white' }}>
 
@@ -93,7 +92,6 @@ return (
             <Text className="text-white text-xs rounded-md  ">{currentUser.beat} {currentUser.sector} {currentUser.zone}</Text>
           </View>
         </View>
-
 
    {/* Start Date*/}
    <View className={styles.outerview}>
