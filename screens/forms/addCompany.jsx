@@ -1,9 +1,10 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet,Alert, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet,Alert, KeyboardAvoidingView, ScrollView, ActivityIndicator } from 'react-native';
 import { Building2} from 'lucide-react-native';
 import { retrieveUserSession } from '../../config/functions';
 import axios from 'axios';
 import '../../config';
+import { Dropdown } from 'react-native-searchable-dropdown-kj';
 
 const Addcompany = () => {
   const [companyName, setCompanyName] = useState('');
@@ -21,7 +22,8 @@ const Addcompany = () => {
 
 useEffect (()=>{
     retrieveUserSession(setCurrentUser)
-})
+    getCompany()
+},[])
 
 
 const company ={
@@ -93,6 +95,48 @@ function showTerminalForm() {
   setTerminalForm(true)
   
 }
+
+const [value,setValue] = useState(null) // Company Name
+const Companydata = [
+]
+
+//--------------------------getting companies
+//-----------------------------------------------------------search psv
+const getCompany = async()=>{
+
+
+await axios.get(`${global.BASE_URL}/cmp/getAllCompany`)
+.then(
+  (response) =>{
+    const result = response.data
+    if(result){
+    // console.log('sssssss'+ result)
+  // setPsvData(result)  //    Use this to set data in fileds   
+      result.map((item)=>{
+        Companydata.push(
+          {label:`${item.companyName}`,value:`${item.companyName}`}
+        )
+
+      })
+    
+    }
+    else {
+      Alert.alert("Not in Record.")
+    }
+})
+}
+
+if(Companydata==[]){
+  return(
+    <ActivityIndicator></ActivityIndicator>
+  )
+  }
+  else{
+  
+  getCompany()
+  }
+
+
 
   return (
     
@@ -209,23 +253,67 @@ function showTerminalForm() {
       </View>
       </View>
       {/* Add Terminal Form */}
-     <View className={`${terminalForm?'block' :'hidden'}`}> 
-      <Text style={styles.label}>Company Name:</Text>
+     <View className={`${terminalForm?'block' :'hidden'}`}>
+      
+      {/* Get companies from database */}
+       {/* Company Name */}
+            <View className={`${styles.outerview}  `}>
+              <View className={styles.labelstyle}>
+                <Text className="text-black font-bold"> Select Company Name</Text>
+              </View>
+              <View className="w-3/5 pl-3">
+
+
+                <Dropdown
+                  data={Companydata}
+                  search
+                  containerStyle={{ borderWidth: 1, borderColor: '#7077c4', borderRadius: 10, Color: 'black', backgroundColor: '#a3a5a5' }}
+                  maxHeight={300}
+                  labelField="label"
+                  valueField="value"
+                  placeholder="Select Company"
+                  placeholderStyle={{ paddingStart: 5 }}
+                  inputSearchStyle={{ backgroundColor: "#fcfcfc", color: "black" }}
+                  searchPlaceholder="Search Company"
+                  value={value}
+
+                  onChange={item => {
+                   // setSubComp("")
+                    setValue(item.value)
+
+                  }}
+
+                  renderLeftIcon={() => (
+                    <View className="flex flex-row gap-1">
+                      <Building2 stroke="black" size={20} />
+                      <Text className="bg-slate-600 p-1 text-white ">{value}</Text>
+                    </View>
+                  )}
+                />
+              </View>
+
+            </View>
+
+
+
+
+
+      <Text style={styles.label}>Terminal Name:</Text>
       <TextInput
         style={styles.input}
         value={companyName}
         onChangeText={text => setCompanyName(text)}
-        placeholder="Enter company name"
+        placeholder="Enter Terminal name"
         placeholderTextColor={'grey'}
         className="text-black"
       />
 
-      <Text style={styles.label}>Terminal:</Text>
+      <Text style={styles.label}>Terminal District:</Text>
       <TextInput
         style={styles.input}
         value={subCompany}
         onChangeText={text => setSubCompany(text)}
-        placeholder="Enter sub company"
+        placeholder="Enter Terminal"
         placeholderTextColor={'grey'}
         className="text-black"
       />
@@ -233,8 +321,8 @@ function showTerminalForm() {
 
 
       <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity onPress={()=>AddCompanyData()} style={[styles.button, { marginRight: 10 }]}>
-          <Text style={{ color: 'white' }}>Save Company</Text>
+        <TouchableOpacity style={[styles.button, { marginRight: 10 }]}>
+          <Text style={{ color: 'white' }}>Add Terminal</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={clearAllData} style={[styles.button, { backgroundColor: 'gray' }]}>
