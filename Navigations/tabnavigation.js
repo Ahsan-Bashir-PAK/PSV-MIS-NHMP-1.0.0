@@ -70,7 +70,7 @@ const MyTabs = () => {
       }}
         
         />
-<Tab.Screen name="AddCompany"  component={AddCompany}
+{/* <Tab.Screen name="AddCompany"  component={AddCompany}
         options={{
           unmountOnBlur:true,
           tabBarIcon:()=>(
@@ -78,7 +78,7 @@ const MyTabs = () => {
           )
       }}
         
-        />
+        /> */}
 
       </Tab.Navigator>
       // </NavigationContainer>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Keyboard, View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Alert, Modal, Button } from 'react-native';
 import DatePicker from 'react-native-date-picker';
-import { BusFront, Scroll, User, Square, CheckSquare, Search, Navigation, Building2 } from 'lucide-react-native';
+import { BusFront, Scroll, User, Square, CheckSquare, Search, Navigation, Building2, PlusSquare } from 'lucide-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { Bus } from 'lucide-react-native';
@@ -30,6 +30,8 @@ const AddVehicle = ({route}) => {
 
   const [Vehicle_type, setType] = useState(""); // BUS / HIACE
   const [Vehicle_letter, setLetter] = useState(""); // LES
+  const [Vehicle_letter_ext, setLetterExt] = useState(""); // A four  letter
+
   const [Vehicle_year, setYear] = useState("");  //2019
   const [Vehicle_number, setNumber] = useState(""); //5351
   const [vehicle_chasis , setChasis] = useState(""); // chasis
@@ -139,11 +141,7 @@ const AddVehicle = ({route}) => {
  } 
 
  /// keyboar handler
- function KeyBoardhandler(){
-  Keyboard.dismiss();
-  //console.log("weww")
-  getPsv()
-}
+
 
 // clear all fields when vehicle not found
 
@@ -175,6 +173,7 @@ function clearAllData1(){
   //  setType(Vehicle_type);
    setLetter("");
    setYear("");
+   setLetterExt("")
    setNumber("");
    setChasis("");
    setEngine("");
@@ -249,6 +248,7 @@ const getPsv = async()=>{
    const psv ={  
       vehicleType: Vehicle_type,
       prefixRegNo:Vehicle_letter,
+      // prefixRegNo:Vehicle_letter + Vehicle_letter_ext,
       vehicleModel:Vehicle_year,
       regNo:Vehicle_number,
       chasisNo:vehicle_chasis,
@@ -275,12 +275,12 @@ const getPsv = async()=>{
     
 
     const addPsvFormOne = async()=>{
-       let regx= new RegExp("[0-9]+$" , "ig");
+      //  let regx= new RegExp("[0-9]+$" , "ig");
         //console.log("---^^^---"+ regx.test(Vehicle_letter));
          //regex.replace(Vehicle_letter, "");
 
       if( Vehicle_letter != "") {
-        console.log("------"+ regx.test(Vehicle_letter));
+        // console.log("------"+ regx.test(Vehicle_letter));
         Alert.alert("Please enter all Alphabet e.g. LES")
       }
       
@@ -471,7 +471,7 @@ if(value != ""){
           <View className={styles.outerview} >
 
             {/* REG LETTER NO */}
-            <View className=" w-3/12 items-center border-r ">
+            <View className=" justify-center w-10/12 gap-3  flex flex-row items-center  ">
               <TextInput
                 style={{ backgroundColor: 'white' }}
                 placeholderTextColor={'grey'}
@@ -480,25 +480,28 @@ if(value != ""){
                 maxLength={3}
                 onChangeText={e => setLetter(e)}
                 value={Vehicle_letter}
-                className='   bg-white border-black  text-lg text-black' />
-            </View>
-
-            {/* YEAR */}
-            <View className="w-3/12 items-center border-r ">
-              <TextInput
+                className=' w-3/12 border rounded-md bg-white border-black text-center  text-sm text-black' />
                 
+              <TextInput
+                style={{ backgroundColor: 'white' }}
                 placeholderTextColor={'grey'}
-                placeholder='Year[2019]'
+                autoCapitalize={'characters'}
+                placeholder='A'
+                maxLength={1}
+                onChangeText={e => setLetterExt(e)}
+                value={Vehicle_letter_ext}
+                className='w-1/12  border rounded-md   bg-white text-sm text-black text-center ' />
+
+<TextInput  
+                placeholderTextColor={'grey'}
+                placeholder='Year-2019'
                 maxLength={4}
                 keyboardType='phone-pad'
                 onChangeText={e => setYear(e)}
                 value={Vehicle_year}
-                className='   bg-white border-black text-black    text-lg' />
-            </View>
+                className=' w-3/12  border bg-white rounded-md text-black  text-center   text-sm' />
 
-            {/* Number */}
-            <View className="w-3/12 items-center ">
-              <TextInput
+                <TextInput
                 
                 placeholderTextColor={'grey'}
                 placeholder='[1234]'
@@ -508,15 +511,20 @@ if(value != ""){
                 onChangeText={e=>setNumber(e)}
                 onBlur={()=>KeyBoardhandler()}
                 // keyboardType='phone-pad'
-                className=' bg-white border-black text-black   text-lg' />
+                className='w-3/12 border bg-white rounded-md  text-black text-center   text-sm' />
+                
             </View>
+
+           
+
+            
 {/* //Search Button */}
                  
                     <TouchableOpacity  onPress ={()=>getPsv()}
                     
-                     className="flex flex-row rounded-md  justify-center items-center w-1/4 bg-orange-400">
+                     className="flex flex-row rounded-md  justify-center items-center w-2/12 bg-orange-400">
                       
-                      <Text className="text-xl font-bold text-black">Search</Text>
+                      <Text className="text-sm  text-black">Search</Text>
                     </TouchableOpacity>
                    
                 
@@ -716,13 +724,18 @@ if(value != ""){
 
                   renderLeftIcon={() => (
                     <View className="flex flex-row gap-1">
-                    <Building2 stroke="black" size={20} />
+                    {/* <Building2 stroke="black" size={20} /> */}
                     <Text className="bg-slate-600 p-1 text-white ">{value}</Text>
                     </View>
                   )}
                   />
 </View>
 
+<View className="">
+<TouchableOpacity onPress={()=>navigation.navigate('Addcompany',{params:"company"})}>
+<PlusSquare stroke='white' fill='black' size={35} ></PlusSquare>
+</TouchableOpacity>
+</View>
           </View>
  
 {/* Terminal*/}
@@ -730,7 +743,7 @@ if(value != ""){
             <View className={styles.labelstyle}>
               <Text className="text-black font-bold">Terminal</Text>
             </View>
-                <View className = "w-3/5 pl-3">
+                <View className = " w-3/5 pl-3">
             <Dropdown 
                   data={subCompanyData}
                   containerStyle={{borderWidth:1,borderColor:'#a3a5a5',borderRadius:10, Color:'black', backgroundColor:'#a3a5a5'}}
@@ -749,13 +762,17 @@ if(value != ""){
                   }}
                   renderLeftIcon={() => (
                     <View className="flex flex-row gap-1">
-                    <Building2 stroke="black" size={20} />
+                    {/* <Building2 stroke="black" size={20} /> */}
                     <Text className="bg-slate-600 p-1 text-white ">{subComp}</Text>
                     </View>
                   )}
                   />
 </View>
-
+<View className="">
+  <TouchableOpacity onPress={()=>navigation.navigate('Addcompany',{params:"terminal"})}>
+<PlusSquare stroke='white' fill='black' size={35} ></PlusSquare>
+</TouchableOpacity>
+</View>
           </View>
 
 

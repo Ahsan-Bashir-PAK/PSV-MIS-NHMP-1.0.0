@@ -6,7 +6,7 @@ import axios from 'axios';
 import '../../config';
 import { Dropdown } from 'react-native-searchable-dropdown-kj';
 
-const Addcompany = () => {
+const Addcompany = ({route}) => {
   const [companyName, setCompanyName] = useState('');
   const [subCompany, setSubCompany] = useState('');
   const [terminal, setTerminal] = useState('');
@@ -23,6 +23,17 @@ const Addcompany = () => {
 useEffect (()=>{
     retrieveUserSession(setCurrentUser)
     getCompany()
+
+    if(route.params){
+      if(route.params["params"] == "company"){
+        setCompanyForm(true)
+      setTerminalForm(false)
+
+      } else {
+        setCompanyForm(false)
+        setTerminalForm(true)
+      }
+    }
 },[])
 
 
@@ -45,6 +56,7 @@ const company ={
 
 
  async function AddCompanyData(){
+
     if(companyName == "") {Alert.alert("Enter Company name")}
         else if (managerName=="") {Alert.alert("Enter Manager name")}
         else if (managerCellNumber=="" || managerCellNumber.length !=11 )

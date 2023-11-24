@@ -17,6 +17,7 @@ import Profile from '../screens/profile'
 import FeedBack from '../screens/feedBack';
 import InspectionReport from '../screens/reports/inspectionHistory';
 import DailyProgress from '../screens/forms/dailyProgress';
+import Addcompany from '../screens/forms/addCompany';
 
 
 const Stack = createNativeStackNavigator();
@@ -45,7 +46,7 @@ const MyStack = () => {
           
         
        />
-
+        <Stack.Screen name="Addcompany" component={Addcompany} /> 
          <Stack.Screen name="Feed Back" component={FeedBack} /> 
          <Stack.Screen name="OnlineVerifications" component={OnlineVerifications} /> 
          <Stack.Screen name="Profile" component={Profile} /> 

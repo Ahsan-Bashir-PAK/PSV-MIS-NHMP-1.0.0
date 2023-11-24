@@ -14,7 +14,8 @@ import {
     Image,
     Alert,
     Platform,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    Modal
     
 } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -71,6 +72,8 @@ versionCheck(1.0)
     const [userpwd, setPwd] = useState("")
     const [userbound, setBound] = useState("")
     const [location,setlocation] = useState("")
+
+    const [modalVisible, setModalVisible] = useState(false);
 
 //-----------Signin & get User 
         const signIn =async()=>{       
@@ -243,10 +246,39 @@ function clearAll(){
                     <Text className='text-white text-center font-bold text-lg'>Login</Text>
 
                     </TouchableOpacity>
+                    {/* <TouchableOpacity  
+                    onPress={()=>setModalVisible(true)}
+                    className='p-3 bg-blue-800 text-center rounded-md w-6/12 mt-10' >
+                    <Text className='text-white text-center font-bold text-lg'>Test Modal</Text>
+
+                    </TouchableOpacity> */}
             </View>
             {/* important NMHP social links */}
            
-
+            {/* <View className="border">
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                // onShow={}
+                //presentationStyle='formSheet'
+                onRequestClose={() => {
+                // Alert.alert('Modal has been closed.');
+                setModalVisible(!modalVisible);
+             }}> 
+                <View className="bg-green-100 flex items-center mt-10 h-1/4 w-2/4 justify-center rounded-md p-4">
+                    <Text>
+                       Modal View
+                       Modal View
+                       Modal View
+                       Modal View
+                    </Text>
+                    <TouchableOpacity onPress={()=>setModalVisible(false)} className="bg-blue-500 p-2 justify-center rounded-lg w-2/4">
+                        <Text className="text-white"> Close Modal</Text>
+                    </TouchableOpacity>
+                </View>
+            </Modal>
+            </View> */}
             {/* copyrights Tab */}
             <View className=' w-full  justify-center  items-center pt-3'>
                 <Text className="text-white text-sm">All Rights Reserve by</Text>

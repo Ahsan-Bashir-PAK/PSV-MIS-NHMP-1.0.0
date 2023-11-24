@@ -208,6 +208,7 @@ function Home() {
             className="border  justify-center pl-4 bg-white border-black  rounded-md w-2/6  text-lg text-black"
           />
 
+            
           <TextInput
             placeholderTextColor={'grey'}
             placeholder="Year (2023)"
