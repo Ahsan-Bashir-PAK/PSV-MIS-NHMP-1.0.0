@@ -195,7 +195,7 @@ function Home() {
      
     
         {/* View Input Type */}
-        <View className="  flex flex-row gap-2  ">
+        <View className="  mt-2 flex-row  justify-center  w-full  ">
           <TextInput
             style={{backgroundColor: 'white'}}
             placeholderTextColor={'grey'}
@@ -205,7 +205,7 @@ function Home() {
             keyboardType="email-address"
             value={reg}
             onChangeText={text => setReg(text)}
-            className="border  justify-center pl-4 bg-white border-black  rounded-md w-2/6  text-lg text-black"
+            className="border  justify-center pl-4 bg-white border-black  rounded-md w-4/12  text-lg  text-black"
           />
 
             
@@ -217,7 +217,7 @@ function Home() {
             minLength={4}
             value={year}
             onChangeText={text => setYear(text)}
-            className=" border  bg-white border-black text-black  rounded-md w-1/4 text-lg"
+            className=" border  bg-white border-black text-black  rounded-md w-3/12 flex text-lg ml-2 "
           />
           <TextInput
             placeholderTextColor={'grey'}
@@ -226,7 +226,7 @@ function Home() {
             keyboardType="number-pad"
             onChangeText={e => setNumber(e)}
             value={number}
-            className="  border  bg-white border-black text-black rounded-md  w-56 text-lg"
+            className="  border  bg-white border-black text-black rounded-md  w-4/12 flex text-lg ml-2 "
           />
         </View>
 
@@ -238,7 +238,7 @@ function Home() {
           </TouchableOpacity>
         </View> */}
 
-        <View className=" mt-2 flex-row  justify-center  w-full ">
+        <View className=" mt-1 flex-row p-2 justify-center  w-full ">
           <TextInput
             style={{backgroundColor: 'white'}}
             placeholderTextColor={'grey'}
@@ -248,7 +248,7 @@ function Home() {
             keyboardType="number-pad"
             value={dvrCnic}
             onChangeText={e => setDvrCnic(e)}
-            className="border justify-center pl-4 bg-white border-black m-1 rounded-md w-full  text-lg text-black"
+            className="border justify-center pl-4 bg-white border-black  rounded-md w-full text-lg text-black"
           />
         </View>
         <View className="flex-row p-1 justify-center  w-full mt-2">

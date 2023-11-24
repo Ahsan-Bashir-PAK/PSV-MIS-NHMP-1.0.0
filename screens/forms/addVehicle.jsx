@@ -509,7 +509,7 @@ if(value != ""){
                 keyboardType='phone-pad'
                 value={Vehicle_number}
                 onChangeText={e=>setNumber(e)}
-                onBlur={()=>KeyBoardhandler()}
+                // onBlur={()=>KeyBoardhandler()}
                 // keyboardType='phone-pad'
                 className='w-3/12 border bg-white rounded-md  text-black text-center   text-sm' />
                 
