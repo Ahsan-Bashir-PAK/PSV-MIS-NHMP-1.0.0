@@ -7,6 +7,7 @@ import '../../config';
 import { Dropdown } from 'react-native-searchable-dropdown-kj';
 
 const Addcompany = ({route}) => {
+  // Add Company Form
   const [companyName, setCompanyName] = useState('');
   const [subCompany, setSubCompany] = useState('');
   const [terminal, setTerminal] = useState('');
@@ -16,6 +17,13 @@ const Addcompany = ({route}) => {
   const [ownerCellNumber, setOwnerCellNumber] = useState('');
   const [currentUser,setCurrentUser] =useState("")
   const [compAdress, setCompanyAddres] =useState("")
+
+  // Add Terminal Form 
+  const [term_Name, setTerminalName] = useState('');
+  const [term_Loc, setTerminalLoc] = useState('');
+  const [term_managerName, setTermManagerName] = useState('');
+  const [term_managerCellNumber, setTermManagerNumber] = useState('');
+  const [term_address, setTermAddress] = useState('');
 
   const today = new Date()
   const time = new Date().toLocaleTimeString() 
@@ -81,6 +89,8 @@ const company ={
        
  } 
  }
+
+ // Clear All Company Form
   const clearAllData = () => {
     // Reset the form fields
     setCompanyName('');
@@ -91,6 +101,18 @@ const company ={
     setOwnerCellNumber('');
     setOwnerName('');
     setCompanyAddres('');
+  }
+
+// Clear All Terminal Form
+  const clearAllTerminalData = () => {
+  
+      setTerminalName('');
+      setTerminalLoc('');
+      setTermManagerName('');
+      setTermManagerNumber('');
+      setTermAddress('');
+
+    
   }
 
 
@@ -264,7 +286,7 @@ if(Companydata==[]){
         </TouchableOpacity>
       </View>
       </View>
-      {/* Add Terminal Form */}
+      {/*===================Add Terminal Form============================ */}
      <View className={`${terminalForm?'block' :'hidden'}`}>
       
       {/* Get companies from database */}
@@ -313,9 +335,9 @@ if(Companydata==[]){
       <Text style={styles.label}>Terminal Name:</Text>
       <TextInput
         style={styles.input}
-        value={companyName}
-        onChangeText={text => setCompanyName(text)}
-        placeholder="Enter Terminal name"
+        value={term_Name}
+        onChangeText={text => setTerminalName(text)}
+        placeholder=" Enter Terminal name"
         placeholderTextColor={'grey'}
         className="text-black"
       />
@@ -323,21 +345,49 @@ if(Companydata==[]){
       <Text style={styles.label}>Terminal District:</Text>
       <TextInput
         style={styles.input}
-        value={subCompany}
-        onChangeText={text => setSubCompany(text)}
-        placeholder="Enter Terminal"
+        value={term_Loc}
+        onChangeText={text => setTerminalLoc(text)}
+        placeholder=" Enter District"
         placeholderTextColor={'grey'}
         className="text-black"
       />
 
-
+<Text style={styles.label}>Terminal Manager Name:</Text>
+      <TextInput
+        style={styles.input}
+        value={term_managerName}
+        onChangeText={text => setTermManagerName(text)}
+        placeholder=" Enter Manager Name"
+        placeholderTextColor={'grey'}
+        className="text-black"
+      />
+<Text style={styles.label}>Terminal Manager Cell No.:</Text>
+      <TextInput
+        style={styles.input}
+        value={term_managerCellNumber}
+        onChangeText={text => setTermManagerNumber(text)}
+        placeholder=" Enter Cell Number"
+        placeholderTextColor={'grey'}
+        className="text-black"
+      />
+  <Text style={styles.label}>Address:</Text>
+      <TextInput
+        style={styles.input}
+        value={term_address}
+        onChangeText={text => setTermAddress(text)}
+        placeholder=" Enter Address"
+        maxLength={100}
+        placeholderTextColor={'grey'}
+        className="text-black"
+        
+      />
 
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity style={[styles.button, { marginRight: 10 }]}>
           <Text style={{ color: 'white' }}>Add Terminal</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={clearAllData} style={[styles.button, { backgroundColor: 'gray' }]}>
+        <TouchableOpacity onPress={clearAllTerminalData} style={[styles.button, { backgroundColor: 'gray' }]}>
           <Text style={{ color: 'white' }}>Reset</Text>
         </TouchableOpacity>
       </View>

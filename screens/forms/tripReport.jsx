@@ -21,6 +21,10 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import { retrieveDriverSession, retrieveVehicleSession,retrieveUserSession } from '../../config/functions';
 
 const TripReport = ({route}) => {
+
+  // 
+  const [show, setShow] = useState(false);
+
   const inputRef = useRef(null);
   const navigation = useNavigation();
 const [currentUser,setCurrentUser] = useState("")
@@ -186,8 +190,11 @@ function clearAllActionTaken () {
                         .get(`${global.BASE_URL}/rpt/inspectPsv/${rptPsv.psvLetter}/${rptPsv.psvModal}/${rptPsv.psvNumber}/${rptDriver.dvrCnic}/${currentUser.location}`)
                         .then(async response => {
                           const inspection = response.data[0];
-                          if (inspection) {                            
-                                  setTripData(inspection)
+                          if (inspection) {              
+                          
+                            (<ActivityIndicator size="large" color="red" />)              
+
+                            setTripData(inspection)
                             await EncryptedStorage.setItem(
                               'Report',
                               JSON.stringify({
@@ -217,10 +224,15 @@ function clearAllActionTaken () {
  
 
   }}
-//=============================================================//calling use effect
+
+
+
+  //=============================================================//calling use effect
 // settripdata
 function setTripData(tripdata){
   
+  {tripdata ? setShow(true): setShow(false)}
+
     setLastInspection(psvlastinsp.addedDate?psvlastinsp.addedDate.split("T")[0].split("-").reverse().join("-") +" " + " at "+ psvlastinsp.addedTime.split("T")[1].slice(0,5) + " " + "-" + psvlastinsp.chkPoint : " "+" " + "-"+ psvlastinsp.addedTime?psvlastinsp.addedTime:"" + " " + ":" + psvlastinsp.chkPoint?psvlastinsp.chkPoint:"")
     setpsvNo(tripdata.psvNo)
     setcompanyName(tripdata.psvCompany);
@@ -259,7 +271,8 @@ function setTripData(tripdata){
     setdvrSubCompany(tripdata.dvrSubCompany);
     setdvrLastInspection(dvrlastinsp.addedDate?dvrlastinsp.addedDate.split("T")[0].split("-").reverse().join("-") +" " + "at"+" "+ dvrlastinsp.addedTime.split("T")[1].slice(0,5) + " " + "-" + dvrlastinsp.chkPoint : " "+" " + "-"+ dvrlastinsp.addedTime?dvrlastinsp.addedTime:"" + " " + "-" + dvrlastinsp.chkPoint?dvrlastinsp.chkPoint:"N/A")
 
-}
+    
+  }
   //===============================save report
   const today = new Date();
   const time = new Date().toLocaleTimeString();
@@ -326,9 +339,12 @@ function setTripData(tripdata){
       <View className="flex justify-center,items-center">
         {/* <Text className ='text-2xl font-bold'>Loading ......</Text> */}
         <ActivityIndicator size="large" color="blue" />
+
+        
         </View>
     )
   }
+
 //==========================Note : data will be fetched if and only if sates are apulated and alse added page  focus for data sate changes 
   else{
     
@@ -344,7 +360,7 @@ function setTripData(tripdata){
  return (
     <ScrollView >
       <View className="bg-slate-100  flex flex-col  p-2 justify-start">
-        
+      {/* <ActivityIndicator size="small" color="red" animating={show}/>  */}
           {/* Vehicle Information Design Tab */}
           <View className=" mt-1 w-full  ">
             <View className=" bg-yellow-400  rounded-md p-1  w-fit items-center justify-center flex-row-reverse ">
@@ -549,10 +565,13 @@ function setTripData(tripdata){
             </View>
 
                 {/* Driver Complete information TAB */}
-            <View className=" bg-[#5ec44a] p-1  rounded-md m-1 w-fit items-center justify-center flex-row-reverse ">
+            <View className=" bg-[#5ec44a] p-1  rounded-md m-1 w-fit items-center justify-center flex-row ">
               <Text className="text-black text-lg rounded-md font-bold ">
                 Details of Driver: {d_name}
               </Text>
+              <TouchableOpacity onPress={()=>navigation.navigate("AddDrivernew")} className="bg-green-100 p-1 w-fit rounded-md ml-10 ">
+                <Text className="text-black font-bold text-xs "> + Add New Driver</Text>
+              </TouchableOpacity>
             </View>
             {/* Driver Name - License Type - License Number */}
                  <View className={styles.outerview}>

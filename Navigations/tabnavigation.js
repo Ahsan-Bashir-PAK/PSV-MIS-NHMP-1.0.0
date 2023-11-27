@@ -6,7 +6,7 @@ import {View, Text} from 'react-native';
 
 import AddVehicle from '../screens/forms/addVehicle';
 import { getTabBarHeight } from '@react-navigation/bottom-tabs/lib/typescript/src/views/BottomTabBar';
-import {  User, PlusCircle, FilePlus, BadgeInfo, Wrench, ShieldQuestion, PlusSquare  } from 'lucide-react-native';
+import {  User, PlusCircle, FilePlus, BadgeInfo, ShieldQuestion, PlusSquare, Home, HomeIcon  } from 'lucide-react-native';
 
 import AddDocumentation from '../screens/forms/addDocumentation';
 import AddCondition from '../screens/forms/addCondition';
@@ -16,13 +16,14 @@ import AddDrivernew from '../screens/forms/addDrivernew';
 import AddCompany from '../screens/forms/addCompany';
 
 
+
 const Tab =  createBottomTabNavigator();
 
 const MyTabs = () => {
   return (
     // <NavigationContainer>
     <Tab.Navigator>
-      <Tab.Screen name="AddDrivernew" component={AddDrivernew} 
+      <Tab.Screen name="Add Driver " component={AddDrivernew} 
       options={{  
         
         unmountOnBlur:true,
@@ -79,7 +80,16 @@ const MyTabs = () => {
       }}
         
         /> */}
-
+      {/* <Tab.Screen name="Home"  component={Home}
+        options={{
+          unmountOnBlur:true,
+          tabBarIcon:()=>(
+            <HomeIcon  stroke="#123456" size={30} fill='#c0c0c0'  />
+          )
+      }}
+        
+        />  */}
+        
       </Tab.Navigator>
       // </NavigationContainer>
   );
