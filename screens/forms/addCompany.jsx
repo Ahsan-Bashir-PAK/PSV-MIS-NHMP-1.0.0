@@ -59,7 +59,33 @@ const company ={
         addedPoint:currentUser.location
 }
 
+// // const terminalData ={
+// //   companyName:companyName,
+// //   subOffice:subCompany,
+// //   address:compAdress,
+// //   managerName:managerName,
+// //   managerCell:managerCellNumber,
+// //   ownerName:ownerName,
+// //   ownerCell : ownerCellNumber,
+// //   addedDate: today,
+// //   addedTime: time,
+// //   addedBy:currentUser.userName,
+// //   addedPoint:currentUser.location
+// }
 
+//AddTerminalData()
+
+async function AddTerminalData() {
+                  if (value == null) {Alert.alert("Please select Company")}
+                   else if(term_Name =="") {Alert.alert("Enter Terminal name")}
+                   else if (term_Loc == "") {Alert.alert("Enter Terminal District")}
+                   else if (term_managerName == "") {Alert.alert("Enter Terminal Manager name")}
+                   else if (term_managerCellNumber == "") {Alert.alert("Enter Terminal Manager Cell No.")}
+                   else if (term_address == "") {Alert.alert("Enter Terminal address")} 
+                else {
+                    Alert.alert(" Terminal has been added")
+                }
+}
 
 
 
@@ -383,7 +409,7 @@ if(Companydata==[]){
       />
 
       <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity style={[styles.button, { marginRight: 10 }]}>
+        <TouchableOpacity onPress={()=>AddTerminalData()} style={[styles.button, { marginRight: 10 }]}>
           <Text style={{ color: 'white' }}>Add Terminal</Text>
         </TouchableOpacity>
 

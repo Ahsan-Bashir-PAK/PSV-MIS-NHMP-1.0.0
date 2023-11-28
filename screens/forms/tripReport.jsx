@@ -570,7 +570,7 @@ function setTripData(tripdata){
                 Details of Driver: {d_name}
               </Text>
               <TouchableOpacity onPress={()=>navigation.navigate("AddDrivernew")} className="bg-green-100 p-1 w-fit rounded-md ml-10 ">
-                <Text className="text-black font-bold text-xs "> + Add New Driver</Text>
+                <Text className="text-black font-bold text-xs "> + Add Second Driver</Text>
               </TouchableOpacity>
             </View>
             {/* Driver Name - License Type - License Number */}
