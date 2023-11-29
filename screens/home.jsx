@@ -1,6 +1,6 @@
 import React, { useEffect, useState,useCallback } from 'react';
 import { useNavigation,useIsFocused,useFocusEffect } from '@react-navigation/native';
-import { UserPlus,  BadgePlus, BusFront,  UserCog2,  BookCopy, LogOutIcon, ArrowDownToLine, Link, UserCog2Icon, Plus, User, PenSquare, KeySquare  } from 'lucide-react-native';
+import { UserPlus,  BadgePlus, BusFront,  UserCog2,  BookCopy, LogOutIcon, ArrowDownToLine, Link, UserCog2Icon, Plus, User, PenSquare, KeySquare, Truck, BarChart4  } from 'lucide-react-native';
 
 import EncryptedStorage from 'react-native-encrypted-storage';
 import axios from 'axios';
@@ -274,10 +274,10 @@ function Home() {
             onPress={() => navigation.navigate('MyTabs', {screen: 'Add Vehicle'})}
             className="shadow-md shadow-slate-950  w-2/5 flex-row  rounded-lg  flex justify-around items-center border border-slate-400  bg-white">
             <View className="  items-center gap-1 justify-center mt-2 p-1 ">
-              <BusFront stroke="orange" size={40} />
+              <BusFront stroke="orange" size={40} strokeWidth={1}/>
               <View className="flex justify-center items-center flex-row gap-1">
-                <BadgePlus stroke="black" size={20} />
-                <Text className=" font-bold font-white  text-lg text-black">
+                {/* <BadgePlus stroke="black" size={20} /> */}
+                <Text className=" font-bold font-white  text-sm text-black">
                   Add PSV
                 </Text>
               </View>
@@ -289,39 +289,78 @@ function Home() {
             onPress={() => navigation.navigate('MyTabs', {screen: 'AddDrivernew'})}
             className="w-2/5  shadow-md shadow-slate-950 rounded-lg  flex justify-center items-center   border border-slate-400  bg-white">
             <View className="  items-center  gap-1 justify-center mt-2 p-1 ">
-              <UserPlus stroke="green" size={40} />
+              <UserPlus stroke="green" size={40} strokeWidth={1}/>
               <View className="flex justify-center items-center flex-row gap-1">
-                <BadgePlus stroke="black" size={20} />
-                <Text className=" font-bold font-white  text-lg text-black">
+                {/* <BadgePlus stroke="black" size={20} /> */}
+                <Text className=" font-bold font-white  text-sm text-black">
                   Add Driver
                 </Text>
               </View>
             </View>
           </TouchableOpacity>
+
         </View>
-        <View className=" flex-row justify-around mt-4">
+        {/* Add Commercial Vehicle TAB */}
+        
+        <View className="flex-row justify-around mt-4">
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Add Commercial Vehcile')}
+            className="shadow-md shadow-slate-950  w-2/5 flex-row  rounded-lg  flex justify-around items-center border border-slate-400  bg-white">
+            <View className="  items-center gap-1 justify-center mt-2 p-1 ">
+              <Truck stroke="red" size={40} strokeWidth={1}/>
+              <View className="flex justify-center items-center flex-row gap-1">
+                {/* <BadgePlus stroke="black" size={20} /> */}
+                <Text className=" font-bold font-white  text-xs text-black">
+                  Add Commercial Vehicle
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          {/*Add driver  */}
           <TouchableOpacity
            onPress={() => navigation.navigate('Downloads')}
             className="  w-2/5 flex-row shadow-md shadow-slate-950  rounded-lg  flex justify-around items-center border border-slate-400  bg-white">
             <View className="  items-center gap-1 justify-center mt-2 ">
-              <BookOpenCheck stroke="purple" size={40} />
+              <BookOpenCheck stroke="purple" size={40} strokeWidth={1}/>
               <View className="flex justify-center items-center flex-row gap-1">
-                <Text className=" font-bold font-white  text-lg text-black">
+                <Text className=" font-bold font-white  text-sm text-black">
                   E-Library
                 </Text>
               </View>
             </View>
           </TouchableOpacity>
 
-          {/*online Links  */}
-          <TouchableOpacity
+        </View>
+        
+        
+        
+        
+        
+        {/*  */}
+        <View className=" flex-row justify-around mt-4">
+        <TouchableOpacity
             onPress={() => navigation.navigate('OnlineVerifications')}
             className="w-2/5  shadow-md shadow-slate-950 rounded-lg  flex justify-center items-center   border border-slate-400  bg-white">
             <View className="  items-center  gap-1 justify-center mt-2 ">
-              <Link stroke="grey" size={40} />
+              <Link stroke="grey" size={40} strokeWidth={1}/>
               <View className="flex justify-center items-center flex-row gap-1">
-                <Text className=" font-bold font-white  text-lg text-black">
+                <Text className=" font-bold font-white  text-sm text-black">
                   Verifications
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          {/* Generate Progress  */}
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Daily Progress')}
+            className="w-2/5  shadow-md shadow-slate-950 rounded-lg  flex justify-center items-center   border border-slate-400  bg-white">
+            <View className="  items-center  gap-1 justify-center mt-2 ">
+              <BarChart4 stroke="brown" size={40} strokeWidth={1}/>
+              <View className="flex justify-center items-center flex-row gap-1">
+                <Text className=" font-bold font-white  text-sm text-black">
+                  Generate Progress
                 </Text>
               </View>
             </View>
@@ -345,7 +384,7 @@ function Home() {
         </TouchableOpacity>
       </View>
       {/* Generate Report */}
-      <View
+      {/* <View
         className= "mt-2">
         <TouchableOpacity
           onPress={() => navigation.navigate('Daily Progress')}
@@ -357,7 +396,7 @@ function Home() {
             </Text>
           </View>
         </TouchableOpacity>
-      </View>
+      </View> */}
 
       {/* User Profile*/}
 

@@ -18,6 +18,7 @@ import FeedBack from '../screens/feedBack';
 import InspectionReport from '../screens/reports/inspectionHistory';
 import DailyProgress from '../screens/forms/dailyProgress';
 import Addcompany from '../screens/forms/addCompany';
+import AddCommVehicle from '../screens/forms/addCommercialVehicle';
 
 
 const Stack = createNativeStackNavigator();
@@ -54,6 +55,7 @@ const MyStack = () => {
          <Stack.Screen name="Trip Report" component={TripReport} />
          <Stack.Screen name="SignUp" component={SignUp} /> 
          <Stack.Screen name="Daily Progress" component={DailyProgress} /> 
+         <Stack.Screen name="Add Commercial Vehcile" component={AddCommVehicle} /> 
         <Stack.Screen name="MyTabs" component={MyTabs} 
         options={{
           headerShown:false,
