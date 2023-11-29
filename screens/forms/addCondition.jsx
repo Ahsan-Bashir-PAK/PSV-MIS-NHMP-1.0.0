@@ -153,9 +153,14 @@ async function retrieveUserSession() {
   
   const updatePsvCondition =async ()=>{
     
-
-
-      if (tyrecondition !="" && tread !="" ){    
+    if(tyrecomp == undefined) { 
+        Alert.alert("Please Select Tyre company")}
+     else if (tyredate.toLocaleDateString() <= t_manDate.toLocaleDateString()) {
+        Alert.alert("Expiry Date cannot be equal to current date")}
+        else if (tread == "") {  Alert.alert("Please enter Tread size")}
+        else if (tyrecondition =="") {  Alert.alert("Please select Tyre condition")}
+          else {
+         
    await axios.patch(`${global.BASE_URL}/psv/updatePsvCondition/${currentPsv.psvLetter+currentPsv.psvModal+currentPsv.psvNumber}`, PsvDocuments
     )
     
@@ -184,7 +189,7 @@ async function retrieveUserSession() {
     
 
       .catch(error => console.log(error));
-    } else { Alert.alert("Missing Fileds..Tread Size or Tyre condition")}} 
+    }} 
 
   //==================================================
   return (
@@ -218,7 +223,7 @@ async function retrieveUserSession() {
             {/*  Tyre Manufacture */}
             <View className={styles.outerview} >
               <View className={styles.labelstyle}>
-                <Text className="text-black  font-bold">Tyre Manufacture</Text>
+                <Text className="text-black  font-bold">Tyre Company</Text>
               </View>
               <View className=" w-4/6  items-center">
               <View className=" m-1  z-40">
@@ -241,7 +246,7 @@ async function retrieveUserSession() {
  
             {/* Date of Manufacturing*/}
             <View className={styles.outerview}>
-              <View className={styles.labelstyle}><Text className="text-black font-bold">Date Of Manufacturing</Text></View>
+              <View className={styles.labelstyle}><Text className="text-black font-bold">Manufacturing Date</Text></View>
                <View className="w-4/6 items-center ">
                <View className="flex flex-row gap-1">
             
@@ -272,7 +277,7 @@ async function retrieveUserSession() {
 
             {/*Date Of Expiry */}
             <View className={styles.outerview}>
-              <View className={styles.labelstyle}><Text className="text-black font-bold">Expiry Date</Text></View>
+              <View className={styles.labelstyle}><Text className="text-black font-bold">Expiry Date*</Text></View>
               <View className="w-4/6 items-center">
               <View className="flex flex-row gap-1">
             
@@ -306,7 +311,7 @@ async function retrieveUserSession() {
 
             {/* Tread Size */}
             <View className={styles.outerview}>
-              <View className={styles.labelstyle}><Text className="text-black font-bold">Tread Size</Text></View>
+              <View className={styles.labelstyle}><Text className="text-black font-bold">Tread Size*</Text></View>
               <View className="w-4/6 items-center">
               <TextInput
                   placeholderTextColor={'grey'}
@@ -314,6 +319,7 @@ async function retrieveUserSession() {
                   maxLength={4}
                   onChangeText={e=>setTread(e)}
                   value ={tread}
+                  keyboardType='numeric'
                   className=' border-black text-black rounded-md  text-lg' />
               </View>
             </View>

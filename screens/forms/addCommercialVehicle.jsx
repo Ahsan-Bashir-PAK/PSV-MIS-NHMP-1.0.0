@@ -41,7 +41,7 @@ const AddCommVehicle = () => {
   const [vehcile_tracker, setTracker] = useState(""); // tracker
   const [vehcile_emergencyExit, setEmergencyExit] = useState(""); //Emergency Exit
   const [vehcile_manf_year, setManfYear] = useState(""); // Manufacturing Year
-  const [vehcile_company, setCompany] = useState(""); // Vehcile Company
+  const [vehcile_company, setVehicleCompany] = useState(""); // Vehcile Company
 
 
   //=========================setting user session 
@@ -58,6 +58,7 @@ const AddCommVehicle = () => {
 // const time = new Date().toLocaleTimeString()
 
   const [tyrecomp, setTyreCom] =useState();
+  
   // Tyre Manufacturing Date
   const [t_manDate, setmanDate] = useState(new Date())
   const [open, setOpen] = useState(false)
@@ -65,6 +66,7 @@ const AddCommVehicle = () => {
   // Tyre expiry Date
   const [tyredate, settyreDate] = useState(new Date())
   const [tyreopen, settyreOpen] = useState(false)
+
   const [tread, setTread] = useState("");
   const [tyrecondition, SettyreCondition] = useState("");
   const [conditionstate, setConditionState] = useState("");
@@ -72,8 +74,8 @@ const AddCommVehicle = () => {
   
   //==============FITNESS=======================
   const [fitnessno, setFitness] = useState("");
-const [fitnessdate, setFDate] = useState(new Date())
-const [fitnessopen, setFOpen] = useState(false)
+  const [fitnessdate, setFDate] = useState(new Date())
+  const [fitnessopen, setFOpen] = useState(false)
 
 //const [fitness_auth, setFitAuthority] = useState("");
 const [fitness_auth, setFitAuthority] = useState("");
@@ -180,7 +182,7 @@ const [fitness_auth, setFitAuthority] = useState("");
    setTracker("");
    setEmergencyExit("");
    setManfYear("");
-   setCompany("");
+  //  setCompany("");
    setSubComp("");
    setUpdateBtn("none")
    setSaveBtn("block")
@@ -277,20 +279,27 @@ const getPsv = async()=>{
         Alert.alert("Please enter all Alphabet e.g. LES")
       }
       
-        // else if(Vehicle_year == "" ) 
-        //     // {Alert.alert("Please enter Registeration Year e.g 2015")}
-        // else if(Vehicle_number == "" ) {Alert.alert("Please enter Registeration Number e.g. 1234")}
-        // else if(Vehicle_type == "" ) {Alert.alert("Please select vehicle type")}
-        // else if(vehicle_chasis == "") {Alert.alert("Please enter Chasis Number")}
-        // else if(vehcile_engine == "") {Alert.alert("Please enter Engine Number")}
-        // else if(vehcile_make == "") {Alert.alert("Please enter Vehicle Manufacture company")}
-        // // else if(vehcile_color == "") {Alert.alert("Please enter Vehicle color")}
-        // // else if(vehicle_seats == "") {Alert.alert("Please enter seating capacity")}
-        // else if(vehcile_manf_year == "") {Alert.alert("Please enter Manufacturing Year")}
-        // else if(value == "") {Alert.alert("Please Vehicle Company")}
+        else if(Vehicle_year == "" ) 
+            {Alert.alert("Please enter Registeration Year e.g 2015")}
+        else if(Vehicle_number == "" ) {Alert.alert("Please enter Registeration Number e.g. 1234")}
+        else if(Vehicle_type == "" ) {Alert.alert("Please select vehicle type")}
+        else if(vehicle_chasis == "") {Alert.alert("Please enter Chasis Number")}
+        else if(vehcile_engine == "") {Alert.alert("Please enter Engine Number")}
+        else if(vehcile_make == "") {Alert.alert("Please enter Vehicle Manufacture company")}
+        // else if(vehcile_color == "") {Alert.alert("Please enter Vehicle color")}
+        // else if(vehicle_seats == "") {Alert.alert("Please enter seating capacity")}
+        else if(vehcile_manf_year == "") {Alert.alert("Please enter Manufacturing Year")}
+        else if(vehcile_company == "") {Alert.alert("Please Vehicle Company")}
        
-        else if(tread == "") {Alert.alert("Please enter tread size")}
+        else if(tyrecomp == undefined) {Alert.alert("Please enter Tyre Company")}
+        else if (tyredate.toLocaleDateString() <= t_manDate.toLocaleDateString()) {
+          Alert.alert("Expiry Date cannot be equal to current date")}
+        else if(tread == "") {
+          
+          Alert.alert("Please enter tread size" )}
         else if(tyrecondition == "") {Alert.alert("Please select tyre condition")}
+        else if(fitnessno == "") {Alert.alert("Please enter Fitness Number")}
+        else if(fitness_auth == "") {Alert.alert("Please enter fitness Authority Name")}
        
         else {
       
@@ -423,22 +432,7 @@ const getSubCompany = async()=>{
 
 
 
-if(Companydata==[]){
-  return(
-    <View>
-      <Text>
-        Loading........
-      </Text>
-    </View>
-  )
-}
-else{
 
-getCompany()
-if(value != ""){
-
-  getSubCompany()
-}
 
 
  //------------------------------returning UI    
@@ -455,8 +449,8 @@ if(value != ""){
           {/* Vehicle Information Design Tab */}
           <View className="  mt-1 w-full  ">
 
-            <View className=" bg-yellow-400  rounded-md p-1 m-1 w-fit items-center justify-center flex-row-reverse ">
-              <Text className="text-black text-lg rounded-md  ">Add Commercial Vehicle</Text>
+            <View className=" bg-[#195e8e] rounded-full  p-2 m-1 w-fit items-center justify-center flex-row-reverse ">
+              <Text className="text-white text-lg rounded-md  ">Add Commercial Vehicle</Text>
               
             </View>
           </View>
@@ -529,7 +523,7 @@ if(value != ""){
         <View className={`${styles.outerview} `} style={{}} >
             <View className={styles.labelstyle}><Text className="text-black  font-bold">Vehicle Type*</Text></View>
             <View className=" w-4/6 items-center ">
-              <View className=" m-1  z-50">
+              <View className=" z-50">
               <SelectDropdown
                 data= {Vehicletype}
                 onSelect={(selectedItem, index) => {
@@ -581,7 +575,7 @@ if(value != ""){
           <View className={styles.outerview}>
             <View className={styles.labelstyle}><Text className="text-black font-bold">Vehicle Make By*</Text></View>
             <View className="w-4/6 items-center">
-            <View className=" m-1  z-50">
+            <View className="    z-50">
               <SelectDropdown
                 data= {Vehicle_make_company}
                 onSelect={(selectedItem, index) => {
@@ -591,7 +585,8 @@ if(value != ""){
                 buttonStyle={{
                   backgroundColor:'white',
                     
-                }}                
+                }}
+                                
                 />
               
             </View>
@@ -659,12 +654,11 @@ if(value != ""){
             <View className="w-4/6 items-center border-b">
             <TextInput
                 placeholderTextColor={'grey'}
-                placeholder='Company Name'
-                maxLength={50}
-                // value={}
-                onChangeText={e => setChasis(e)}
-                className=' border-black text-black rounded-md  w-full text-lg items-center text-center' />
-
+                placeholder='Company name'
+              
+                value={vehcile_company}
+                onChangeText={e => setVehicleCompany(e)}
+                className=' border-black text-black rounded-md  text-lg' />
             </View>
 
 
@@ -672,18 +666,18 @@ if(value != ""){
           </View>
  {/* ==============================tyre condition===================///  */}
 
- <View className=" bg-yellow-400  p-1 m-1 w-fit items-center justify-center flex ">
-  <Text className="text-black text-lg rounded-md  ">Tyre Condition</Text>
+ <View className=" bg-[#195e8e]  rounded-full p-1 m-1 w-fit items-center justify-center flex ">
+  <Text className="text-white text-lg rounded-md  ">Tyre Condition</Text>
   {/* <FileText  stroke="black" size={30}></FileText > */}
 </View>
        
  {/*  Tyre Manufacture */}
  <View className={styles.outerview} >
               <View className={styles.labelstyle}>
-                <Text className="text-black  font-bold">Tyre Manufacture</Text>
+                <Text className="text-black  font-bold">Tyre Company</Text>
               </View>
               <View className=" w-4/6  items-center ">
-              <View className=" m-1  z-40">
+              <View className=" z-40">
               <SelectDropdown
                 data= {tyre_companies}
                 onSelect={(selectedItem, index) => {
@@ -703,7 +697,7 @@ if(value != ""){
  
             {/* Date of Manufacturing*/}
             <View className={styles.outerview}>
-              <View className={styles.labelstyle}><Text className="text-black font-bold">Date Of Manufacturing</Text></View>
+              <View className={styles.labelstyle}><Text className="text-black font-bold">Manufacturing Date</Text></View>
                <View className="w-4/6 items-center">
                <View className="flex flex-row gap-1">
             
@@ -772,6 +766,7 @@ if(value != ""){
               <View className="w-4/6 items-center border-b">
               <TextInput
                   placeholderTextColor={'grey'}
+                  keyboardType='numeric'
                   placeholder='3.5 - 2.0'
                   maxLength={4}
                   onChangeText={e=>setTread(e)}
@@ -783,7 +778,7 @@ if(value != ""){
            
 
  {/* Select Tyre Condition */}
- <View className={` justify-around flex flex-row mb-1 mx-2 border border-gray-300 p-1 rounded-md  shadow-md  shadow-blue-900 ${tyrecondition=="Excellent"?"bg-green-700 ":tyrecondition=="Good"?"bg-blue-500":tyrecondition=='Average'?"bg-yellow-500":tyrecondition=="Poor"?"bg-red-600":"bg-white"}`}> 
+ <View className={` justify-around flex flex-row mb-1 mx-2 border border-gray-300 p-1 rounded-full  shadow-md  shadow-blue-900 ${tyrecondition=="Excellent"?"bg-green-700 ":tyrecondition=="Good"?"bg-blue-500":tyrecondition=='Average'?"bg-yellow-500":tyrecondition=="Poor"?"bg-red-600":"bg-white"}`}> 
              <View className=" " >
              <Text className={`font-bold text-white `}>{tyrecondition ===""?"Select Tyre Condition*":tyrecondition}</Text>
                     
@@ -791,7 +786,7 @@ if(value != ""){
             </View>
 
             {/* Tyre condition Excellent - Good-Poor-Average */}
-            <View className=' justify-around flex flex-row mb-1 mx-2 border border-gray-300 p-1 rounded-md bg-white shadow-md  shadow-blue-900'> 
+            <View className=' justify-around rounded-full flex flex-row mb-1 mx-2 border border-gray-300 p-1  bg-white shadow-md  shadow-blue-900'> 
              <TouchableOpacity onPressOut={()=>SettyreCondition('Excellent')}  className="bg-[#3bac44]   rounded-md p-2 justify-around m-1 w-[80]" ><Text className="text-white text-xs text-center  ">Excellent</Text></TouchableOpacity>
              <TouchableOpacity onPressOut={()=>SettyreCondition('Good')}  className="bg-[#3975b1]  rounded-md p-2 justify-around m-1 w-[75]" ><Text className="text-white text-xs text-center  ">Good</Text></TouchableOpacity>
              <TouchableOpacity onPressOut={()=>SettyreCondition('Average')}  className="bg-[#8c6cd6]  rounded-md p-2 justify-around m-1 w-[78]" ><Text className="text-white text-xs text-center  ">Average</Text></TouchableOpacity>
@@ -817,8 +812,8 @@ if(value != ""){
 
  <View className=" mt-1 w-full  ">
 
-<View className=" bg-yellow-400  p-1 m-1 w-fit items-center justify-center flex-row-reverse ">
-  <Text className="text-black text-lg rounded-md  ">Fitness Certificate </Text>
+<View className=" bg-[#195e8e]   rounded-full p-1 m-1 w-fit items-center justify-center flex-row-reverse ">
+  <Text className="text-white text-lg rounded-md  ">Fitness Certificate </Text>
   {/* <FileText  stroke="black" size={30}></FileText > */}
 </View>
 
@@ -919,7 +914,7 @@ onCancel={() => {
   );
 };
 
-}
+
 
 export default AddCommVehicle;
 
@@ -929,9 +924,9 @@ const styles = {
   inputVioletSmall:
     'w-6/12  border border-1 border-violet-400 rounded-md mx-1 font-bold px-3 py-1 text-black',
   labelstyle:
-    'text-center items-center justify-center w-2/6  rounded-md border-slate-400 bg-gray-200 ',
+    'text-center items-center justify-center w-2/6  rounded-l-full border-r-8 border-[#195e8e]  bg-yellow-400 ',
   outerview:
-    'flex flex-row mb-1 mx-2 border border-gray-300 p-1 rounded-md bg-white shadow-md  shadow-blue-900 '
+    'flex flex-row mb-1 mx-2 border border-gray-300 p-1 rounded-l-full bg-white shadow-md  shadow-blue-900 '
 };
 
 
