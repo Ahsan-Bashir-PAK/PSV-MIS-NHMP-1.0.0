@@ -31,44 +31,44 @@ function Login() {
 
 
 //==========================new version
-function downloadApk(){
+// function downloadApk(){
 
-    const {config,fs} = RNFetchBlob;
-    const dowloads = fs.dirs.DownloadDir
-    return config({
-        fileCache:true,
-        addAndroidDownloads:{
-            useDownloadManager: true,
-            notification:true,
-            path:dowloads + '/'+ 'PSV_MIS' + '.apk'
-        }
-    })
-    .fetch("GET",`${global.BASE_URL}/v/downloadApk`)
+//     const {config,fs} = RNFetchBlob;
+//     const dowloads = fs.dirs.DownloadDir
+//     return config({
+//         fileCache:true,
+//         addAndroidDownloads:{
+//             useDownloadManager: true,
+//             notification:true,
+//             path:dowloads + '/'+ 'PSV_MIS' + '.apk'
+//         }
+//     })
+//     .fetch("GET",`${global.BASE_URL}/v/downloadApk`)
 
-}
+// }
 //=========================check verion
-    function versionCheck(version)
-{
-    axios.get(`${global.BASE_URL}/v/chkversion/${version}`).then(
-        response=>{
-            if(response){
-                if(response.data=='updated'){
-                    Alert.alert(response.data,'Please download new version and install', [
+//     function versionCheck(version)
+// {
+//     axios.get(`${global.BASE_URL}/v/chkversion/${version}`).then(
+//         response=>{
+//             if(response){
+//                 if(response.data=='updated'){
+//                     Alert.alert(response.data,'Please download new version and install', [
          
-                        {text: 'Download', onPress: () => downloadApk()},
-                      ]);
-                }
-            }
-        }
-    )
-}
+//                         {text: 'Download', onPress: () => downloadApk()},
+//                       ]);
+//                 }
+//             }
+//         }
+//     )
+// }
 useEffect(()=>{
     function clearStorage(){
 
         EncryptedStorage.clear()
     }
 clearStorage()
-versionCheck(1.0)
+// versionCheck(1.0)
 },[])
  
     const [user, setUser] = useState("")
@@ -101,7 +101,7 @@ versionCheck(1.0)
            
           if(userpwd == result.userPwd){
          
-            storeUserSession(user,result.role,result.userName,result.rank,result.userPwd ,result.zoneId,result.sectorId,result.beatId)
+            storeUserSession(user,result.role,result.userName,result.rank,result.userPwd,result.region,result.zoneId,result.sectorId,result.beatId)
             
             navigation.navigate("Home")
             clearAll()
@@ -137,7 +137,7 @@ function clearAll(){
 
     
 
-     async function storeUserSession(user,role,officer,rank,pwd,beat,sector,zone) {
+     async function storeUserSession(user,role,officer,rank,pwd,beat,sector,zone,region) {
          try {
              await EncryptedStorage.setItem(
                  "user_session",
@@ -148,6 +148,7 @@ function clearAll(){
                      name:officer,
                      rank:rank,
                      pwd:pwd,
+                     region:region,
                      zone:zone,
                      sector:sector,
                      beat:beat
@@ -172,7 +173,7 @@ function clearAll(){
         <KeyboardAvoidingView
         behavior={Platform.OS === 'android' ? 'position' : null}
         style={styles.container} enabled>
-        <ImageBackground source={myimage} resizeMode='cover' className="flex  flex-1 bg-scroll justify-center items-center  h-screen w-screen" ></ImageBackground>
+        <ImageBackground source={myimage} resizeMode='cover' className="flex  flex-1  justify-center items-center  h-screen w-full" ></ImageBackground>
         <View className='flex justify-start items-center h-screen border ' >
         
             {/* ============================================== */}
@@ -185,14 +186,15 @@ function clearAll(){
 
             {/* Logo VIEW */}
             <View className="w-full  h-2/5 flex justify-center items-center ">
-                <Image source={require('../img/logo.png')} style={{width:180, height:180}} className='w-[270] h-[300] border ' />
-                <Text className='font-extrabold text-3xl  text-blue-900'>PSV-MIS</Text>
-                <Text className='font-extrabold sm:text-2xl text-md text-yellow-500'>National Highways & Motorway Police</Text>
-                <Text className="text-yellow font-light font-mono text-xs italic">(Version: 1.0.0)</Text>
+                <Image source={require('../img/logo.png')} style={{width:180, height:180}}  className='w-[270] h-[300] border ' />
+                <Text className='font-extrabold text-3xl  text-yellow-400 '>PSV-MIS</Text>
+                <Text className=' sm:text-2xl text-md text-white font-bold m-2 border-b-2  border-yellow-400   px-2 rounded-sm '>National Highways & Motorway Police</Text>
+                <Text className="text-black font-light font-mono text-xs italic">Version: 1.0.0</Text>
             </View>
            
-                       {/* Login Panel */}
-            <View className='w-5/6 rounded-lg border-b-2 border-yellow-500  bg-blue-900 shadow-xl shadow-black flex justify-center items-center h-fit  py-10 px-4'>
+                       {/* Login Panel  bg-[#2b6379] */}
+                       
+            <View className='w-11/12 bg-[#ffffff60] rounded-xl p-3 pt-5 shadow-lg border border-gray-50  flex justify-center items-center h-fit  '>
                 
                {/* User name */}
                <View className="w-full ">
@@ -203,7 +205,7 @@ function clearAll(){
                     placeholderTextColor='grey'
                     keyboardType='number-pad'
                     maxLength={13}
-                    className=' h-[50]  pl-5 text-lg border bg-white border-blue-400 text-black m-3 rounded-md ' />
+                    className='   pl-5 text-lg border bg-white border-blue-400 text-black m-3 rounded-md ' />
                 </View>
 
                 {/* Password  */}
@@ -215,7 +217,7 @@ function clearAll(){
                     onChangeText={e => setPwd(e)}
                     placeholderTextColor='grey'
                     
-                    className='h-[50]  pl-5 text-lg  border  bg-white border-blue-400 text-black m-3 rounded-md ' />
+                    className=' pl-5 text-lg  border  bg-white border-blue-400 text-black m-3 rounded-md ' />
                 </View>
                 <View className="  w-full flex flex-row">
                         <View className=" mt-3 mb-3 ml-3 w-4/12">
@@ -227,16 +229,16 @@ function clearAll(){
                         keyboardType='number-pad'
                         maxLength={4}
                         
-                        className='h-[50] pl-5 text-lg  rounded-md border  bg-white border-blue-400 text-black  ' />
+                        className=' pl-5 text-lg  rounded-md border  bg-white border-blue-400 text-black  ' />
                         </View>
 
                         <View className="w-10  rounded-md mt-3 mb-3  justify-center ">    
-                                 <Text className="text-center items-center text-black  font-bold text-lg " > {userbound} </Text>
+                                 <Text className="text-center items-center text-white  font-bold text-lg " > {userbound} </Text>
                         </View>
 
                         <View className=" w-3/12  text-center items-center flex flex-row ">
-                        <TouchableOpacity onPress={()=>setBound('NB')} className="bg-green-700 p-3 px-4 ml-2 rounded-md"><Text className="font-bold text-white">North</Text></TouchableOpacity>
-                        <TouchableOpacity   onPress={()=>setBound('SB')} className="bg-orange-700 p-3 px-4  ml-2 rounded-md"><Text className="font-bold text-white">South</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>setBound('NB')} className="bg-green-700 w-14 px-2 h-12 rounded-md justify-center"><Text className=" text-white">North</Text></TouchableOpacity>
+                        <TouchableOpacity   onPress={()=>setBound('SB')} className="bg-orange-700 w-14 px-2 h-12 rounded-md justify-center ml-2"><Text className=" text-white">South</Text></TouchableOpacity>
 
                     </View>
 
@@ -245,8 +247,8 @@ function clearAll(){
 
 
                     <TouchableOpacity onPress={()=>signIn()} 
-                    className='p-3 bg-blue-800 text-center rounded-md w-6/12 mt-10' >
-                    <Text className='text-white text-center font-bold text-lg'>Login</Text>
+                    className='p-3 bg-yellow-400 text-center rounded-md w-6/12 mt-10 border-yellow-500' >
+                    <Text className='text-white  text-center font-bold text-lg'>Login</Text>
 
                     </TouchableOpacity>
                     {/* <TouchableOpacity  
@@ -284,8 +286,8 @@ function clearAll(){
             </View> */}
             {/* copyrights Tab */}
             <View className=' w-full  justify-center  items-center pt-3'>
-                <Text className="text-black text-sm">All Rights Reserve by</Text>
-                <Text className="text-black text-sm">NHMP Training  College, IT Wing</Text>
+                <Text className="text-white text-sm">All Rights Reserve by</Text>
+                <Text className="text-white text-sm">NHMP Training  College, IT Wing</Text>
             </View>
             
         
