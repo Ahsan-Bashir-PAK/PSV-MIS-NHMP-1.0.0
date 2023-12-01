@@ -142,10 +142,10 @@ const Downloads = () => {
                            {/* MVO Rules*/}
                            <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
                          <View className="w-3/4">
-                            <Text className="text-black text-sm"> Motor Vehicle Rules 1969</Text>
+                            <Text className="text-black text-sm"> Pakistan Penal Code (PPC)</Text>
                             </View>
                             {/* <Text></Text> */}
-                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('')}>
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1cTEzsNNAKkmXIELoO8fs2JtDY0bLaa5R/view?usp=sharing')}>
                             <Text className="text-white">
                                     Download 
                                 </Text>
@@ -154,10 +154,11 @@ const Downloads = () => {
    {/* OGRA Rules*/}
    <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
                          <View className="w-3/4">
-                            <Text className="text-black text-sm"> OGRA Rules</Text>
+                            <Text className="text-black text-sm"> OGRA Rules for (Road Transport Vehicles,
+Containers and Equipment Used for the Transportation of Petroleum Products) </Text>
                             </View>
                             {/* <Text></Text> */}
-                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('')}>
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1D8PoSzP19t_rzVbhVvUIuX6XoMzXzrfa/view?usp=sharing')}>
                             <Text className="text-white">
                                     Download 
                                 </Text>
@@ -165,18 +166,7 @@ const Downloads = () => {
                         </View>
 
                     </View>
-   {/* MVO*/}
-   <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
-                         <View className="w-3/4">
-                            <Text className="text-black text-sm"> Road Transport Work Ordinance</Text>
-                            </View>
-                            {/* <Text></Text> */}
-                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('')}>
-                            <Text className="text-white">
-                                    Download 
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
+  
 
 
                 </KeyboardAvoidingView>

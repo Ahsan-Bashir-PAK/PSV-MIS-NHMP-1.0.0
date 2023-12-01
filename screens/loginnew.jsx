@@ -1,6 +1,7 @@
 import React, { useState, Linking,useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import EncryptedStorage from 'react-native-encrypted-storage';
+
 import {
     SafeAreaView,
     ScrollView,
@@ -15,7 +16,8 @@ import {
     Alert,
     Platform,
     KeyboardAvoidingView,
-    Modal
+    Modal,
+    ImageBackground
     
 } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -24,6 +26,7 @@ import axios from 'axios';
 import '../config';
 import { Facebook, Twitter } from 'lucide-react-native';
 
+import myimage from '../img/login.jpg'
 function Login() {
 
 
@@ -163,15 +166,15 @@ function clearAll(){
     
     
     const navigation = useNavigation();
-
-
+    
     return (
       
         <KeyboardAvoidingView
         behavior={Platform.OS === 'android' ? 'position' : null}
         style={styles.container} enabled>
-        <View className='  flex justify-center items-center h-screen bg-blue-800  '>
-
+        <ImageBackground source={myimage} resizeMode='cover' className="flex  flex-1 bg-scroll justify-center items-center  h-screen w-screen" ></ImageBackground>
+        <View className='flex justify-start items-center h-screen border ' >
+        
             {/* ============================================== */}
           {/* <TouchableOpacity className="bg-white p-2 rounded-md" onPress={()=>navigation.navigate("Inspection History")}>
             <Text> Inspection History</Text>
@@ -181,15 +184,15 @@ function clearAll(){
 
 
             {/* Logo VIEW */}
-            <View className="w-full  h-2/5 bg-blue-800 flex justify-center items-center  rounded-tl-full border-l-[50px] border-t-yellow-500 border-l-yellow-500   ">
+            <View className="w-full  h-2/5 flex justify-center items-center ">
                 <Image source={require('../img/logo.png')} style={{width:180, height:180}} className='w-[270] h-[300] border ' />
-                <Text className='font-extrabold text-3xl  text-white'>PSV-MIS</Text>
+                <Text className='font-extrabold text-3xl  text-blue-900'>PSV-MIS</Text>
                 <Text className='font-extrabold sm:text-2xl text-md text-yellow-500'>National Highways & Motorway Police</Text>
-                <Text className="text-white font-light font-mono text-xs italic">(Version: 1.0.0)</Text>
+                <Text className="text-yellow font-light font-mono text-xs italic">(Version: 1.0.0)</Text>
             </View>
            
                        {/* Login Panel */}
-            <View className='w-full    border-yellow-500 shadow-xl shadow-yellow-700 flex justify-center items-center h-fit bg-slate-100 py-10 px-4'>
+            <View className='w-5/6 rounded-lg border-b-2 border-yellow-500  bg-blue-900 shadow-xl shadow-black flex justify-center items-center h-fit  py-10 px-4'>
                 
                {/* User name */}
                <View className="w-full ">
@@ -281,8 +284,8 @@ function clearAll(){
             </View> */}
             {/* copyrights Tab */}
             <View className=' w-full  justify-center  items-center pt-3'>
-                <Text className="text-white text-sm">All Rights Reserve by</Text>
-                <Text className="text-white text-sm">NHMP Training  College, IT Wing</Text>
+                <Text className="text-black text-sm">All Rights Reserve by</Text>
+                <Text className="text-black text-sm">NHMP Training  College, IT Wing</Text>
             </View>
             
         

@@ -112,7 +112,7 @@ const [fitness_auth, setFitAuthority] = useState("");
          
           Data1 = JSON.parse(session).psvData; //data of vehicle
   
-          setPsvFiels(Data1);
+          setPsvFields(Data1);
         
         }
       } catch (error) {
@@ -136,7 +136,7 @@ const [fitness_auth, setFitAuthority] = useState("");
 
 //=======================================================end report  code
 
- function setPsvFiels(result) {
+ function setPsvFields(result) {
 
   setType(result.vehicleType);
    setLetter(result.prefixRegNo);
@@ -145,14 +145,24 @@ const [fitness_auth, setFitAuthority] = useState("");
    setChasis(result.chasisNo);
    setEngine(result.engineNo);
    setMake(result.vehicleMake);
-   setColor(result.vehicleColor);
-   setAc(result.acStatus);
-   setVehicleSeats(result.seatingCap.toString());
+  //  setColor(result.vehicleColor);
+  //  setAc(result.acStatus);
+  //  setVehicleSeats(result.seatingCap.toString());
    setTracker(result.trackerStatus);
-   setEmergencyExit(result.exitGate);
+  //  setEmergencyExit(result.exitGate);
    setManfYear(result.manufactureYear.toString());
-   setValue(result.companyName);
-   setSubComp(result.subCompany);
+   setVehicleCompany(result.companyName);
+  //  setSubComp(result.subCompany);
+    setTyreCom(result.tyreCompany)
+    setTread(`${result.tyreTread}`)
+    setConditionState(result.conditionstate)
+    setRemarks(result.remarks)
+    setFitness(result.fitnessNo)
+    setFDate(new Date (result.fitnessExpiryDate))
+    setFitAuthority(result.fitnessAuthority)
+    setmanDate(new Date(result.tyreManDate))
+    settyreDate(new Date(result.tyreExpiry))
+    
     
  } 
 
@@ -216,52 +226,57 @@ const [fitness_auth, setFitAuthority] = useState("");
 
 
 //-----------------------------------------------------------search psv
-const getPsv = async()=>{
+const getCv = async()=>{
 
-
-  await axios.get(`${global.BASE_URL}/psv/getPsv/${Vehicle_letter}/${Vehicle_year}/${Vehicle_number}`)
+  await axios.get(`${global.BASE_URL}/cv/getCv/${Vehicle_letter_ext?Vehicle_letter+Vehicle_letter_ext:Vehicle_letter}/${Vehicle_year}/${Vehicle_number}`)
   .then(
     (response) =>{
+      
       const result = response.data[0]
+    
       if(result){
         setUpdateBtn("block")
         setSaveBtn("none")
     // setPsvData(result)  //    Use this to set data in fileds   
-    setPsvFiels (result)
+    console.log(result)
+     setPsvFields (result)
+     Alert.alert("Vehicle Found")
+   
 
       }
       else {
         Alert.alert("Vehicle not in record.")
-        clearAllData1()
+        // clearAllData()
         
       }
-  })
-  await  storeVehicleSession(Vehicle_letter,Vehicle_year,Vehicle_number)
- 
+  }) 
 }
 
 
 
 //----------------Insert form 1
-   const psv ={  
+   const cv ={  
       vehicleType: Vehicle_type,
-      prefixRegNo:Vehicle_letter,
-      // prefixRegNo:Vehicle_letter + Vehicle_letter_ext,
+      prefixRegNo:Vehicle_letter_ext ? Vehicle_letter + Vehicle_letter_ext:Vehicle_letter,
       vehicleModel:Vehicle_year,
       regNo:Vehicle_number,
       chasisNo:vehicle_chasis,
       engineNo:vehcile_engine,
       vehicleMake:vehcile_make,
       vehicleColor:vehcile_color,
-      acStatus:vehcile_ac,
-      seatingCap:vehicle_seats,
       trackerStatus:vehcile_tracker,
-      exitGate: vehcile_emergencyExit,
       manufactureYear:vehcile_manf_year,
-      // companyName:vehcile_company,
-      companyName:value,
-      subCompany:subComp,
-      formOneStatus:1,
+      companyName:vehcile_company,
+      tyreCompany: tyrecomp,
+      tyreManDate: t_manDate,
+      tyreExpiry: tyredate,
+      tyreChkDate:today,
+      tyreCondition: tyrecondition,
+      tyreTread:  tread,
+      tyreRemarks: remarks,
+      fitnessNo: fitnessno,
+      fitnessExpiryDate: fitnessdate,
+      fitnessAuthority:fitness_auth,
       addedDate: today,
       addedTime: time,
       addedBy:currentUser.userName,
@@ -272,7 +287,7 @@ const getPsv = async()=>{
     //-----------------------------------save vehicle 
     
 
-    const addPsvFormOne = async()=>{
+    const addCv = async()=>{
 
       if( Vehicle_letter == "") {
      
@@ -292,8 +307,8 @@ const getPsv = async()=>{
         else if(vehcile_company == "") {Alert.alert("Please Vehicle Company")}
        
         else if(tyrecomp == undefined) {Alert.alert("Please enter Tyre Company")}
-        else if (tyredate.toLocaleDateString() <= t_manDate.toLocaleDateString()) {
-          Alert.alert("Expiry Date cannot be equal to current date")}
+        // else if (tyredate.toLocaleDateString() <= t_manDate.toLocaleDateString()) {
+        //   Alert.alert("Expiry Date cannot be equal to current date")}
         else if(tread == "") {
           
           Alert.alert("Please enter tread size" )}
@@ -303,20 +318,21 @@ const getPsv = async()=>{
        
         else {
       
-      axios.post(`${global.BASE_URL}/psv/addPsv`, psv )
+      axios.post(`${global.BASE_URL}/cv/addCv`, cv )
       .then( async (response)=> {
 
         
-        await  storeVehicleSession(Vehicle_letter,Vehicle_year,Vehicle_number)
-        Alert.alert('Vehicle Information has been saved')
+        // await  storeVehicleSession(Vehicle_letter,Vehicle_year,Vehicle_number)
+        Alert.alert('Commercial vehicle added')
         
       })
+      
       .catch((error) => {
         console.log(error);
       })
     // 
 
-      clearAllData()
+      // clearAllData()
       
 
     }
@@ -335,8 +351,8 @@ const upedtedPsv ={
   trackerStatus:vehcile_tracker,
   exitGate: vehcile_emergencyExit,
   manufactureYear:vehcile_manf_year,
-  // companyName:vehcile_company,
-  companyName:value,
+  companyName:vehcile_company,
+ 
   subCompany:subComp,
   formOneStatus:1,
   editedOn: today,
@@ -509,7 +525,7 @@ const getSubCompany = async()=>{
             
 {/* //Search Button */}
                  
-                    <TouchableOpacity  onPress ={()=>getPsv()}
+                    <TouchableOpacity  onPress ={()=>getCv()}
                     
                      className="flex flex-row rounded-md  justify-center items-center w-2/12 bg-orange-400">
                       
@@ -654,8 +670,9 @@ const getSubCompany = async()=>{
             <View className="w-4/6 items-center border-b">
             <TextInput
                 placeholderTextColor={'grey'}
-                placeholder='Company name'
-              
+                placeholder='Company Name'
+         
+                keyboardType='numeric'
                 value={vehcile_company}
                 onChangeText={e => setVehicleCompany(e)}
                 className=' border-black text-black rounded-md  text-lg' />
@@ -884,7 +901,7 @@ onCancel={() => {
            {/* Buttons Save - Clear -Update */}
            <View className="flex-row items-center justify-center ">
                 <View className=" ">
-                  <TouchableOpacity  onPress ={()=>addPsvFormOne()} className="bg-[#227935]  px-8 py-2 rounded-md m-2" style={{display:`${saveBtn}`}}>
+                  <TouchableOpacity  onPress ={()=>addCv()} className="bg-[#227935]  px-8 py-2 rounded-md m-2" style={{display:`${saveBtn}`}}>
                     <Text className="text-white  text-lg">Save</Text>
                   </TouchableOpacity>
                 </View>
