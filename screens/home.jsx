@@ -27,6 +27,7 @@ import {
 import { LinearGradient } from 'react-native-svg';
 import SignUp from './forms/signUp';
 import { BookOpenCheck } from 'lucide-react-native';
+import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
 
 
 
@@ -49,32 +50,33 @@ function Home() {
     setDvrCnic("")
   }
 
- 
-  useEffect(() => {
+//  const [] = 
+
+ useFocusEffect(() => {
   retrieveUserSession(setCurrentUser);
   clearAll()
+
+  // const backAction = () => {
+  //      Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
+  //         {
+  //           text: 'Cancel',
+  //           onPress: () => null,
+  //           style: 'cancel',
+  //         },
+  //         {text: 'YES', onPress: () => logoutSesion()},
+  //       ]);
+  //       return true;
+  //     };
+      
+  //       const backHandler = BackHandler.addEventListener(
+  //         'hardwareBackPress',
+  //         backAction,
+  //       );
+  //       return () => backHandler.remove();
+     
+
 }, []);
 
-// useFocusEffect(()=>{
-//   const backAction = () => {
-   
-//     Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
-//       {
-//         text: 'Cancel',
-//         onPress: () => null,
-//         style: 'cancel',
-//       },
-//       {text: 'YES', onPress: () => logoutSesion()},
-//     ]);
-//     return true;
-//   };
-  
-//     const backHandler = BackHandler.addEventListener(
-//       'hardwareBackPress',
-//       backAction,
-//     );
-//     return () => backHandler.remove();
-//   },[])
 
 
 
@@ -191,11 +193,11 @@ function Home() {
         </View>
         
       </View>
-      <View className="   mt-5 rounded-m  h-2/8  w-full text-center">
+      <View className="   mt-3 rounded-m  h-2/8  w-full text-center">
      
     
         {/* View Input Type */}
-        <View className="  mt-2 flex-row  justify-center  w-full  ">
+        <View className="  mt-1 flex-row  justify-center  w-full  ">
           <TextInput
             style={{backgroundColor: 'white'}}
             placeholderTextColor={'grey'}
