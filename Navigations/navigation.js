@@ -35,30 +35,69 @@ const MyStack = () => {
         />
          <Stack.Screen name="Inspection History" component={InspectionReport}
         options={{
-          headerShown:true
+          headerShown:false
         }}
         />
         <Stack.Screen name="Home" component={Home} 
          options={{ 
           unmountOnBlur:true,
-          headerShown: false }}
+          headerShown: false 
+        }}
         />
         <Stack.Screen name="AddDrivernew" component={AddDrivernew}
           
         
        />
-        <Stack.Screen name="Addcompany" component={Addcompany} /> 
-         <Stack.Screen name="Feed Back" component={FeedBack} /> 
-         <Stack.Screen name="OnlineVerifications" component={OnlineVerifications} /> 
-         <Stack.Screen name="Profile" component={Profile} /> 
-         <Stack.Screen name="Downloads" component={Downloads} /> 
-         <Stack.Screen name="Trip Report" component={TripReport} />
-         <Stack.Screen name="SignUp" component={SignUp} /> 
-         <Stack.Screen name="Daily Progress" component={DailyProgress} /> 
-         <Stack.Screen name="Add Commercial Vehcile" component={AddCommVehicle} /> 
+        <Stack.Screen name="Addcompany" component={Addcompany} 
+          options={{ 
+            unmountOnBlur:true,
+            headerShown: false }}
+          
+        /> 
+         <Stack.Screen name="Feed Back" component={FeedBack}
+          options={{ 
+            unmountOnBlur:true,
+            headerShown: false }}
+         /> 
+         <Stack.Screen name="OnlineVerifications" component={OnlineVerifications} 
+          options={{ 
+            unmountOnBlur:true,
+            headerShown: false }}
+         /> 
+         <Stack.Screen name="Profile" component={Profile} 
+          options={{ 
+            unmountOnBlur:true,
+            headerShown: false }}
+         /> 
+         <Stack.Screen name="Downloads" component={Downloads} 
+          options={{ 
+            unmountOnBlur:true,
+            headerShown: false }}
+         /> 
+         <Stack.Screen name="Trip Report" component={TripReport} 
+          options={{ 
+            unmountOnBlur:true,
+            headerShown: false }}
+         />
+         <Stack.Screen name="SignUp" component={SignUp}  
+          options={{ 
+            unmountOnBlur:true,
+            headerShown: false }}
+         /> 
+         <Stack.Screen name="Daily Progress" component={DailyProgress} 
+          options={{ 
+            unmountOnBlur:true,
+            headerShown: false }}
+         /> 
+         <Stack.Screen name="Add Commercial Vehcile" component={AddCommVehicle} 
+          options={{ 
+            unmountOnBlur:true,
+            headerShown: false }}
+         /> 
         <Stack.Screen name="MyTabs" component={MyTabs} 
         options={{
           headerShown:false,
+          
          
         }}
         />

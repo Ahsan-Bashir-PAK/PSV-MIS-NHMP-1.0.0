@@ -132,7 +132,7 @@ const Downloads = () => {
                             <Text className="text-black text-sm"> Motor Vehicle Ordinance- 1965</Text>
                             </View>
                             {/* <Text></Text> */}
-                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('')}>
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1faawbLxb3RmZrBXfFU_U5Od_2-SbQT1g/view?usp=sharing')}>
                             <Text className="text-white">
                                     Download 
                                 </Text>

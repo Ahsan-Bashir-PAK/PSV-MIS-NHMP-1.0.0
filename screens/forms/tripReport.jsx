@@ -576,9 +576,9 @@ function setTripData(tripdata){
               <Text className="text-black text-lg rounded-md font-bold ">
                 Details of Driver: {d_name}
               </Text>
-              <TouchableOpacity onPress={()=>setModalVisible(true)} className="bg-green-100 p-1 w-fit rounded-md ml-5 flex">
+              {/* <TouchableOpacity onPress={()=>setModalVisible(true)} className="bg-green-100 p-1 w-fit rounded-md ml-5 flex">
                 <Text className="text-black font-bold text-xs "> + Add Second Driver</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
             {/* Driver Name - License Type - License Number */}
                  <View className={styles.outerview}>

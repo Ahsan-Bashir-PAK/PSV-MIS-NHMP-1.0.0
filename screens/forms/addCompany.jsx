@@ -298,7 +298,7 @@ if(Companydata==[]){
         onChangeText={text => setOwnerName(text)}
         placeholder="Enter Owner name"
         placeholderTextColor={'grey'}
-        className="text-black"
+        className="text-black "
       />
 
       <Text style={styles.label}>Owner Cell Number:</Text>
@@ -326,9 +326,9 @@ if(Companydata==[]){
         
       />
 
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{ flexDirection: 'row' }} className="justify-center">
         <TouchableOpacity onPress={()=>AddCompanyData()} style={[styles.button, { marginRight: 10 }]}>
-          <Text style={{ color: 'white' }}>Save Company</Text>
+          <Text style={{ color: 'white' }}>Add Company</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={clearAllData} style={[styles.button, { backgroundColor: 'gray' }]}>
@@ -389,7 +389,7 @@ if(Companydata==[]){
         style={styles.input}
         value={term_Name}
         onChangeText={text => setTerminalName(text)}
-        placeholder="Enter Terminal name"
+        placeholder=" Enter Terminal name"
         placeholderTextColor={'grey'}
         className="text-black pl-3"
         
@@ -410,9 +410,9 @@ if(Companydata==[]){
         style={styles.input}
         value={ownerName}
         onChangeText={text => setOwnerName(text)}
-        placeholder="Enter Owner name"
+        placeholder=" Enter Owner name"
         placeholderTextColor={'grey'}
-        className="text-black pl-3"
+        className="text-black "
         
       />
 
@@ -422,10 +422,10 @@ if(Companydata==[]){
         value={ownerCellNumber}
         keyboardType='number-pad'
         onChangeText={text => setOwnerCellNumber(text)}
-        placeholder="Enter owner cell number"
+        placeholder=" Enter owner cell number"
         maxLength={11}
         placeholderTextColor={'grey'}
-        className="text-black pl-3"
+        className="text-black "
       />
 
 <Text style={styles.label}>Terminal Manager Name:</Text>
@@ -435,7 +435,7 @@ if(Companydata==[]){
         onChangeText={text => setTermManagerName(text)}
         placeholder=" Enter Manager Name"
         placeholderTextColor={'grey'}
-        className="text-black pl-3"
+        className="text-black "
       />
 <Text style={styles.label}>Terminal Manager Cell No.:</Text>
       <TextInput
@@ -444,7 +444,7 @@ if(Companydata==[]){
         onChangeText={text => setTermManagerNumber(text)}
         placeholder=" Enter Cell Number"
         placeholderTextColor={'grey'}
-        className="text-black pl-3"
+        className="text-black "
         keyboardType='number-pad'
         maxLength={11}
        

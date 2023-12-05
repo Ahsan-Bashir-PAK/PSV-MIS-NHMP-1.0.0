@@ -43,7 +43,7 @@ const OnlineVerifications = () => {
 
         <View className="  bg-red-600 mt-2 rounded-md p-1  w-fit items-center justify-center flex flex-row">
        
-            <Text className="text-white text-lg rounded-md font-bold ">For Official use only.</Text>
+            <Text className="text-white text-lg rounded-md font-bold ">Note: All Logins for Official purpose only.</Text>
             
         </View>
 {/* Excise Vehicle Verifications TAB */}
@@ -84,14 +84,12 @@ const OnlineVerifications = () => {
                   <Text className='text-white text-center font-bold text-lg'>GB</Text>
                 </TouchableOpacity>
               </View>
-              <View className="bg-slate-100 flex pl-3">
+              <View className="bg-slate-100 flex  flex-row  justify-center items-center text-center ">
               <TouchableOpacity onPress={()=>Linking.openURL('http://175.107.63.199/mv')}
-                  className='p-2 bg-[#1e847f] text-center rounded-md w-6/12 ml-1' >
+                  className='p-2 bg-[#1e847f] text-center rounded-md w-5/12 mt-1 mb-1  items-center' >
                   <Text className='text-white text-center font-bold text-lg'>KPK Special Login</Text>
                 </TouchableOpacity>
-                <Text className="text-black font-bold">KPK Special Login Credentials</Text>
-                <Text className="text-black">Username: opsm1</Text>
-                <Text className="text-black">Password: 1234</Text>
+                
              
               </View>
 <View className="pl-3">
@@ -101,6 +99,9 @@ const OnlineVerifications = () => {
 <Text className="text-black font-bold text-lg">For Islamabad Special Login credentials</Text>
 <Text className="text-black">UserName: nhmp</Text>
 <Text className="text-black">UserPaswword: nhmp@21</Text>
+<Text className="text-black text-lg font-bold">KPK Special Login Credentials</Text>
+<Text className="text-black">Username: opsm1</Text>
+<Text className="text-black">Password: 1234</Text>
 </View>
                   
 {/* Driving Licneses Verifications */}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState,useCallback, } from 'react';
 import { useNavigation,useIsFocused,useFocusEffect } from '@react-navigation/native';
-import { UserPlus,  BadgePlus, BusFront,  UserCog2,  BookCopy, LogOutIcon, ArrowDownToLine, Link, UserCog2Icon, Plus, User, PenSquare, KeySquare, Truck, BarChart4  } from 'lucide-react-native';
+import { UserPlus,  BadgePlus, BusFront,  UserCog2,  BookCopy, LogOutIcon, ArrowDownToLine, Link, UserCog2Icon, Plus, User, PenSquare, KeySquare, Truck, BarChart4, Navigation, Building, Building2  } from 'lucide-react-native';
 
 import EncryptedStorage from 'react-native-encrypted-storage';
 import axios from 'axios';
@@ -28,6 +28,7 @@ import { LinearGradient } from 'react-native-svg';
 import SignUp from './forms/signUp';
 import { BookOpenCheck } from 'lucide-react-native';
 import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
+import { Building2Icon } from 'lucide-react-native';
 
 
 
@@ -50,59 +51,40 @@ function Home() {
     setDvrCnic("")
   }
 
-//  const [] = 
+
 
  useEffect(() => {
   retrieveUserSession(setCurrentUser);
   clearAll()
 
-const goback = navigation.addListener('beforeRemove',e=>{
-  e.preventDefault()
+
+  const backAction = () => {
+    if(navigation.isFocused()){
+     Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {text: 'YES', onPress: () => logoutSesion()},
+      ]);
+      return true;
+    };}
+    
+      const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        backAction,
+      );
+      return () => backHandler.remove();
+
+
+
   
-  
-  // Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
-  //   {
-  //     text: 'Cancel',
-  //     onPress: () => null,
-  //     style: 'cancel',
-  //   },
-  //   {text: 'YES', onPress: () => {
-  //     return true
-  //     logoutSesion()
-      
-  //   }},
-  // ]);
-
- 
-})
-
-return goback
-  
-}, [navigation]);
+}, []);
 
 
-// const backAction = () => {
-      //  Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
-      //     {
-      //       text: 'Cancel',
-      //       onPress: () => null,
-      //       style: 'cancel',
-      //     },
-      //     {text: 'YES', onPress: () => logoutSesion()},
-      //   ]);
-      //   return true;
-      // };
-      
-  //       const backHandler = BackHandler.addEventListener(
-  //         'hardwareBackPress',
-  //         backAction,
-  //       );
-  //       return () => backHandler.remove();
 
 
-// componentDidMount() {
-//   BackHandler.addEventListener('hardwareBackPress',this.handleBackpress)
-// }
 
 
 
@@ -436,8 +418,47 @@ async function checkban (){
               </View>
             </View>
           </TouchableOpacity>
+
+          
         </View>
+
+{/*  Companies*/}
+<View className=" flex-row justify-around mt-4">
+        <TouchableOpacity
+            onPress={() => navigation.navigate('Addcompany', {params:"company"})}
+            
+            className="w-2/5  shadow-md shadow-slate-950 rounded-lg  flex justify-center items-center   border border-slate-400  bg-white">
+            <View className="  items-center  gap-1 justify-center mt-2 ">
+              <Building2 stroke="green" size={40} strokeWidth={1}/>
+              <View className="flex justify-center items-center flex-row gap-1">
+                <Text className=" font-bold font-white  text-sm text-black">
+                  Add Company
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          {/* Generate Progress  */}
+          <TouchableOpacity
+            onPress={()=>navigation.navigate('Addcompany',{params:"terminal"})}
+            className="w-2/5  shadow-md shadow-slate-950 rounded-lg  flex justify-center items-center   border border-slate-400  bg-white">
+            <View className=" items-center  gap-1 justify-center mt-2 ">
+              <Building stroke="brown" size={40} strokeWidth={1}/>
+              <View className="flex justify-center items-center flex-row gap-1">
+                <Text className=" font-bold font-white  text-sm text-black">
+                  Add Terminal
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          
+        </View>
+        
       </View>
+
+      
+              
 
       {/* Add New User */}
 
