@@ -93,6 +93,56 @@ function Home() {
   } catch (error) {}
 
   }  
+
+
+
+//========================================================check ban 
+
+async function checkban (psv){
+  try {
+    if(reg && year && number 
+      
+      // && dvrCnic
+      
+      ){
+
+  axios.get(`${BASE_URL}/web/ban/checkban/${reg+year+number}`).then(
+    response=>{
+        const result = response.data[0]
+
+      
+        if(result.banArea == 'sector'){
+            if(result.banoffice == currentUser.sector){
+                Alert.alert(`Vehicle ban in Sector : ${currentUser.sector}` )
+            }
+        }
+        else if (result.banArea == 'zone'){
+            if(result.banoffice == currentUser.zone){
+                Alert.alert("Vehicle ban in Zone")
+            }
+        }
+        else if (result.banArea == currentUser.region){
+            if(result.banoffice == 'N5 North'){
+                Alert.alert("Vehicle ban in Region")
+            }
+        }
+        else if(result.banArea == 'hq'){
+            
+                Alert.alert("Vehicle ban in NHMP")
+        }
+
+
+    }
+)}
+} catch (error) {
+  
+}
+}
+
+
+
+
+
   
 
 
@@ -101,6 +151,7 @@ function Home() {
   async function  getInspectionreport() {
     try {
       if(reg && year && number && dvrCnic){
+
        await storeVehicleSession(reg,year,number)
        await storeDriverSession(dvrCnic)
        
