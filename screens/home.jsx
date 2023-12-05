@@ -102,7 +102,7 @@ function Home() {
 
 //========================================================check ban 
 
-async function checkban (psv){
+async function checkban (){
   try {
     if(reg && year && number 
       
@@ -173,11 +173,7 @@ async function checkban (psv){
 
   //============================================================checking
   async function rptSessionProps() {
-  
-
-    
   try {
-    
     await axios
       .get(
         `${global.BASE_URL}/psv/getPsv/${reg}/${year}/${number}`
