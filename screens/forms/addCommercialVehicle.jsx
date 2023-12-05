@@ -20,7 +20,7 @@ const Vehicle_make_company = [ "YUTONG" ,"HIGER", "HINO", "MAN", "NOVA", "EURO",
 
 const tyre_companies = ["Dunlop", "Bridgestone", "Yokohama", "Michelin", "Van-Lee", "Huayi", "Westlake", "Chaoyang", "Xing yuan", "Continents", "Mirage", "Long March", "General", "Super cargo", "Green-Tiger", "Service", "Panther", "Advance tyre", "others"];
 
-const AddCommVehicle = () => {
+const AddCommVehicle = ({route}) => {
 
   // Searchable drop down
   const [selected, setSelected] = React.useState("");
@@ -238,7 +238,7 @@ const getCv = async()=>{
         setUpdateBtn("block")
         setSaveBtn("none")
     // setPsvData(result)  //    Use this to set data in fileds   
-    console.log(result)
+    // console.log(result)
      setPsvFields (result)
      Alert.alert("Vehicle Found")
    
@@ -280,7 +280,11 @@ const getCv = async()=>{
       addedDate: today,
       addedTime: time,
       addedBy:currentUser.userName,
-      addedPoint:currentUser.location
+      addedPoint:currentUser.location,
+      region: currentUser.region,
+      zone: currentUser.zone,
+      sector:currentUser.sector,
+      beat:currentUser.beat
 
    }
   
@@ -340,46 +344,49 @@ const getCv = async()=>{
 
 //-----------------------------------------update psv
    
-const upedtedPsv ={
+const upedtedCv ={
   vehicleType: Vehicle_type,
-  chasisNo:vehicle_chasis,
-  engineNo:vehcile_engine,
-  vehicleMake:vehcile_make,
-  vehicleColor:vehcile_color,
-  acStatus:vehcile_ac,
-  seatingCap:vehicle_seats,
-  trackerStatus:vehcile_tracker,
-  exitGate: vehcile_emergencyExit,
-  manufactureYear:vehcile_manf_year,
-  companyName:vehcile_company,
- 
-  subCompany:subComp,
-  formOneStatus:1,
+      prefixRegNo:Vehicle_letter_ext ? Vehicle_letter + Vehicle_letter_ext:Vehicle_letter,
+      vehicleModel:Vehicle_year,
+      regNo:Vehicle_number,
+      chasisNo:vehicle_chasis,
+      engineNo:vehcile_engine,
+      vehicleMake:vehcile_make,
+      vehicleColor:vehcile_color,
+      trackerStatus:vehcile_tracker,
+      manufactureYear:vehcile_manf_year,
+      companyName:vehcile_company,
+      tyreCompany: tyrecomp,
+      tyreManDate: t_manDate,
+      tyreExpiry: tyredate,
+      tyreChkDate:today,
+      tyreCondition: tyrecondition,
+      tyreTread:  tread,
+      tyreRemarks: remarks,
+      fitnessNo: fitnessno,
+      fitnessExpiryDate: fitnessdate,
+      fitnessAuthority:fitness_auth,
   editedOn: today,
   editedTime :time,
   editedBy:currentUser.userName,
-  editedPoint:currentUser.location
+  editedPoint:currentUser.location,
+  eregion: currentUser.region,
+  ezone: currentUser.zone,
+  esector:currentUser.sector,
+  ebeat:currentUser.beat
+
 
 }
 
 
-const updatePsv =async ()=>{
+const updateCv =async ()=>{
   // clearVehicleSession()
-  axios.patch(`${global.BASE_URL}/psv/updatePsv/${Vehicle_letter+Vehicle_year+Vehicle_number}`, upedtedPsv
+ 
+  axios.patch(`${global.BASE_URL}/cv/updateCv/${Vehicle_letter+Vehicle_year+Vehicle_number}`, upedtedCv
   )
     .then(response =>{ 
-      if(route.params){
-        if(route.params["params"] == "report"){
-       
-        Alert.alert('Data Updated', ' ', [
-         
-          {text: 'Back to Report', onPress: () =>  navigation.navigate("Trip Report")},
-        ]);
-       
-       
-       }
-     }
-    storeVehicleSession(Vehicle_letter,Vehicle_year,Vehicle_number)
+     Alert.alert("Vehicle Updated ")
+    storeVehicleSession(Vehicle_letter_ext ? Vehicle_letter + Vehicle_letter_ext:Vehicle_letter,Vehicle_year,Vehicle_number)
 }
     )
     .catch(error => console.error(error));
@@ -671,8 +678,6 @@ const getSubCompany = async()=>{
             <TextInput
                 placeholderTextColor={'grey'}
                 placeholder='Company Name'
-         
-                keyboardType='numeric'
                 value={vehcile_company}
                 onChangeText={e => setVehicleCompany(e)}
                 className=' border-black text-black rounded-md  text-lg' />
@@ -908,7 +913,7 @@ onCancel={() => {
 
 
                 <View className="">
-                  <TouchableOpacity onPress={()=>updatePsv()}  className=" bg-[#29378a] px-7 py-2 rounded-md m-2" style={{display:`${updateBtn}`}}>
+                  <TouchableOpacity onPress={()=>updateCv()}  className=" bg-[#29378a] px-7 py-2 rounded-md m-2" style={{display:`${updateBtn}`}}>
                     <Text className="text-white  text-lg">Save</Text>
                   </TouchableOpacity>
                 </View>

@@ -178,6 +178,10 @@ const driver = {
   addedTime: time,
   licenseExpiry:  expirydate,
   addedPoint: currentUser.location,
+  region: currentUser.region,
+        zone: currentUser.zone,
+        sector:currentUser.sector,
+        beat:currentUser.beat
 
 };
 //-----------------object to update drive r
@@ -198,7 +202,12 @@ editedBy: currentUser.userName,
 editedDate: today,
 editedTime: time,
 licenseExpiry: expirydate,
-editedPoint:currentUser.location
+editedPoint:currentUser.location,
+eregion: currentUser.region,
+ezone: currentUser.zone,
+esector:currentUser.sector,
+ebeat:currentUser.beat
+
 }
 
 //======================get driver based one cnic 

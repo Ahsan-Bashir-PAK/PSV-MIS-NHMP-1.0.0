@@ -307,6 +307,10 @@ function setTripData(tripdata){
     addedDate: today,
     addedTime:time,
     chkPoint: currentUser.location,
+    region: currentUser.region,
+        zone: currentUser.zone,
+        sector:currentUser.sector,
+        beat:currentUser.beat
   };
    const saveReport = async () => {
   //async function saveReport (){

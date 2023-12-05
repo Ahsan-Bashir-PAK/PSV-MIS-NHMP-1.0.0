@@ -173,6 +173,10 @@ async function clearPsvSession() {
     editedTime: time,
     editedBy: currentUser.userName,
     editedPoint: currentUser.location,
+    eregion: currentUser.region,
+    ezone: currentUser.zone,
+    esector:currentUser.sector,
+    ebeat:currentUser.beat
   };
 
   const updatePvsOthers = async () => {

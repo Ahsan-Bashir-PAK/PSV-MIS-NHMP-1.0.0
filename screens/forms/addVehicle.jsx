@@ -123,6 +123,11 @@ const AddVehicle = ({route}) => {
  function setPsvFiels(result) {
 
   setType(result.vehicleType);
+  if(result.prefixRegNo.length > 3){
+    setLetter(result.prefixRegNo.slice(0,3))
+    setLetterExt(result.prefixRegNo.slice(3,4))
+  }
+  
    setLetter(result.prefixRegNo);
   setYear(result.vehicleModel.toString());
   setNumber(result.regNo.toString());
@@ -221,7 +226,7 @@ function clearAllData1(){
 const getPsv = async()=>{
 
 
-  await axios.get(`${global.BASE_URL}/psv/getPsv/${Vehicle_letter}/${Vehicle_year}/${Vehicle_number}`)
+  await axios.get(`${global.BASE_URL}/psv/getPsv/${Vehicle_letter_ext?Vehicle_letter+Vehicle_letter_ext:Vehicle_letter}/${Vehicle_year}/${Vehicle_number}`)
   .then(
     (response) =>{
       const result = response.data[0]
@@ -238,7 +243,7 @@ const getPsv = async()=>{
         
       }
   })
-  await  storeVehicleSession(Vehicle_letter,Vehicle_year,Vehicle_number)
+  await  storeVehicleSession(Vehicle_letter_ext?Vehicle_letter+Vehicle_letter_ext:Vehicle_letter,Vehicle_year,Vehicle_number)
  
 }
 
@@ -247,7 +252,7 @@ const getPsv = async()=>{
 //----------------Insert form 1
    const psv ={  
       vehicleType: Vehicle_type,
-      prefixRegNo:Vehicle_letter,
+      prefixRegNo:Vehicle_letter_ext?Vehicle_letter+Vehicle_letter_ext:Vehicle_letter,
       // prefixRegNo:Vehicle_letter + Vehicle_letter_ext,
       vehicleModel:Vehicle_year,
       regNo:Vehicle_number,
@@ -267,7 +272,11 @@ const getPsv = async()=>{
       addedDate: today,
       addedTime: time,
       addedBy:currentUser.userName,
-      addedPoint:currentUser.location
+      addedPoint:currentUser.location,
+      region: currentUser.region,
+        zone: currentUser.zone,
+        sector:currentUser.sector,
+        beat:currentUser.beat
 
    }
   
@@ -302,7 +311,7 @@ const getPsv = async()=>{
       .then( async (response)=> {
 
         
-        await  storeVehicleSession(Vehicle_letter,Vehicle_year,Vehicle_number)
+        await  storeVehicleSession(Vehicle_letter_ext?Vehicle_letter+Vehicle_letter_ext:Vehicle_letter,Vehicle_year,Vehicle_number)
         Alert.alert('PSV Initial information Saved', ' ', [
              
           {text: 'Next', onPress: () =>  navigation.navigate("Add Documentation")},
@@ -339,7 +348,11 @@ const upedtedPsv ={
   editedOn: today,
   editedTime :time,
   editedBy:currentUser.userName,
-  editedPoint:currentUser.location
+  editedPoint:currentUser.location,
+  eregion: currentUser.region,
+  ezone: currentUser.zone,
+  esector:currentUser.sector,
+  ebeat:currentUser.beat
 
 }
 

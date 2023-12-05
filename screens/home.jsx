@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useCallback } from 'react';
+import React, { useEffect, useState,useCallback, } from 'react';
 import { useNavigation,useIsFocused,useFocusEffect } from '@react-navigation/native';
 import { UserPlus,  BadgePlus, BusFront,  UserCog2,  BookCopy, LogOutIcon, ArrowDownToLine, Link, UserCog2Icon, Plus, User, PenSquare, KeySquare, Truck, BarChart4  } from 'lucide-react-native';
 
@@ -55,18 +55,43 @@ function Home() {
  useEffect(() => {
   retrieveUserSession(setCurrentUser);
   clearAll()
-}, []);
+
+const goback = navigation.addListener('beforeRemove',e=>{
+  e.preventDefault()
+  
+  
+  // Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
+  //   {
+  //     text: 'Cancel',
+  //     onPress: () => null,
+  //     style: 'cancel',
+  //   },
+  //   {text: 'YES', onPress: () => {
+  //     return true
+  //     logoutSesion()
+      
+  //   }},
+  // ]);
+
+ 
+})
+
+return goback
+  
+}, [navigation]);
+
+
 // const backAction = () => {
-  //      Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
-  //         {
-  //           text: 'Cancel',
-  //           onPress: () => null,
-  //           style: 'cancel',
-  //         },
-  //         {text: 'YES', onPress: () => logoutSesion()},
-  //       ]);
-  //       return true;
-  //     };
+      //  Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
+      //     {
+      //       text: 'Cancel',
+      //       onPress: () => null,
+      //       style: 'cancel',
+      //     },
+      //     {text: 'YES', onPress: () => logoutSesion()},
+      //   ]);
+      //   return true;
+      // };
       
   //       const backHandler = BackHandler.addEventListener(
   //         'hardwareBackPress',
@@ -75,6 +100,9 @@ function Home() {
   //       return () => backHandler.remove();
 
 
+// componentDidMount() {
+//   BackHandler.addEventListener('hardwareBackPress',this.handleBackpress)
+// }
 
 
 
@@ -84,16 +112,16 @@ function Home() {
 
  async function logoutSesion () {
   
-  console.log(currentUser)
-  //   try{  
+ 
+    try{  
   
-  //         await EncryptedStorage.removeItem('psv_session');
-  //         await EncryptedStorage.removeItem('currentUser');
+          await EncryptedStorage.removeItem('psv_session');
+          await EncryptedStorage.removeItem('currentUser');
           
           
        
-  //  navigation.navigate('Login');
-  // } catch (error) {}
+   navigation.navigate('Login');
+  } catch (error) {}
 
   }  
 
@@ -112,8 +140,8 @@ async function checkban (){
   axios.get(`${BASE_URL}/web/ban/checkban/${reg+year+number}`).then(
     response=>{
         const result = response.data[0]
-
-      
+      if (result){
+      if(result.banStatus =='ban'){
         if(result.banArea == 'sector'){
             if(result.banoffice == currentUser.sector){
                 Alert.alert('Vehicle Ban',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n  is Banned in Sector : ${currentUser.sector}  \n From:  ${result.startDate} \n To: ${result.endDate}` )
@@ -133,6 +161,7 @@ async function checkban (){
             
           Alert.alert('Vehicle Ban',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n NHMP : ${currentUser.sector}  \n From: ${result.startDate} \n To: ${result.endDate}` )
         }
+      }}
 
 
     }

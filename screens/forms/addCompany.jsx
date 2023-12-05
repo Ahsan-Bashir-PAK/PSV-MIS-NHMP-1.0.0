@@ -56,34 +56,43 @@ const company ={
         addedDate: today,
         addedTime: time,
         addedBy:currentUser.userName,
-        addedPoint:currentUser.location
+        addedPoint:currentUser.location,
+        region: currentUser.region,
+        zone: currentUser.zone,
+        sector:currentUser.sector,
+        beat:currentUser.beat
 }
 
-// // const terminalData ={
-// //   companyName:companyName,
-// //   subOffice:subCompany,
-// //   address:compAdress,
-// //   managerName:managerName,
-// //   managerCell:managerCellNumber,
-// //   ownerName:ownerName,
-// //   ownerCell : ownerCellNumber,
-// //   addedDate: today,
-// //   addedTime: time,
-// //   addedBy:currentUser.userName,
-// //   addedPoint:currentUser.location
-// }
+const terminalData ={
+  companyName:companyName,
+  subOffice:term_Name,
+  address:term_address,
+  ownerName:ownerName,
+  ownerCell : ownerCellNumber,
+  managerName:term_managerName,
+  managerCell:term_managerCellNumber,
+  addedDate: today,
+  addedTime: time,
+  addedBy:currentUser.userName,
+  addedPoint:currentUser.location,
+  region: currentUser.region,
+  zone: currentUser.zone,
+  sector:currentUser.sector,
+  beat:currentUser.beat
+}
 
 //AddTerminalData()
 
 async function AddTerminalData() {
                   if (value == null) {Alert.alert("Please select Company")}
                    else if(term_Name =="") {Alert.alert("Enter Terminal name")}
-                   else if (term_Loc == "") {Alert.alert("Enter Terminal District")}
+                  //  else if (term_Loc == "") {Alert.alert("Enter Terminal District")}
                    else if (term_managerName == "") {Alert.alert("Enter Terminal Manager name")}
-                   else if (term_managerCellNumber == "") {Alert.alert("Enter Terminal Manager Cell No.")}
+                   else if (term_managerCellNumber=="" || term_managerCellNumber.length !=11 )
+                      {Alert.alert("Enter Manager Cell Number or complete digit")}
                    else if (term_address == "") {Alert.alert("Enter Terminal address")} 
                 else {
-                  axios.post(`${global.BASE_URL}/cmp/addCompany`, company )
+                  axios.post(`${global.BASE_URL}/cmp/addCompany`, terminalData )
                   .then( (response)=> {
               
                     Alert.alert('New Terminal Saved');
@@ -95,6 +104,8 @@ async function AddTerminalData() {
               
                   clearAllData()
                 }
+          
+                
 }
 
 
@@ -124,6 +135,7 @@ async function AddTerminalData() {
    // navigation.navigate("Home")
        
  } 
+// console.log(company)
  }
 
  // Clear All Company Form
@@ -144,6 +156,8 @@ async function AddTerminalData() {
   
       setTerminalName('');
       setTerminalLoc('');
+      setManagerCellNumber('');
+      setOwnerCellNumber('');
       setTermManagerName('');
       setTermManagerNumber('');
       setTermAddress('');
@@ -180,7 +194,7 @@ await axios.get(`${global.BASE_URL}/cmp/getAllCompany`)
   (response) =>{
     const result = response.data
     if(result){
-    // console.log('sssssss'+ result)
+   
   // setPsvData(result)  //    Use this to set data in fileds   
       result.map((item)=>{
         Companydata.push(
@@ -223,16 +237,16 @@ if(Companydata==[]){
         <View className="  mt-1 w-full  ">
 
         <View className=" bg-yellow-400  rounded-md p-1 m-1 w-fit items-center justify-center flex-row-reverse ">
-        <Text className="text-black text-lg rounded-md font-bold ">Companies</Text>
-        <Building2 stroke="black" size={35} / >
+        <Text className="text-black text-lg rounded-md font-bold "> {route.params["params"] == "company" ? "Add New Company" : "Add New Terminal"}</Text>
+        {/* <Building2 stroke="black" size={35} / > */}
         </View>
         </View>
-        <View className="w-full gap-1 rounded-md flex flex-row  justify-between items-center">
+        {/* <View className="w-full gap-1 rounded-md flex flex-row  justify-between items-center">
               <TouchableOpacity onPress={showCopmanyForm} className="bg-green-700 w-2/4  rounded-md  justify-center items-center p-1"><Text className="text-white">Add Company</Text></TouchableOpacity>
               <TouchableOpacity onPress={showTerminalForm} className="bg-green-700 w-2/4  rounded-md  justify-center items-center p-1"><Text className="text-white">Add Terminal</Text></TouchableOpacity>
-        </View>
+        </View> */}
         {/* Add Copmany Form */}
-     <View className={`${copmanyForm?'block' :'hidden'}`}> 
+     <View className={`${copmanyForm?'block' :'hidden'} `}> 
       <Text style={styles.label}>Company Name:</Text>
       <TextInput
         style={styles.input}
@@ -282,7 +296,7 @@ if(Companydata==[]){
         style={styles.input}
         value={ownerName}
         onChangeText={text => setOwnerName(text)}
-        placeholder="Enter manager name"
+        placeholder="Enter Owner name"
         placeholderTextColor={'grey'}
         className="text-black"
       />
@@ -291,10 +305,10 @@ if(Companydata==[]){
       <TextInput
         style={styles.input}
         value={ownerCellNumber}
+        keyboardType='number-pad'
         onChangeText={text => setOwnerCellNumber(text)}
         placeholder="Enter owner cell number"
         maxLength={11}
-        keyboardType='number-pad'
         placeholderTextColor={'grey'}
         className="text-black"
       />
@@ -323,7 +337,7 @@ if(Companydata==[]){
       </View>
       </View>
       {/*===================Add Terminal Form============================ */}
-     <View className={`${terminalForm?'block' :'hidden'}`}>
+     <View className={`${terminalForm?'block' :'hidden'}  `}>
       
       {/* Get companies from database */}
        {/* Company Name */}
@@ -331,7 +345,7 @@ if(Companydata==[]){
               <View className={styles.labelstyle}>
                 <Text className="text-black font-bold"> Select Company Name</Text>
               </View>
-              <View className="w-3/5 pl-3">
+              <View className="w-full p-2 rounded-md pl-3 border">
 
 
                 <Dropdown
@@ -375,11 +389,12 @@ if(Companydata==[]){
         style={styles.input}
         value={term_Name}
         onChangeText={text => setTerminalName(text)}
-        placeholder=" Enter Terminal name"
+        placeholder="Enter Terminal name"
         placeholderTextColor={'grey'}
-        className="text-black"
+        className="text-black pl-3"
+        
       />
-
+{/* 
       <Text style={styles.label}>Terminal District:</Text>
       <TextInput
         style={styles.input}
@@ -388,6 +403,29 @@ if(Companydata==[]){
         placeholder=" Enter District"
         placeholderTextColor={'grey'}
         className="text-black"
+      /> */}
+
+<Text style={styles.label}>Owner Name:</Text>
+      <TextInput
+        style={styles.input}
+        value={ownerName}
+        onChangeText={text => setOwnerName(text)}
+        placeholder="Enter Owner name"
+        placeholderTextColor={'grey'}
+        className="text-black pl-3"
+        
+      />
+
+      <Text style={styles.label}>Owner Cell Number:</Text>
+      <TextInput
+        style={styles.input}
+        value={ownerCellNumber}
+        keyboardType='number-pad'
+        onChangeText={text => setOwnerCellNumber(text)}
+        placeholder="Enter owner cell number"
+        maxLength={11}
+        placeholderTextColor={'grey'}
+        className="text-black pl-3"
       />
 
 <Text style={styles.label}>Terminal Manager Name:</Text>
@@ -397,7 +435,7 @@ if(Companydata==[]){
         onChangeText={text => setTermManagerName(text)}
         placeholder=" Enter Manager Name"
         placeholderTextColor={'grey'}
-        className="text-black"
+        className="text-black pl-3"
       />
 <Text style={styles.label}>Terminal Manager Cell No.:</Text>
       <TextInput
@@ -406,7 +444,10 @@ if(Companydata==[]){
         onChangeText={text => setTermManagerNumber(text)}
         placeholder=" Enter Cell Number"
         placeholderTextColor={'grey'}
-        className="text-black"
+        className="text-black pl-3"
+        keyboardType='number-pad'
+        maxLength={11}
+       
       />
   <Text style={styles.label}>Address:</Text>
       <TextInput
@@ -414,18 +455,18 @@ if(Companydata==[]){
         value={term_address}
         onChangeText={text => setTermAddress(text)}
         placeholder=" Enter Address"
-        maxLength={100}
+        maxLength={150}
         placeholderTextColor={'grey'}
-        className="text-black"
+        className="text-black pl-3"
         
       />
 
-      <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity onPress={()=>AddCompanyData()} style={[styles.button, { marginRight: 10 }]}>
+      <View style={{ flexDirection: 'row' }} className="justify-center items-center" >
+        <TouchableOpacity className="w-1/4" onPress={()=>AddTerminalData()} style={[styles.button, { marginRight: 10 }]}>
           <Text style={{ color: 'white' }}>Add Terminal</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={clearAllTerminalData} style={[styles.button, { backgroundColor: 'gray' }]}>
+        <TouchableOpacity className="w-1/4" onPress={clearAllTerminalData} style={[styles.button, { backgroundColor: 'gray' }]}>
           <Text style={{ color: 'white' }}>Reset</Text>
         </TouchableOpacity>
       </View>
