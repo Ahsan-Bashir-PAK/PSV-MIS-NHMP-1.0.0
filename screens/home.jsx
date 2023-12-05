@@ -166,11 +166,7 @@ async function checkban (){
 
   //============================================================checking
   async function rptSessionProps() {
-  
-
-    
   try {
-    
     await axios
       .get(
         `${global.BASE_URL}/psv/getPsv/${reg}/${year}/${number}`

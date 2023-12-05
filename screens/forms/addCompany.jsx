@@ -83,7 +83,17 @@ async function AddTerminalData() {
                    else if (term_managerCellNumber == "") {Alert.alert("Enter Terminal Manager Cell No.")}
                    else if (term_address == "") {Alert.alert("Enter Terminal address")} 
                 else {
-                    Alert.alert(" Terminal has been added")
+                  axios.post(`${global.BASE_URL}/cmp/addCompany`, company )
+                  .then( (response)=> {
+              
+                    Alert.alert('New Terminal Saved');
+                    
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  })
+              
+                  clearAllData()
                 }
 }
 
