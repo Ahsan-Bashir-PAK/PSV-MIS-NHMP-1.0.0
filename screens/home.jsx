@@ -83,14 +83,17 @@ function Home() {
   // logout clear all sessions
 
  async function logoutSesion () {
-    try{  
   
-          await EncryptedStorage.removeItem('psv_session');
-          await EncryptedStorage.removeItem('currentUser');
+  console.log(currentUser)
+  //   try{  
+  
+  //         await EncryptedStorage.removeItem('psv_session');
+  //         await EncryptedStorage.removeItem('currentUser');
+          
           
        
-   navigation.navigate('Login');
-  } catch (error) {}
+  //  navigation.navigate('Login');
+  // } catch (error) {}
 
   }  
 
@@ -98,7 +101,7 @@ function Home() {
 
 //========================================================check ban 
 
-async function checkban (psv){
+async function checkban (){
   try {
     if(reg && year && number 
       
@@ -113,22 +116,22 @@ async function checkban (psv){
       
         if(result.banArea == 'sector'){
             if(result.banoffice == currentUser.sector){
-                Alert.alert(`Vehicle ban in Sector : ${currentUser.sector}` )
+                Alert.alert('Vehicle Ban',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n  is Banned in Sector : ${currentUser.sector}  \n From:  ${result.startDate} \n To: ${result.endDate}` )
             }
         }
         else if (result.banArea == 'zone'){
             if(result.banoffice == currentUser.zone){
-                Alert.alert("Vehicle ban in Zone")
+              Alert.alert('Vehicle Banned',`Vehicle # ${reg}-${year}-${number} \n \n Chasis # ${result.chasisNo} \n Zone : ${currentUser.sector}  \n From: ${result.startDate} \n To: ${result.endDate}` )
             }
         }
-        else if (result.banArea == currentUser.region){
-            if(result.banoffice == 'N5 North'){
-                Alert.alert("Vehicle ban in Region")
+        else if (result.banArea == 'region'){
+            if(result.banoffice == currentUser.region){
+              Alert.alert('Vehicle Ban',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n Region : ${currentUser.sector}  \n From: ${result.startDate} \n To: ${result.endDate}` )
             }
         }
         else if(result.banArea == 'hq'){
             
-                Alert.alert("Vehicle ban in NHMP")
+          Alert.alert('Vehicle Ban',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n NHMP : ${currentUser.sector}  \n From: ${result.startDate} \n To: ${result.endDate}` )
         }
 
 
@@ -140,18 +143,12 @@ async function checkban (psv){
 }
 
 
-
-
-
-  
-
-
   //============================================saving report Session
 
   async function  getInspectionreport() {
     try {
       if(reg && year && number && dvrCnic){
-
+       checkban()   
        await storeVehicleSession(reg,year,number)
        await storeDriverSession(dvrCnic)
        

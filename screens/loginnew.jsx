@@ -137,8 +137,9 @@ function clearAll(){
 
     
 
-     async function storeUserSession(user,role,officer,rank,pwd,beat,sector,zone,region) {
-         try {
+     async function storeUserSession(user,role,officer,rank,pwd,region, zone, sector, beat) {
+      
+        try {
              await EncryptedStorage.setItem(
                  "user_session",
                  JSON.stringify({
@@ -151,9 +152,9 @@ function clearAll(){
                      region:region,
                      zone:zone,
                      sector:sector,
-                     beat:beat
+                     beat:beat,
+                    
                      
-
                     
                  })
              );
