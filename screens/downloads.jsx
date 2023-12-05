@@ -51,7 +51,7 @@ const Downloads = () => {
                          {/* Tracker SOPs for PSVs*/}
                          <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
                          <View className="w-3/4">
-                            <Text className="text-black text-sm"> SOP For Regulation, Control and Managment for PSVs on the National Highways & Motorways</Text>
+                            <Text className="text-black text-sm"> SOP For Regulation, Control and Management of PSVs on the National Highways & Motorways</Text>
                             </View>
                             {/* <Text></Text> */}
                             <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/13hhuu04bzxRWjcT8UJ73aBYpjShw8h5G/view?usp=sharing')}>
@@ -64,10 +64,10 @@ const Downloads = () => {
                          {/* Tracker SOPs for PSVs*/}
                          <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
                          <View className="w-3/4">
-                            <Text className="text-black text-sm"> SOP for Vehicle Ban</Text>
+                            <Text className="text-black text-sm"> SOP for PSV Ban</Text>
                             </View>
                             {/* <Text></Text> */}
-                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('')}>
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1cwRNeTDgnG44QphDVguN-9rgYfuPOmgJ/view?usp=sharing')}>
                             <Text className="text-white">
                                     Download 
                                 </Text>
@@ -77,7 +77,7 @@ const Downloads = () => {
                         {/* FIRs Pattern*/}
                         <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
                          <View className="w-3/4">
-                            <Text className="text-black text-sm"> Isteghasa (استغاثہ)</Text>
+                            <Text className="text-black text-sm"> Template Isteghasa (استغاثہ)</Text>
                             </View>
                             {/* <Text></Text> */}
                             <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1zj-Qv2KLPpRnuMbMyI3ABnkvXCCTUDzw/view?usp=sharing')}>
@@ -90,7 +90,7 @@ const Downloads = () => {
                         {/* Fard Maqboozgi*/}
                         <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
                          <View className="w-3/4">
-                            <Text className="text-black text-sm"> Sample Fard Maqboozgi (نمونہ فرد مقبوضگی )</Text>
+                            <Text className="text-black text-sm"> Template Fard Maqboozgi (نمونہ فرد مقبوضگی )</Text>
                             </View>
                             {/* <Text></Text> */}
                             <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1jlPNl9TNWOMpd1gUAXXKLUwKx4-mFzGG/view?usp=sharing')}>
@@ -103,7 +103,7 @@ const Downloads = () => {
                         {/* Fard Hawalgi*/}
                         <View className="bg-slate-100  p-2  mt-1 flex flex-row items-center">
                          <View className="w-3/4 ">
-                            <Text className="text-black text-sm"> Sample Fard Hawalgi ( نمونہ فرد حوالگی)</Text>
+                            <Text className="text-black text-sm"> Template Fard Hawalgi ( نمونہ فرد حوالگی)</Text>
                             </View>
                             {/* <Text></Text> */}
                             <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1GEO_6KPrHogyLYERliND90kqteSzfE1M/view?usp=sharing')}>

@@ -52,11 +52,11 @@ function Home() {
 
 //  const [] = 
 
- useFocusEffect(() => {
+ useEffect(() => {
   retrieveUserSession(setCurrentUser);
   clearAll()
-
-  // const backAction = () => {
+}, []);
+// const backAction = () => {
   //      Alert.alert('Hold on!', 'Are you sure you want to Logout?', [
   //         {
   //           text: 'Cancel',
@@ -73,10 +73,6 @@ function Home() {
   //         backAction,
   //       );
   //       return () => backHandler.remove();
-     
-
-}, []);
-
 
 
 
@@ -193,17 +189,17 @@ function Home() {
         </View>
         
       </View>
-      <View className="   mt-3 rounded-m  h-2/8  w-full text-center">
+      <View className="mt-3 rounded-m  h-2/8  w-full text-center">
      
     
         {/* View Input Type */}
-        <View className="  mt-1 flex-row  justify-center  w-full  ">
+        <View className="mt-1 flex-row  justify-center  w-full  ">
           <TextInput
             style={{backgroundColor: 'white'}}
             placeholderTextColor={'grey'}
             autoCapitalize={'characters'}
             placeholder="ABC"
-            maxLength={3}
+            maxLength={4}
             keyboardType="email-address"
             value={reg}
             onChangeText={text => setReg(text)}

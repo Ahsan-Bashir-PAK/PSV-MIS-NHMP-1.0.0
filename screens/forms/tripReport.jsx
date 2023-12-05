@@ -9,6 +9,8 @@ import {
   Switch,
   Alert,
   ActivityIndicator,
+  Modal,
+  Pressable,
 } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import {BusFront, ChevronDown, Navigation, MousePointerClick} from 'lucide-react-native';
@@ -22,6 +24,7 @@ import { retrieveDriverSession, retrieveVehicleSession,retrieveUserSession } fro
 
 const TripReport = ({route}) => {
 
+  const [modalVisible, setModalVisible] = useState(false);
   // 
   const [show, setShow] = useState(false);
 
@@ -569,7 +572,7 @@ function setTripData(tripdata){
               <Text className="text-black text-lg rounded-md font-bold ">
                 Details of Driver: {d_name}
               </Text>
-              <TouchableOpacity onPress={()=>navigation.navigate("AddDrivernew")} className="bg-green-100 p-1 w-fit rounded-md ml-10 ">
+              <TouchableOpacity onPress={()=>setModalVisible(true)} className="bg-green-100 p-1 w-fit rounded-md ml-5 flex">
                 <Text className="text-black font-bold text-xs "> + Add Second Driver</Text>
               </TouchableOpacity>
             </View>
@@ -704,7 +707,33 @@ function setTripData(tripdata){
               </View>
             </View>
           </View>
-        
+
+        {/* Modal  */}
+        <View style={styles.centeredView}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View className="justify-center items-center ">
+          <View className="bg-[#ffffff]  rounded-md p-2 w-10/12 justify-start items-center flex h-4/6">
+            <TouchableOpacity onPress={()=>setModalVisible(!modalVisible)}
+             className=" w-full rounded-md p-2 flex justify-end items-end  ">
+              <Text className="text-white bg-[#f0403a] font-bold text-lg px-2 rounded-md">X</Text>
+            </TouchableOpacity>
+            {/* <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Close X</Text>
+            </Pressable> */}
+          </View>
+        </View>
+      </Modal>
+      </View>
+
       </View>
     </ScrollView>
   );
