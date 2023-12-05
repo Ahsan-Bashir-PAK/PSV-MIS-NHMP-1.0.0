@@ -335,11 +335,13 @@ if(Companydata==[]){
                   placeholderStyle={{ paddingStart: 5 }}
                   inputSearchStyle={{ backgroundColor: "#fcfcfc", color: "black" }}
                   searchPlaceholder="Search Company"
-                  value={value}
+                  // value={value}
+                  value = {companyName}
 
                   onChange={item => {
                    // setSubComp("")
                     setValue(item.value)
+                    setCompanyName(item.value)
 
                   }}
 
@@ -409,7 +411,7 @@ if(Companydata==[]){
       />
 
       <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity onPress={()=>AddTerminalData()} style={[styles.button, { marginRight: 10 }]}>
+        <TouchableOpacity onPress={()=>AddCompanyData()} style={[styles.button, { marginRight: 10 }]}>
           <Text style={{ color: 'white' }}>Add Terminal</Text>
         </TouchableOpacity>
 
