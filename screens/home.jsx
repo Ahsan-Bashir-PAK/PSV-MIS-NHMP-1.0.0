@@ -126,22 +126,22 @@ async function checkban (){
       if(result.banStatus =='ban'){
         if(result.banArea == 'sector'){
             if(result.banoffice == currentUser.sector){
-                Alert.alert('Vehicle Ban',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n  is Banned in Sector : ${currentUser.sector}  \n From:  ${result.startDate} \n To: ${result.endDate}` )
+                Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n  is Banned in Sector : ${currentUser.sector}  \n From:  ${result.startDate} \n To: ${result.endDate}` )
             }
         }
         else if (result.banArea == 'zone'){
             if(result.banoffice == currentUser.zone){
-              Alert.alert('Vehicle Banned',`Vehicle # ${reg}-${year}-${number} \n \n Chasis # ${result.chasisNo} \n Zone : ${currentUser.sector}  \n From: ${result.startDate} \n To: ${result.endDate}` )
+              Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n \n Chasis # ${result.chasisNo} \n Zone : ${currentUser.sector}  \n From: ${result.startDate} \n To: ${result.endDate}` )
             }
         }
         else if (result.banArea == 'region'){
             if(result.banoffice == currentUser.region){
-              Alert.alert('Vehicle Ban',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n Region : ${currentUser.sector}  \n From: ${result.startDate} \n To: ${result.endDate}` )
+              Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n Region : ${currentUser.sector}  \n From: ${result.startDate} \n To: ${result.endDate}` )
             }
         }
         else if(result.banArea == 'hq'){
             
-          Alert.alert('Vehicle Ban',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n NHMP : ${currentUser.sector}  \n From: ${result.startDate} \n To: ${result.endDate}` )
+          Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n  \n From: ${result.startDate} \n To: ${result.endDate} \n Vehicle banned in AOR of NHMP` )
         }
       }}
 
@@ -219,28 +219,28 @@ async function checkban (){
    
     <View className="p-2  w-full bg-white">
     
-      <View className="  flex flex-row  bg-[#29378a]   h-[120]  w-full    overflow-hidden rounded-md">
+      <View className="  flex   bg-[#29378a]     w-full rounded-lg   overflow-hidden ">
       
       {/* <ImageBackground source={require('../img/bg.png')}  resizeMode="cover" style={{ height:'100%', width:518, opacity:0.9, flex:1, justifyContent:'center'}}  /> */}
-        <View className="   w-full ">
+        <View className="  w-full flex justify-between rounded-md  ">
         
-        <View className="  w-fit  justify-center items-right pr-3 pt-1 flex  " >
-                <Text className="text-white text-right font-extrabold text-sm  font-serif ">
-                {`${currentUser.rank}  ${currentUser.name}`}</Text>
-            </View>
+      
 
-            <View className=" justify-center items-center text-center w-fit  flex flex-row p-2  ">
-            <Image
+            <View className="  text-center   flex flex-row p-2 py-4  ">
+              <Image
                         source={require('../img/logo.png')}
                         style={{width: 60, height: 60}}
                         className="pl-1"
                       />
-              <Text className="text-yellow-300 text-center font-extrabold text-2xl ml-8  ">
+              <Text className="text-yellow-300 text-center font-extrabold text-2xl ml-8 mt-2  ">
                 PSV-MIS (NHMP)          </Text>
                 
             </View>
 
-            
+            <View className="  w-full items-end  flex  " >
+                <Text className="text-black bg-yellow-500 px-3 text-right w-full text-sm  font-mono italic ">
+                {`${currentUser.rank}  ${currentUser.name}`}</Text>
+            </View>
         </View>
         
       </View>
@@ -253,7 +253,7 @@ async function checkban (){
             style={{backgroundColor: 'white'}}
             placeholderTextColor={'grey'}
             autoCapitalize={'characters'}
-            placeholder="ABC"
+            placeholder="ABCA"
             maxLength={4}
             keyboardType="email-address"
             value={reg}
@@ -466,10 +466,10 @@ async function checkban (){
         className={`${currentUser.role == 'Admin' ? 'block' : 'hidden'} mt-4`}>
         <TouchableOpacity
           onPress={() => navigation.navigate('SignUp')}
-          className="w-full   h-10 rounded-lg  justify-center items-center bg-[#2e3d94] ">
+          className="w-full   flex rounded-lg  justify-center items-center bg-[#2e3d94] ">
           <View className="justify-center flex flex-row items-center p-1 w-full gap-2">
-            <Plus stroke="white" size={25} />
-            <Text className=" font-bold font-white  text-lg text-white">
+            <Plus stroke="white" size={25} strokeWidth={1} />
+            <Text className="  font-white  text-lg text-white">
               Add New User
             </Text>
           </View>
@@ -498,8 +498,8 @@ async function checkban (){
           onPress={() => navigation.navigate('Profile')}
           className=" h-10 rounded-lg  justify-center items-center bg-[#258f3c] ">
           <View className="justify-center flex flex-row items-center  w-full ">
-            <KeySquare stroke="white" size={20} />
-            <Text className=" font-bold font-white  text-md text-white">
+            <KeySquare stroke="white" size={20} strokeWidth={1} />
+            <Text className="font-white pl-1  text-md text-white">
               Change Password
             </Text>
           </View>
@@ -511,9 +511,9 @@ async function checkban (){
             onPress={() => navigation.navigate('Feed Back')}
             className="  h-10 rounded-lg  justify-center items-center bg-[#40b63c] ">
             <View className="justify-center flex flex-row items-center  w-full ">
-              <PenSquare stroke="white" size={20} />
-              <Text className=" font-bold font-white  text-md text-white">
-              Feed Back
+              <PenSquare  strokeWidth={1} stroke="white" size={20} />
+              <Text className="font-white pl-1  text-md text-white">
+              Feedback
               </Text>
             </View>
           </TouchableOpacity>
@@ -527,8 +527,8 @@ async function checkban (){
           onPress={() => logoutSesion()}
           className="w-full   h-10 rounded-lg  justify-center items-center bg-[#a32d37] ">
           <View className="justify-center flex flex-row items-center  w-full gap-2">
-            <LogOutIcon stroke="white" size={25} />
-            <Text className=" font-bold font-white  text-lg text-white">
+            <LogOutIcon stroke="white" size={25} strokeWidth={1}  />
+            <Text className="  font-white  text-lg text-white">
               Logout
             </Text>
           </View>

@@ -43,7 +43,7 @@ const OnlineVerifications = () => {
 
         <View className="  bg-red-600 mt-2 rounded-md p-1  w-fit items-center justify-center flex flex-row">
        
-            <Text className="text-white text-lg rounded-md font-bold ">Note: All Logins for Official purpose only.</Text>
+            <Text className="text-white text-lg rounded-md font-bold ">These Logins are only for official purposes.</Text>
             
         </View>
 {/* Excise Vehicle Verifications TAB */}

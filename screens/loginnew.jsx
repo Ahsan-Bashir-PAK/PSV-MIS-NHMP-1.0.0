@@ -190,7 +190,7 @@ function clearAll(){
                 <Image source={require('../img/logo.png')} style={{width:180, height:180}}  className='w-[270] h-[300] border ' />
                 <Text className='font-extrabold text-3xl  text-yellow-400 '>PSV-MIS</Text>
                 <Text className=' sm:text-2xl text-md text-white font-bold m-2 border-b-2  border-yellow-400   px-2 rounded-sm '>National Highways & Motorway Police</Text>
-                <Text className="text-black font-light font-mono text-xs italic">Version: 1.0.0</Text>
+                <Text className="text-black font-light font-mono text-xs italic">Version: 1.0.1</Text>
             </View>
            
                        {/* Login Panel  bg-[#2b6379] */}
@@ -230,18 +230,18 @@ function clearAll(){
                         keyboardType='number-pad'
                         maxLength={4}
                         
-                        className=' pl-5 text-lg  rounded-md border  bg-white border-blue-400 text-black  ' />
+                        className=' pl-4 text-lg  rounded-md border  bg-white border-blue-400 text-black  ' />
                         </View>
 
                         <View className="w-10  rounded-md mt-3 mb-3  justify-center ">    
                                  <Text className="text-center items-center text-white  font-bold text-lg " > {userbound} </Text>
                         </View>
 
-                        <View className=" w-3/12  text-center items-center flex flex-row ">
-                        <TouchableOpacity onPress={()=>setBound('NB')} className="bg-green-700 w-14 px-2 h-12 rounded-md justify-center"><Text className=" text-white">North</Text></TouchableOpacity>
-                        <TouchableOpacity   onPress={()=>setBound('SB')} className="bg-orange-700 w-14 px-2 h-12 rounded-md justify-center ml-2"><Text className=" text-white">South</Text></TouchableOpacity>
+                        <View className=" w-5/12   text-center items-center flex flex-row ">
+                        <TouchableOpacity onPress={()=>setBound('NB')} className="bg-green-700 w-16 px-2 h-12 rounded-md justify-center items-center"><Text className=" text-white">North</Text></TouchableOpacity>
+                        <TouchableOpacity   onPress={()=>setBound('SB')} className="bg-orange-700 w-16 px-2 h-12 rounded-md justify-center items-center ml-2"><Text className=" text-white">South</Text></TouchableOpacity>
 
-                    </View>
+                        </View>
 
                 </View>
 

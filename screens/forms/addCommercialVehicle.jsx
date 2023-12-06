@@ -15,8 +15,8 @@ import KeyboardAvoidWrapper from '../keyboardavoidingwrapper';
 
 
 
-const Vehicletype = [ "BUS" ,"HIACE", "HIROOF", "COASTER", "APV", "OTHER"];  
-const Vehicle_make_company = [ "YUTONG" ,"HIGER", "HINO", "MAN", "NOVA", "EURO", "ISUZU", "KING-LONG", "ZHONGTONG", "MITSUBISHI", "NISHI", "VOLVO", "DAEWOO", "YUTONG-MASTER", "OTHER"];    
+const Vehicletype = [ "Mazda" ,"Truck", "Trailer", "Gas Bowser", "Pick-up", "Oil Carrier","OTHER"];  
+const Vehicle_make_company = [ "HINO", "HYUNDAI", "SUZUKI", "CHANGAN", "NISSAN", "BEDFORD", "EURO", "ISUZU", "KING-LONG", "ZHONGTONG", "MITSUBISHI", "NISHI", "VOLVO", "DAEWOO", "FORLAND", "FAW", "JAC", "YUTONG", "HINO", "SUZU", "FOTON", "HILUX", "OTHER"];    
 
 const tyre_companies = ["Dunlop", "Bridgestone", "Yokohama", "Michelin", "Van-Lee", "Huayi", "Westlake", "Chaoyang", "Xing yuan", "Continents", "Mirage", "Long March", "General", "Super cargo", "Green-Tiger", "Service", "Panther", "Advance tyre", "others"];
 
@@ -308,7 +308,7 @@ const getCv = async()=>{
         // else if(vehcile_color == "") {Alert.alert("Please enter Vehicle color")}
         // else if(vehicle_seats == "") {Alert.alert("Please enter seating capacity")}
         else if(vehcile_manf_year == "") {Alert.alert("Please enter Manufacturing Year")}
-        else if(vehcile_company == "") {Alert.alert("Please Vehicle Company")}
+        // else if(vehcile_company == "") {Alert.alert("Please Vehicle Company")}
        
         else if(tyrecomp == undefined) {Alert.alert("Please enter Tyre Company")}
         // else if (tyredate.toLocaleDateString() <= t_manDate.toLocaleDateString()) {
@@ -677,7 +677,7 @@ const getSubCompany = async()=>{
             <View className="w-4/6 items-center border-b">
             <TextInput
                 placeholderTextColor={'grey'}
-                placeholder='Company Name'
+                placeholder='Company Name (if any)'
                 value={vehcile_company}
                 onChangeText={e => setVehicleCompany(e)}
                 className=' border-black text-black rounded-md  text-lg' />
