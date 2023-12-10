@@ -86,16 +86,16 @@ const OnlineVerifications = () => {
               </View>
               <View className="bg-slate-100 flex  flex-row  justify-center items-center text-center ">
               <TouchableOpacity onPress={()=>Linking.openURL('http://175.107.63.199/mv')}
-                  className='p-2 bg-[#1e847f] text-center rounded-md w-5/12 mt-1 mb-1  items-center' >
+                  className='p-2 bg-[#1e847f] text-center rounded-md w-6/12 mt-1 mb-1  items-center' >
                   <Text className='text-white text-center font-bold text-lg'>KPK Special Login</Text>
                 </TouchableOpacity>
                 
              
               </View>
 <View className="pl-3">
-<Text className="text-black text-lg font-bold">For Punjab Special Login credentials</Text>
+{/* <Text className="text-black text-lg font-bold">For Punjab Special Login credentials</Text>
 <Text className="text-black">UserName: NHMPCR</Text>
-<Text className="text-black">UserPaswword: NHMPCR#93g8*kB</Text>
+<Text className="text-black">UserPaswword: NHMPCR#93g8*kB</Text> */}
 <Text className="text-black font-bold text-lg">For Islamabad Special Login credentials</Text>
 <Text className="text-black">UserName: nhmp</Text>
 <Text className="text-black">UserPaswword: nhmp@21</Text>
