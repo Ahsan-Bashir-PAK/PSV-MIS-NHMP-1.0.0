@@ -1,6 +1,8 @@
 import React, { useState, Linking,useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import { UserPlus, UserCog2, Lock,  } from 'lucide-react-native';
+const jwt = require('jsonwebtoken')
 
 import {
     SafeAreaView,
@@ -25,6 +27,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 import axios from 'axios';
 import '../config';
 import { Facebook, Twitter } from 'lucide-react-native';
+import { storeUserSession } from '../config/functions';
 
 import myimage from '../img/login.jpg'
 function Login() {
@@ -73,42 +76,50 @@ clearStorage()
  
     const [user, setUser] = useState("")
     const [userpwd, setPwd] = useState("")
-    const [userbound, setBound] = useState("")
-    const [location,setlocation] = useState("")
 
     const [modalVisible, setModalVisible] = useState(false);
 
 //-----------Signin & get User 
-        const signIn =async()=>{       
-            
-               
+        const signIn =async()=>{                  
             if(user== "") {
                 Alert.alert("Please enter User Name") }
                else if(userpwd== "") {
                     Alert.alert("Please enter Password") }
-                  else  if(location== "") {Alert.alert("Please enter current location") }
-                 else   if(userbound== "") {Alert.alert("Please Select North or South Bound")}
+                 
         else {
             
-        if(user && userpwd && location && userbound){
-         await axios.get(`${global.BASE_URL}/users/getUser/${user}`
-           // console.log(`${global.BASE_URL}/users/getUser/${user}`)
+        if(user && userpwd){
+         await axios.post(`${global.BASE_URL}/users/login`,
+
+         {
+            "id":user,
+            "pwd":userpwd
+           },
+
+           {
+            headers:{
+            api_key :'A3166'
+           }
+         
+        }
            
           ).then(
             function (response){
-                const result = response.data[0]
+                
+                const result = response.data.token
           if(result) {
-           
-          if(userpwd == result.userPwd){
-         
-            storeUserSession(user,result.role,result.userName,result.rank,result.userPwd,result.region,result.zoneId,result.sectorId,result.beatId)
-            
-            navigation.navigate("Home")
-            clearAll()
-          }
-          else {
-            Alert.alert("Wrong Password")
-          }
+
+            //  jwt.verify(result,'A3166',(err,decoded)=>{
+            //     if(err){
+            //         console.log(err)
+            //     }
+            //     else{
+            //         console.log(decoded)
+            //     }
+            // })
+           storeUserSession(result)        
+               navigation.navigate("Home")
+               clearAll()
         }
         else{
            Alert.alert("User Not Registered")
@@ -126,43 +137,43 @@ clearStorage()
     }
      //---------------------------------------store session
 
+
 //
 function clearAll(){
         setUser("")
         setPwd("")
-        setlocation("")
-        setBound("")
+        
 }
      //---------------------------------------
 
     
 
-     async function storeUserSession(user,role,officer,rank,pwd,region, zone, sector, beat) {
+    //  async function storeUserSession(user,role,officer,rank,pwd,region, zone, sector, beat) {
       
-        try {
-             await EncryptedStorage.setItem(
-                 "user_session",
-                 JSON.stringify({
-                     userName : user,
-                     role:role,
-                     location:location+userbound,
-                     name:officer,
-                     rank:rank,
-                     pwd:pwd,
-                     region:region,
-                     zone:zone,
-                     sector:sector,
-                     beat:beat,
+    //     try {
+    //          await EncryptedStorage.setItem(
+    //              "user_session",
+    //              JSON.stringify({
+    //                  userName : user,
+    //                  role:role,
+    //                  location:location+userbound,
+    //                  name:officer,
+    //                  rank:rank,
+    //                  pwd:pwd,
+    //                  region:region,
+    //                  zone:zone,
+    //                  sector:sector,
+    //                  beat:beat,
                     
                      
                     
-                 })
-             );
+    //              })
+    //          );
            
-         } catch (error) {
-             console.log(error)
-         }
-     }
+    //      } catch (error) {
+    //          console.log(error)
+    //      }
+    //  }
 
     
     
@@ -180,25 +191,30 @@ function clearAll(){
             {/* ============================================== */}
           {/* <TouchableOpacity className="bg-white p-2 rounded-md" onPress={()=>navigation.navigate("Inspection History")}>
             <Text> Inspection History</Text>
-          </TouchableOpacity>  */}
+          </TouchableOpacity>
+          style={{width:180, height:180}}
+          */} 
 
           {/* ============================================== */}
 
 
             {/* Logo VIEW */}
-            <View className="w-full  h-2/5 flex justify-center items-center ">
-                <Image source={require('../img/logo.png')} style={{width:180, height:180}}  className='w-[270] h-[300] border ' />
-                <Text className='font-extrabold text-3xl  text-yellow-400 '>PSV-MIS</Text>
+            <View className="w-full  h-2/5 flex justify-center items-center p-2">
+                <Image source={require('../img/logo.png')}   className=' w-32 h-32 border flex ' />
+                <Text className='font-extrabold text-3xl  text-yellow-400 mt-2 '>NHMP-LMS</Text>
                 <Text className=' sm:text-2xl text-md text-white font-bold m-2 border-b-2  border-yellow-400   px-2 rounded-sm '>National Highways & Motorway Police</Text>
-                <Text className="text-black font-light font-mono text-xs italic">Version: 1.0.2</Text>
+                <Text className="text-white font-light font-mono text-xs italic">Version: 1.0.0</Text>
             </View>
            
                        {/* Login Panel  bg-[#2b6379] */}
                        
-            <View className='w-11/12 bg-[#ffffff60] rounded-xl p-3 pt-5 shadow-lg border border-gray-50  flex justify-center items-center h-fit  '>
+            <View className='w-11/12 bg-[#17162560]  p-6 pt-5 pb-5 shadow-lg border border-gray-700  flex justify-center items-center h-2/5  '>
                 
                {/* User name */}
-               <View className="w-full ">
+               <View className="justify-start items-start w-full flex flex-row  ">
+               <View className='bg-gray-100  border-r border-gray-400 p-3 justify-center items-center flex '>
+                <UserCog2 width={25} stroke='black' strokeWidth={1}  />
+                </View>
                     <TextInput
                     placeholder='User CNIC'
                     value={user}
@@ -206,11 +222,16 @@ function clearAll(){
                     placeholderTextColor='grey'
                     keyboardType='number-pad'
                     maxLength={13}
-                    className='   pl-5 text-lg border bg-white border-blue-400 text-black m-3 rounded-md ' />
+                    className='   text-lg  w-10/12  bg-white border-blue-400 text-black' />
+                
                 </View>
 
                 {/* Password  */}
-                <View className="  w-full">
+                <View className="  justify-start items-start w-full flex flex-row mt-5 ">
+                <View className='bg-gray-100  border-r border-gray-400 p-3  justify-center items-center flex '>
+                <Lock width={25} stroke='black' strokeWidth={1}  />
+                </View>
+
                 <TextInput
                     secureTextEntry={true}
                     placeholder='Password'
@@ -218,37 +239,15 @@ function clearAll(){
                     onChangeText={e => setPwd(e)}
                     placeholderTextColor='grey'
                     
-                    className=' pl-5 text-lg  border  bg-white border-blue-400 text-black m-3 rounded-md ' />
+                    className='  text-lg  w-10/12  bg-white border-blue-400 text-black   ' />
+                
                 </View>
-                <View className="  w-full flex flex-row">
-                        <View className=" mt-3 mb-3 ml-3 w-4/12">
-                        <TextInput
-                        placeholder='Location'
-                        value={location}
-                        onChangeText={e => setlocation(e)}
-                        placeholderTextColor='grey'
-                        keyboardType='number-pad'
-                        maxLength={4}
-                        
-                        className=' pl-4 text-lg  rounded-md border  bg-white border-blue-400 text-black  ' />
-                        </View>
-
-                        <View className="w-10  rounded-md mt-3 mb-3  justify-center ">    
-                                 <Text className="text-center items-center text-white  font-bold text-lg " > {userbound} </Text>
-                        </View>
-
-                        <View className=" w-5/12   text-center items-center flex flex-row ">
-                        <TouchableOpacity onPress={()=>setBound('NB')} className="bg-green-700 w-16 px-2 h-12 rounded-md justify-center items-center"><Text className=" text-white">North</Text></TouchableOpacity>
-                        <TouchableOpacity   onPress={()=>setBound('SB')} className="bg-orange-700 w-16 px-2 h-12 rounded-md justify-center items-center ml-2"><Text className=" text-white">South</Text></TouchableOpacity>
-
-                        </View>
-
-                </View>
+                
 
 
 
                     <TouchableOpacity onPress={()=>signIn()} 
-                    className='p-3 bg-yellow-400 text-center rounded-md w-6/12 mt-10 border-yellow-500' >
+                    className='p-3 bg-yellow-400 text-center  w-8/12 mt-3 border-yellow-500' >
                     <Text className='text-white  text-center font-bold text-lg'>Login</Text>
 
                     </TouchableOpacity>
