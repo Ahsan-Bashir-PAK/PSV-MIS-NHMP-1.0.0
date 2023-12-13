@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Switch, Alert } from 'react-native';
-
-import { User } from 'lucide-react-native';
+import DatePicker from 'react-native-date-picker';
+import { User, Calendar } from 'lucide-react-native';
 import '../../config'
 
 
@@ -11,7 +11,7 @@ import axios from 'axios';
 import { verifyDuplicateUser } from '../../config/functions';
 
 
-const user_status = [ "User" ,"Admin"]; 
+
 
 
 let ranks = ["CPO" ,"SPO" ,"PO", "APO", "JPO", "ACP","UDC","LDC","PG"];  
@@ -28,12 +28,15 @@ const SignUp = () => {
 
 
 const [searchcnic, setCnic] = useState("");
-const [officername, setOfcrname] = useState("");
 const [officercnic, setOfcrcnic] = useState("");
+const [officername, setOfcrname] = useState("");
 const [officercell, setOfcrcell] = useState("");
 const [officerpwd, setOfcrpwd] = useState("");
+const [officerCpwd, setOfcrCpwd] = useState("");
 const [officerrank, setOfcrrank] = useState("");
 const [officerbelt, setOfcrbelt] = useState("");
+const [officerbps, setOfcrbps] = useState("");
+// const [officerappt, setOfcrappt] = useState("");
 
 //=======================================================office satates 
 const [officerRegion, setOfcrRegion] = useState("");
@@ -46,8 +49,13 @@ const[regions,setRegions] = useState("")
 const[zones,setZones] = useState("")
 const[sectors,setSectors] = useState("")
 const[beats,setbeats] = useState("")
+
+
+  // Appointment DAte
+  const [dobopen, setdobOpen] = useState(false)
+  const [dobdate, setdobDate] = useState(new Date())
 //============================================================
-const [officerrole, setOfcrrole] = useState("");
+// const [officerrole, setOfcrrole] = useState("");
 //================================================================ function to get offices data 
 const getRegion = async () => {
   
@@ -122,13 +130,17 @@ function  clearAll (){
   setOfcrcnic("")
   setOfcrcell("")
   setOfcrpwd("")
+  setOfcrCpwd("")
   setOfcrrank("")
+  setOfcrrank("")
+  setOfcrbelt("")
+  setOfcrbps("")
   setOfcrRegion("")
   setOfcrzone("")
   setOfcrsector("")
   setOfcrbeat("")
-  setOfcrrole("")
-  setOfcrbelt("")
+  // setOfcrrole("")
+  
   
 }
 
@@ -140,7 +152,7 @@ const user ={
   cellNo :officercell ,
   rank:officerrank,
   beltNo:officerbelt,
-  role:officerrole,
+  // role:officerrole,
   status:"Active",
   beatId :officerbeat ,
   sectorId: officersector,
@@ -151,7 +163,7 @@ const user ={
 
 //------------------------save user
 const saveUser = async () => {
-  if(officercnic && officerbelt && officercell && officername && officerpwd && officerrank && officersector && officerrole && officerRegion && officerzone && officerbeat ) {
+  if(officercnic && officerbelt && officercell && officername && officerpwd && officerrank && officersector &&  officerRegion && officerzone && officerbeat ) {
       await fetch(`${global.BASE_URL}/users/addUser`, {
         method: 'POST',
         headers: {
@@ -179,41 +191,30 @@ useEffect(()=>{
 },[regions])
 return (
     <ScrollView className=" ">
-    <View className=" flex flex-col   ">
-      <KeyboardAvoidingView style={{ backgroundColor: 'white' }}>
+    <View className=" relative flex flex-col p-6 pt-1 bg-slate-100   ">
+
+      <View  className='w-40 h-40  -right-20  top-6  rotate-45  bg-green-400 absolute'></View>
+      <View  className='w-80 h-80  -left-60  top-10 rotate-45   bg-yellow-300 absolute'></View>
+      <View  className='w-40 h-40  -left-20  -top-10 rotate-45  bg-red-400 absolute'></View>
+      <View  className='w-40 h-40  -right-20  bottom-2 rotate-45  bg-red-400 absolute'></View>
+      <KeyboardAvoidingView style={{ backgroundColor: 'transparent ' }}>
 
         {/* Sign Up page */}
-        <View className="  mt-1 w-full  ">
+        <View className="   w-full p-1  ">
 
-          <View className=" bg-yellow-400  rounded-md p-1 m-1 w-fit items-center justify-center flex-row-reverse ">
-            <Text className="text-black text-lg rounded-md font-bold ">User Sign Up</Text>
+          <View className="p-2 m-1 w-fit items-center justify-center flex ">
+            <Text className="text-blue-800 text-2xl rounded-md font-bold ">E-Leave</Text>
+            <Text className="text-blue-800 text-2xl rounded-md font-bold ">User Sign Up</Text>
             
           </View>
         </View>
 
-         {/* FIND */}
-        {/* <View className={`${styles.outerview} `} style={{}} >
-          
-          <View className=" w-4/6  border border-gray-200 items-center ">
-              <TextInput 
-              placeholderTextColor={'grey'}
-              placeholder='Search User CNIC'
-              maxLength={13}
-              keyboardType='numeric'
-              value={searchcnic}            
-              onChangeText={e=>setCnic(e)}
-              className=' text-black rounded-md  text-lg' />
-              
-          </View>
-          <View className="flex flex-row-reverse  bg-orange-200  justify-center items-center w-2/6"><Text className="text-black text-lg  font-bold">Search</Text>
-           */}
-          {/* <Search stroke='black' /> */}
-          {/* </View>
-        </View> */}
 
 {/*   officer CNIC */}
 <View className={styles.outerview} >
-          <View className={styles.labelstyle}><Text className="text-black  font-bold">Officer CNIC*</Text></View>
+          <View className={`${styles.labelstyle} flex-row`}><Text className="text-black  font-bold">Officer CNIC</Text>
+          <Text className="text-red-600 font-bold">*</Text>
+          </View>
           <View className=" w-4/6  items-center">
             <TextInput
               placeholderTextColor={'grey'}
@@ -271,10 +272,26 @@ return (
             <TextInput
               placeholderTextColor={'grey'}
               placeholder='Password'
-              maxLength={10}
+              maxLength={15}
               secureTextEntry={true}
               value={officerpwd}
               onChangeText={e=>setOfcrpwd(e)}
+              className='   w-8/12 bg-white border-black text-black rounded-md  text-lg text-center' />
+
+          </View>
+        </View>
+
+         {/* Confirm Password */}
+         <View className={styles.outerview}>
+          <View className={styles.labelstyle}><Text className="text-black font-bold">Confirm Password*</Text></View>
+          <View className="w-4/6 items-center">
+            <TextInput
+              placeholderTextColor={'grey'}
+              placeholder='Confirm'
+              maxLength={15}
+              secureTextEntry={true}
+              value={officerCpwd}
+              onChangeText={e=>setOfcrCpwd(e)}
               className='   w-8/12 bg-white border-black text-black rounded-md  text-lg text-center' />
 
           </View>
@@ -284,7 +301,7 @@ return (
         <View className={styles.outerview}>
           <View className={styles.labelstyle}><Text className="text-black font-bold">Rank*</Text></View>
           <View className="w-4/6 items-center ">
-          <View className=" m-1  z-50">
+          <View className="   z-50">
               <SelectDropdown
                 data= {ranks}
                 value={officerrank}
@@ -318,11 +335,57 @@ return (
           </View>
         </View>
         
+    {/* BPS*/}
+      <View className={styles.outerview}>
+          <View className={styles.labelstyle}><Text className="text-black font-bold">BPS*</Text></View>
+          <View className="w-4/6 items-center">
+            <TextInput
+              placeholderTextColor={'grey'}
+              placeholder='BPS'
+              maxLength={2}
+             keyboardType='numeric'
+              value={officerbps}
+              onChangeText={e=>setOfcrbps(e)}
+              className='   w-8/12 bg-white border-black text-black rounded-md  text-lg text-center' />
+
+          </View>
+        </View>
+
+          {/* Appointment Date*/}
+      <View className={styles.outerview}>
+          <View className={styles.labelstyle}><Text className="text-black font-bold">Appointment Date*</Text></View>
+          <View className="w-4/6 items-center ">
+            <View className="flex flex-row gap-1">
+            
+            <DatePicker
+              modal
+              mode="date"
+              open={dobopen}
+              date={dobdate}
+              onConfirm={value => {
+                setdobOpen(false);
+                setdobDate(value);
+              }}
+              onCancel={() => {
+                setdobOpen(false);
+              }}
+            />
+
+            <Text className="rounded-md  w-4/6   text-black text-center font-bold p-2">
+              {dobdate.toLocaleDateString()}
+            </Text>
+            <TouchableOpacity onPress={() => setdobOpen(true)}>
+              <Calendar stroke="black" fill="white" size={30}></Calendar>
+            </TouchableOpacity>
+          </View>
+            </View>
+        </View>
+
         {/* Region */}
         <View className={styles.outerview}>
           <View className={styles.labelstyle}><Text className="text-black font-bold">Region*</Text></View>
           <View className="w-4/6 items-center">
-          <View className=" m-1  z-50">
+          <View className="  z-50">
               <SelectDropdown
                 data= {regions}
                 value={officerRegion}
@@ -345,9 +408,10 @@ return (
         </View>
         {/* Zone */}
         <View className={styles.outerview}>
+          
           <View className={styles.labelstyle}><Text className="text-black font-bold">Zone*</Text></View>
           <View className="w-4/6 items-center">
-          <View className=" m-1  z-50">
+          <View className="  z-50">
               <SelectDropdown
                 data= {zones}
                 value={officerzone}
@@ -372,7 +436,7 @@ return (
         <View className={styles.outerview}>
           <View className={styles.labelstyle}><Text className="text-black font-bold">Sector*</Text></View>
           <View className="w-4/6 items-center">
-          <View className=" m-1  z-50">
+          <View className=" z-50">
               <SelectDropdown
                 data= {sectors}
                 value={officersector}
@@ -416,28 +480,7 @@ return (
           </View>
         </View>
 
-        {/* Role*/}
-        <View className={styles.outerview}>
-          <View className={styles.labelstyle}><Text className="text-black font-bold">Role*</Text></View>
-          <View className="w-4/6 items-center">
-          
-          <View className=" m-1  z-50">
-              <SelectDropdown
-                data= {user_status}
-                value={officerrole}
-                onSelect={(selectedItem, index) => {
-                  setOfcrrole(selectedItem);
-                }}
-                defaultButtonText='Select Status'
-                buttonStyle={{
-                  backgroundColor:'white',
-                    
-                }}                
-                />
-              
-            </View>
-          </View>
-        </View>
+       
 
          {/* Buttons Save - Clear -Update */}
          <View className="flex-row items-center justify-center ">
@@ -478,7 +521,7 @@ const styles = {
   inputVioletSmall:
     'w-6/12  border border-1 border-violet-400 rounded-md mx-1 font-bold px-3 py-1 text-black',
     labelstyle:
-    'text-center items-center justify-center w-2/6  border-r  border-slate-400  ',
+    'text-center items-center justify-center w-2/6  bg-blue-200 border-r border-blue-400 rounded-md   ',
      outerview:
-    'flex flex-row mb-1 mx-2 border border-gray-300 p-1 rounded-md bg-white shadow-md  shadow-blue-900'
+    'flex flex-row mb-1 mx-2 border border-gray-300 p-1 rounded-md bg-white shadow-md shadow-blue-900'
 };

@@ -118,8 +118,33 @@ const getData=async (api,setter)=>{
   )
 }
 
+//=========================== getting user detail
+
+const gettingUser = (userToken,auth,apiKey,setter)=>{
 
 
+axios.post(`${global.BASE_URL}/spy/verifyUser`,
+
+{
+  token:userToken
+   
+  },
+
+  {
+   headers:{
+   api_key :apiKey,
+   authorization: auth
+  }
+
+}
+  
+ ).then(
+   function (response){
+    setter(response.data)
+   }
+ )
+
+}
 
 
 
@@ -133,5 +158,5 @@ const getData=async (api,setter)=>{
     retrieveDriverSession,
     verifyDuplicateUser,
     storeUserSession,
-    getData
+    getData,gettingUser
   }
