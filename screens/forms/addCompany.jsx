@@ -462,7 +462,7 @@ if(Companydata==[]){
       />
 
       <View style={{ flexDirection: 'row' }} className="justify-center items-center" >
-        <TouchableOpacity className="w-1/4" onPress={()=>AddTerminalData()} style={[styles.button, { marginRight: 10 }]}>
+        <TouchableOpacity className="w-1/4" onPress={()=>AddTerminalData()} style={[styles.button, { marginRight: 15 }]}>
           <Text style={{ color: 'white' }}>Add Terminal</Text>
         </TouchableOpacity>
 

@@ -288,7 +288,7 @@ const getPsv = async()=>{
         //console.log("---^^^---"+ regx.test(Vehicle_letter));
          //regex.replace(Vehicle_letter, "");
 
-      if( Vehicle_letter != "") {
+      if( Vehicle_letter == "") {
         // console.log("------"+ regx.test(Vehicle_letter));
         Alert.alert("Please enter all Alphabet e.g. LES")
       }

@@ -159,8 +159,8 @@ async function retrieveUserSession() {
     
     if(tyrecomp == undefined) { 
         Alert.alert("Please Select Tyre company")}
-     else if (tyredate.toLocaleDateString() <= t_manDate.toLocaleDateString()) {
-        Alert.alert("Expiry Date cannot be equal to current date")}
+    //  else if (tyredate.toLocaleDateString() <= t_manDate.toLocaleDateString()) {
+    //     Alert.alert("Expiry Date cannot be equal to current date")}
         else if (tread == "") {  Alert.alert("Please enter Tread size")}
         else if (tyrecondition =="") {  Alert.alert("Please select Tyre condition")}
           else {

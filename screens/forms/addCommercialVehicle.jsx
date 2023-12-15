@@ -137,7 +137,7 @@ const [fitness_auth, setFitAuthority] = useState("");
 //=======================================================end report  code
 
  function setPsvFields(result) {
-
+  
   setType(result.vehicleType);
    setLetter(result.prefixRegNo);
   setYear(result.vehicleModel.toString());
@@ -175,9 +175,15 @@ const [fitness_auth, setFitAuthority] = useState("");
 
 
   function clearAllData(){
-
-    
-   setType("");
+    SettyreCondition("")
+    setRemarks("")
+    setFitness("")
+    setFDate(new Date ())
+    setFitAuthority("")
+    setTyreCom("")
+    setTread("")
+    setVehicleCompany("");
+   setType(" ");
   //  setType(Vehicle_type);
    setLetter("");
    setYear("");
@@ -336,7 +342,7 @@ const getCv = async()=>{
       })
     // 
 
-      // clearAllData()
+      clearAllData()
       
 
     }

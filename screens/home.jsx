@@ -126,22 +126,22 @@ async function checkban (){
       if(result.banStatus =='ban'){
         if(result.banArea == 'sector'){
             if(result.banoffice == currentUser.sector){
-                Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n  is Banned in Sector : ${currentUser.sector}  \n From:  ${result.startDate} \n To: ${result.endDate}` )
+                Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n  is Banned in Sector : ${currentUser.sector}  \n From:  ${result.startDate.split("-").reverse().join("-")} \n To: ${result.endDate.split("-").reverse().join("-")}` )
             }
         }
         else if (result.banArea == 'zone'){
             if(result.banoffice == currentUser.zone){
-              Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n \n Chasis # ${result.chasisNo} \n Zone : ${currentUser.sector}  \n From: ${result.startDate} \n To: ${result.endDate}` )
+              Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n \n Chasis # ${result.chasisNo} \n Zone : ${currentUser.zone}  \n From: ${result.startDate.split("-").reverse().join("-")} \n To: ${result.endDate.split("-").reverse().join("-")}` )
             }
         }
         else if (result.banArea == 'region'){
             if(result.banoffice == currentUser.region){
-              Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n Region : ${currentUser.sector}  \n From: ${result.startDate} \n To: ${result.endDate}` )
+              Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n Region : ${currentUser.region}  \n From: ${result.startDate.split("-").reverse().join("-")} \n To: ${result.endDate.split("-").reverse().join("-")}` )
             }
         }
         else if(result.banArea == 'hq'){
             
-          Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n  \n From: ${result.startDate} \n To: ${result.endDate} \n Vehicle banned in AOR of NHMP` )
+          Alert.alert('Vehicle Ban Alert ⚠️',`Vehicle # ${reg}-${year}-${number} \n  \n Chasis # ${result.chasisNo} \n  \n From: ${result.startDate.split("-").reverse().join("-")} \n To: ${result.endDate.split("-").reverse().join("-")} \n Vehicle banned in AOR of NHMP` )
         }
       }}
 
