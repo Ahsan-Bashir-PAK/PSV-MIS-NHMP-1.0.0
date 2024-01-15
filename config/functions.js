@@ -88,6 +88,67 @@ async function retrieveVehicleSession(setter) {
     )
   }
 
+//===================================================================save user session
+async function storeUserSession(token) {
+      
+  try {
+       await EncryptedStorage.setItem(
+           "user_session",
+           JSON.stringify({token})
+       );
+     
+   } catch (error) {
+       console.log(error)
+   }
+}
+
+//=====================================get data 
+
+const getData=async (api,setter)=>{
+  await axios.get(`${global.BASE_URL}/${api}`).then(
+    response =>{
+      const result = response.data[0]
+      if (result){
+        setter(result)
+      }
+      else{
+        Alert.alert("NO Record Found")
+      }
+    }
+  )
+}
+
+//=========================== getting user detail
+
+const gettingUser = (userToken,auth,apiKey,setter)=>{
+
+
+axios.post(`${global.BASE_URL}/spy/verifyUser`,
+
+{
+  token:userToken
+   
+  },
+
+  {
+   headers:{
+   api_key :apiKey,
+   authorization: auth
+  }
+
+}
+  
+ ).then(
+   function (response){
+    setter(response.data)
+   }
+ )
+
+}
+
+
+
+
 
   export {
     retrieveUserSession,
@@ -95,5 +156,7 @@ async function retrieveVehicleSession(setter) {
     storeVehicleSession,
     storeDriverSession,
     retrieveDriverSession,
-    verifyDuplicateUser
+    verifyDuplicateUser,
+    storeUserSession,
+    getData,gettingUser
   }
