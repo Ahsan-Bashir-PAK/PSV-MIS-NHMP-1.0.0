@@ -19,6 +19,7 @@ const provices = [
   { label: 'Blochistan', value: 'Blochistan' },
   { label: 'Islamabad', value: 'islamabad' },
   { label: 'AJK', value: 'AJK' },
+  { label: 'Gilgit Baltistan', value: 'Gilgit Baltistan' },
 ];
 
 const licienceType = [

@@ -247,8 +247,6 @@ const getCv = async()=>{
     // console.log(result)
      setPsvFields (result)
      Alert.alert("Vehicle Found")
-   
-
       }
       else {
         Alert.alert("Vehicle not in record.")

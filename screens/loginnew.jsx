@@ -26,7 +26,7 @@ import axios from 'axios';
 import '../config';
 import { Facebook, Twitter } from 'lucide-react-native';
 
-import myimage from '../img/login.jpg'
+import myimage from '../img/login.jpg';
 function Login() {
 
 
@@ -190,7 +190,7 @@ function clearAll(){
                 <Image source={require('../img/logo.png')} style={{width:180, height:180}}  className='w-[270] h-[300] border ' />
                 <Text className='font-extrabold text-3xl  text-yellow-400 '>PSV-MIS</Text>
                 <Text className=' sm:text-2xl text-md text-white font-bold m-2 border-b-2  border-yellow-400   px-2 rounded-sm '>National Highways & Motorway Police</Text>
-                <Text className="text-black font-light font-mono text-xs italic">Version: 1.0.3</Text>
+                <Text className="text-white font-light font-mono text-xs italic">Version: 1.0.4</Text>
             </View>
            
                        {/* Login Panel  bg-[#2b6379] */}

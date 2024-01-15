@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Alert, Keyboard } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import { BusFront, Scroll, User, Square, CheckSquare, Search, Calendar,Building2 } from 'lucide-react-native';
@@ -17,10 +17,12 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const provinces = ["Punjab", "KPK", "Sindh", "Balochistan", "NHMP", "Islamabad", "AJK", "Gilgit-Baltistan"]
-const License_type = ["LTV", "HTV", "LTV / PSV" , "HTV / PSV", "Other" ]
+const License_type = ["LTV", "HTV", "LTV / PSV" , "PSV", "HTV / PSV", "Other" ]
 
 const AddDrivernew = ({route}) => {
 
+const licenseTypeSelect = useRef({});
+const licenseAuthoritySelect = useRef({});
 
   const navigation = useNavigation();
    
@@ -108,7 +110,7 @@ const [issueopen, setissueOpen] = useState(false)
 
 // DOB
 const [dobopen, setdobOpen] = useState(false)
-const [dobdate, setdobDate] = useState(new Date())
+const [dobdate, setdobDate] = useState(new Date("1975-01-01"))
 //------------new states
   const [cnic,setcnic] =useState("")
   const [driverName,setDriverName] =useState("")
@@ -155,7 +157,8 @@ const [dobdate, setdobDate] = useState(new Date())
     setSubComp("");
     setSaveBtn("block");
     setUpdateBtn("none");
-
+    licenseAuthoritySelect.current.reset();
+    licenseTypeSelect.current.reset();
   }
 //===========================------------------backend integration==============================
 //---------------------------------------------------saving data to offices
@@ -471,7 +474,10 @@ getSubCompany()
             <DatePicker
               modal
               mode="date"
+              minimumDate={new Date("1950-01-01")}
+              
               open={dobopen}
+              
               date={dobdate}
               onConfirm={value => {
                 setdobOpen(false);
@@ -661,6 +667,7 @@ getSubCompany()
             <View className={styles.labelstyle}><Text className="text-black font-bold">License Type*</Text></View>
             <View className="w-4/6 items-center">
             <SelectDropdown
+                ref={licenseTypeSelect}
                 data= {License_type}
                 onSelect={(selectedItem, index) => {
                   setLicenseType(selectedItem);
@@ -678,6 +685,7 @@ getSubCompany()
             <View className={styles.labelstyle}><Text className="text-black font-bold">Issuing Authority*</Text></View>
             <View className="w-4/6 items-center">
               <SelectDropdown
+              ref={licenseAuthoritySelect}
                 data= {provinces}
                 onSelect={(selectedItem, index) => {
                   setLicenseAuthority(selectedItem);

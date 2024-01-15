@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Keyboard, View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Alert, Modal, Button } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import { BusFront, Scroll, User, Square, CheckSquare, Search, Navigation, Building2, PlusSquare } from 'lucide-react-native';
@@ -20,6 +20,11 @@ const Vehicle_make_company = [ "YUTONG" ,"HIGER", "HINO", "MAN", "NOVA", "EURO",
 
 
 const AddVehicle = ({route}) => {
+
+  const vehicleSelectBox = useRef({});   
+  const selectMakeBY = useRef({});   
+  const selectCompanyBox = useRef({});   
+  const selectTerminalBox = useRef({});   
 
   // Searchable drop down
   const [selected, setSelected] = React.useState("");
@@ -168,12 +173,18 @@ function clearAllData1(){
   setUpdateBtn("none")
   setSaveBtn("block")
 
+  vehicleSelectBox.current.reset();
+  selectMakeBY.current.reset();
+
+
  }
 
 
   function clearAllData(){
 
-    
+   vehicleSelectBox.current.reset();
+  selectMakeBY.current.reset();
+ 
    setType("");
   //  setType(Vehicle_type);
    setLetter("");
@@ -191,8 +202,9 @@ function clearAllData1(){
    setManfYear("");
    setCompany("");
    setSubComp("");
-   setUpdateBtn("none")
-   setSaveBtn("block")
+   setUpdateBtn("none");
+   setSaveBtn("block");
+   setValue("");
 
   }
 
@@ -549,6 +561,7 @@ if(value != ""){
             <View className=" w-4/6 items-center ">
               <View className=" m-1  z-50">
               <SelectDropdown
+                ref ={vehicleSelectBox}
                 data= {Vehicletype}
                 onSelect={(selectedItem, index) => {
                   setType(selectedItem)            
@@ -601,6 +614,7 @@ if(value != ""){
             <View className="w-4/6 items-center">
             <View className=" m-1  z-50">
               <SelectDropdown
+                ref ={selectMakeBY}
                 data= {Vehicle_make_company}
                 onSelect={(selectedItem, index) => {
                   setMake(selectedItem)            
@@ -714,7 +728,7 @@ if(value != ""){
 
                  
             <Dropdown 
-                  
+                  ref={selectCompanyBox}
                   data={Companydata}
 
                   search
@@ -758,6 +772,7 @@ if(value != ""){
             </View>
                 <View className = " w-3/5 pl-3">
             <Dropdown 
+                  ref={selectTerminalBox}
                   data={subCompanyData}
                   containerStyle={{borderWidth:1,borderColor:'#a3a5a5',borderRadius:10, Color:'black', backgroundColor:'#a3a5a5'}}
                   search

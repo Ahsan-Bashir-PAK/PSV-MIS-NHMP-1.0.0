@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Alert } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import { Calendar, CheckSquare, Disc2, Navigation, Square, SunDim  } from 'lucide-react-native';
@@ -13,7 +13,8 @@ const tyre_companies = ["Dunlop", "Bridgestone", "Yokohama", "Michelin", "Van-Le
 
 const AddCondition = ({route}) => {
 
-  
+  const tyreselectionbox = useRef({});  
+
   const navigation = useNavigation();
   
   const today = new Date()
@@ -43,7 +44,7 @@ const time = new Date().toLocaleTimeString()
   // const [loading, setLoading] = useState(true);
   
   function clearAll() {
-
+    tyreselectionbox.current.reset();
     setTyreCom('')
     setTread('')
     SettyreCondition('')
@@ -53,6 +54,8 @@ const time = new Date().toLocaleTimeString()
     SethazardLight('')
     setRemarks('')
     SetemergencyLight('')
+    // settyreOpen('')
+    // settyreDate('')
 
   }
 
@@ -157,10 +160,11 @@ async function retrieveUserSession() {
   
   const updatePsvCondition =async ()=>{
     
-    if(tyrecomp == undefined) { 
+    if(tyrecomp == undefined || tyrecomp == "") { 
         Alert.alert("Please Select Tyre company")}
-    //  else if (tyredate.toLocaleDateString() <= t_manDate.toLocaleDateString()) {
-    //     Alert.alert("Expiry Date cannot be equal to current date")}
+       else if (tyredate.getTime() <= t_manDate.getTime()) {
+        Alert.alert(" ⚠️ Tyre Expiry Date should be greater then Manufacturing Date ")
+      }
         else if (tread == "") {  Alert.alert("Please enter Tread size")}
         else if (tyrecondition =="") {  Alert.alert("Please select Tyre condition")}
           else {
@@ -232,6 +236,7 @@ async function retrieveUserSession() {
               <View className=" w-4/6  items-center">
               <View className=" m-1  z-40">
               <SelectDropdown
+                ref={tyreselectionbox}
                 data= {tyre_companies}
                 onSelect={(selectedItem, index) => {
                   setTyreCom(selectedItem)            

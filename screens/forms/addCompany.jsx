@@ -17,6 +17,7 @@ const Addcompany = ({route}) => {
   const [ownerCellNumber, setOwnerCellNumber] = useState('');
   const [currentUser,setCurrentUser] =useState("")
   const [compAdress, setCompanyAddres] =useState("")
+  
 
   // Add Terminal Form 
   const [term_Name, setTerminalName] = useState('');
@@ -161,7 +162,7 @@ async function AddTerminalData() {
       setTermManagerName('');
       setTermManagerNumber('');
       setTermAddress('');
-
+      tyreselectionbox.current.reset();
     
   }
 
@@ -226,6 +227,7 @@ if(Companydata==[]){
     
     <KeyboardAvoidingView
     behavior={Platform.OS === 'android' ? 'height' : null}
+    
      enabled>
  
       <ScrollView keyboardShouldPersistTaps='handled'>
@@ -462,7 +464,7 @@ if(Companydata==[]){
       />
 
       <View style={{ flexDirection: 'row' }} className="justify-center items-center" >
-        <TouchableOpacity className="w-1/4" onPress={()=>AddTerminalData()} style={[styles.button, { marginRight: 15 }]}>
+        <TouchableOpacity className="w-2/5" onPress={()=>AddTerminalData()} style={[styles.button, { marginRight: 15 }]}>
           <Text style={{ color: 'white' }}>Add Terminal</Text>
         </TouchableOpacity>
 

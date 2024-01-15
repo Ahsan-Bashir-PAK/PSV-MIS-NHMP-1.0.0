@@ -1,5 +1,5 @@
 import React, { useEffect, useState  } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, KeyboardAvoidingView,Alert } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, KeyboardAvoidingView,Alert, Pressable, ActivityIndicator, Button, TouchableNativeFeedback } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 
 import '../../config'
@@ -12,6 +12,8 @@ import { retrieveUserSession } from '../../config/functions';
 
 
 const DailyProgress = () => {
+
+ const [loading, setLoading] = useState(false)
 
 const [showReport, setReport] = useState(true)
 
@@ -45,7 +47,7 @@ const startTime = timeset.toLocaleTimeString()
 const endTime = timesetend.toLocaleTimeString()
 
 const getProgress = async()=>{ 
-
+  setLoading(true)
  // console.log(`${global.BASE_URL}/web/daily/officerwisedsr/${startDate}/${endDate}/${startTime}/${endTime}/${currentUser.userName}`)
 
  await axios.get(`${global.BASE_URL}/web/daily/officerwisedsr/${startDate}/${endDate}/${startTime}/${endTime}/${currentUser.userName}`)
@@ -53,6 +55,7 @@ const getProgress = async()=>{
     (response) =>{
       const result = response.data
       if(result){
+        setLoading(false)  
       setDriverData(result.driver[0])
       setvehicleData(result.vehicles[0])
       setinspectionData(result.inspection[0])
@@ -212,16 +215,31 @@ return (
 </View>
 </View> 
 
-        <View className="   w-fit  ">
-            <TouchableOpacity className ="w-fit" onPress={()=>getProgress()}>
-          <View className=" bg-[#7f9ab8]  rounded-md p-2 m-1 w-fit items-center justify-center flex-col ">
+        <View className="  w-fit  ">
+         
+            <TouchableOpacity className ="w-fit"  onPressIn={()=>getProgress()} >
+          <View className=" bg-[#7f9ab8]  rounded-md p-3 m-1 w-fit items-center justify-center flex-col ">
                       <Text className="font-bold text-white">Generate Progress Report</Text>
           </View>
             </TouchableOpacity>
-        </View>
 
+          {/* <Button title="press me" className=" bg-[#7f9ab8]  rounded-md p-2 m-1 w-fit items-center justify-center flex-col " onPress={()=>getProgress()} >
+
+          </Button> */}
+
+         
+        </View>
+        
 {/* Report Form */}
+<View className={`${loading ? " block": "hidden"} h-4/6  p-12`}>
+<ActivityIndicator size={'large'} color="#123411" />
+
+</View>
+
 <View className={`${showReport ? " hidden": "block"}`} >
+
+
+  
 {/*  PSV Added */}
 <View className={styles.outerview} >
           <View className={styles.labelstyle}>

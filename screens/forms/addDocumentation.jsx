@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState ,useEffect, useRef} from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Alert } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import { BusFront, Scroll, User, FileText, Navigation,ArrowUpRightSquare, Calendar  } from 'lucide-react-native';
@@ -19,7 +19,7 @@ import EncryptedStorage from 'react-native-encrypted-storage';
 const AddDocumentation = ({route}) => {
 
   const navigation = useNavigation();
-
+  const routeSelectBox = useRef({})
  
   const today = new Date()
   const time = new Date().toLocaleTimeString()
@@ -150,6 +150,7 @@ async function retrieveUserSession() {
       setFitness("");
       setFDate(new Date());
       setFitAuthority("");
+      routeSelectBox.current.reset()
   }
 
   //========================================================save and update psv document
@@ -267,6 +268,7 @@ async function retrieveUserSession() {
               <View className=" items-center">
                 
               <SelectDropdown
+                ref= {routeSelectBox}
                 className="bg-white border"
                 data= {select_route_type}
                 onSelect={(selectedItem, index) => {
