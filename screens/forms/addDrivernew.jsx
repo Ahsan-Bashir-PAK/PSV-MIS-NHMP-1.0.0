@@ -110,7 +110,7 @@ const [issueopen, setissueOpen] = useState(false)
 
 // DOB
 const [dobopen, setdobOpen] = useState(false)
-const [dobdate, setdobDate] = useState(new Date("1975-01-01"))
+const [dobdate, setdobDate] = useState(new Date("1965-01-01"))
 //------------new states
   const [cnic,setcnic] =useState("")
   const [driverName,setDriverName] =useState("")
@@ -303,7 +303,10 @@ axios.patch(`${global.BASE_URL}/dvr/updateDriver/${cnic}`, updatedDeriver
      
      }
    }else{
-     navigation.navigate('Home')
+    Alert.alert('✔️ Driver Data has been updated', ' ', [
+       
+      {text: 'Back to Home', onPress: () =>  navigation.navigate("Home")},
+    ]);
     }
 
   }
@@ -450,6 +453,23 @@ getSubCompany()
             </View>
           </View>
 
+          {/* Enter CNIC */}
+          <View className={styles.outerview}>
+            <View className={styles.labelstyle}><Text className="text-black font-bold">Driver CNIC*</Text></View>
+            <View className="w-4/6 items-center">
+            <TextInput
+                placeholderTextColor={'grey'}
+                placeholder='CNIC #'
+                maxLength={13}
+                keyboardType='number-pad'
+                onChangeText={e=>setcnic(e)}
+                value={cnic}
+                className='  w-8/12 bg-white border-black text-black rounded-md  text-lg text-center' />
+
+
+            </View>
+          </View>
+
           {/* Add Father Name */}
           <View className={styles.outerview}>
             <View className={styles.labelstyle}><Text className="text-black font-bold">Father Name</Text></View>
@@ -513,22 +533,7 @@ getSubCompany()
             </View>
           </View>
 
-          {/* Enter CNIC */}
-          <View className={styles.outerview}>
-            <View className={styles.labelstyle}><Text className="text-black font-bold">CNIC*</Text></View>
-            <View className="w-4/6 items-center">
-            <TextInput
-                placeholderTextColor={'grey'}
-                placeholder='CNIC #'
-                maxLength={13}
-                keyboardType='number-pad'
-                onChangeText={e=>setcnic(e)}
-                value={cnic}
-                className='  w-8/12 bg-white border-black text-black rounded-md  text-lg text-center' />
-
-
-            </View>
-          </View>
+          
 
           {/* Cell-No. */}
           <View className={styles.outerview}>
@@ -709,6 +714,7 @@ getSubCompany()
             <DatePicker
               modal
               mode="date"
+              
               open={issueopen}
               date={issuedate}
               onConfirm={value => {
@@ -739,6 +745,8 @@ getSubCompany()
             <DatePicker
               modal
               mode="date"
+              // minimumDate={new Date("2024-01-16")}
+              
               open={expiryopen}
               date={expirydate}
               onConfirm={value => {

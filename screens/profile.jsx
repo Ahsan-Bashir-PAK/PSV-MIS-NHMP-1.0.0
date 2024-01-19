@@ -136,7 +136,7 @@ else{
                     </View>   
                      <View className={styles.outerview}>
                         <View className={`${styles.labelstyle} w-full border-r-0 text-red-600`}>
-                            <Text className="text-red-600 font-extrabold">* Note: Re-Login to change password twice.</Text>
+                            <Text className="text-red-600 font-extrabold">* Note: Re-Login to change password again.</Text>
                         </View>   
                      </View>   
                     

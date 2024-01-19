@@ -127,6 +127,7 @@ const AddVehicle = ({route}) => {
 
  function setPsvFiels(result) {
 
+  // console.log(result);
   setType(result.vehicleType);
   if(result.prefixRegNo.length > 3){
     setLetter(result.prefixRegNo.slice(0,3))
@@ -185,8 +186,8 @@ function clearAllData1(){
    vehicleSelectBox.current.reset();
   selectMakeBY.current.reset();
  
+  
    setType("");
-  //  setType(Vehicle_type);
    setLetter("");
    setYear("");
    setLetterExt("")
@@ -236,7 +237,10 @@ function clearAllData1(){
 
 //-----------------------------------------------------------search psv
 const getPsv = async()=>{
-
+  if(Vehicle_letter == "" || Vehicle_year == "" || Vehicle_number =="") {
+    Alert.alert("⚠️ Missing Fields, Vehcile Registeration, Year or Number?")
+  }
+  else {
 
   await axios.get(`${global.BASE_URL}/psv/getPsv/${Vehicle_letter_ext?Vehicle_letter+Vehicle_letter_ext:Vehicle_letter}/${Vehicle_year}/${Vehicle_number}`)
   .then(
@@ -258,7 +262,7 @@ const getPsv = async()=>{
   await  storeVehicleSession(Vehicle_letter_ext?Vehicle_letter+Vehicle_letter_ext:Vehicle_letter,Vehicle_year,Vehicle_number)
  
 }
-
+}
 
 
 //----------------Insert form 1
@@ -483,7 +487,7 @@ if(value != ""){
         
 
           {/* Vehicle Information Design Tab */}
-          <View className="  mt-1 w-full  ">
+          <View className="  mt-1 w-full   ">
 
             <View className=" bg-yellow-400  rounded-md p-1 m-1 w-fit items-center justify-center flex-row-reverse ">
               <Text className="text-black text-lg rounded-md font-bold ">Add Vehicle Information</Text>
@@ -496,7 +500,7 @@ if(value != ""){
           <View className={styles.outerview} >
 
             {/* REG LETTER NO */}
-            <View className=" justify-center w-10/12 gap-3  flex flex-row items-center  ">
+            <View className=" w-full gap-1 flex flex-row items-center ">
               <TextInput
                 style={{ backgroundColor: 'white' }}
                 placeholderTextColor={'grey'}
@@ -505,7 +509,7 @@ if(value != ""){
                 maxLength={3}
                 onChangeText={e => setLetter(e)}
                 value={Vehicle_letter}
-                className=' w-3/12 border rounded-md bg-white border-black text-center  text-sm text-black' />
+                className='w-20 border rounded-md bg-white border-black text-center  text-sm text-black' />
                 
               <TextInput
                 style={{ backgroundColor: 'white' }}
@@ -515,7 +519,7 @@ if(value != ""){
                 maxLength={1}
                 onChangeText={e => setLetterExt(e)}
                 value={Vehicle_letter_ext}
-                className='w-1/12  border rounded-md   bg-white text-sm text-black text-center ' />
+                className='w-10 border rounded-md   bg-white text-sm text-black text-center ' />
 
 <TextInput  
                 placeholderTextColor={'grey'}
@@ -524,7 +528,7 @@ if(value != ""){
                 keyboardType='phone-pad'
                 onChangeText={e => setYear(e)}
                 value={Vehicle_year}
-                className=' w-3/12  border bg-white rounded-md text-black  text-center   text-sm' />
+                className=' w-20  border bg-white rounded-md text-black  text-center   text-sm' />
 
                 <TextInput
                 
@@ -536,8 +540,14 @@ if(value != ""){
                 onChangeText={e=>setNumber(e)}
                 // onBlur={()=>KeyBoardhandler()}
                 // keyboardType='phone-pad'
-                className='w-3/12 border bg-white rounded-md  text-black text-center   text-sm' />
-                
+                className='w-20 border bg-white rounded-md  text-black text-center   text-sm' />
+            
+            <TouchableOpacity  onPress ={()=>getPsv()}
+                    
+                    className="flex flex-row rounded-md py-4 justify-center items-center w-16 bg-orange-400">
+                     
+                     <Text className="text-sm font-bold text-slate-800">Search</Text>
+                   </TouchableOpacity>    
             </View>
 
            
@@ -545,16 +555,12 @@ if(value != ""){
             
 {/* //Search Button */}
                  
-                    <TouchableOpacity  onPress ={()=>getPsv()}
                     
-                     className="flex flex-row rounded-md  justify-center items-center w-2/12 bg-orange-400">
-                      
-                      <Text className="text-sm  text-black">Search</Text>
-                    </TouchableOpacity>
                    
                 
           </View>
-
+          
+          
         {/*  Select vehcile Type */}
         <View className={`${styles.outerview} `} style={{}} >
             <View className={styles.labelstyle}><Text className="text-black  font-bold">Vehicle Type*</Text></View>
@@ -566,7 +572,7 @@ if(value != ""){
                 onSelect={(selectedItem, index) => {
                   setType(selectedItem)            
                 }}
-                defaultButtonText='Select an option.'
+                defaultButtonText={Vehicle_type}
                 buttonStyle={{
                   backgroundColor:'white',
                     

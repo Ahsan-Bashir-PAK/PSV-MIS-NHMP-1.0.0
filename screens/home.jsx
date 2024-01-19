@@ -177,7 +177,12 @@ async function checkban (){
 
   //============================================================checking
   async function rptSessionProps() {
-  try {
+    if(reg == "" || year== "" || number== "" || dvrCnic== "") {
+      Alert.alert("⚠️ Missing Fields...Registeration, Year, Number or CNIC")
+  } else {     
+
+    try {
+    
     await axios
       .get(
         `${global.BASE_URL}/psv/getPsv/${reg}/${year}/${number}`
@@ -195,12 +200,12 @@ async function checkban (){
                 getInspectionreport()
               } else {
               
-                Alert.alert('Driver not in record');
+                Alert.alert('❌ Driver not in record');
               }
             });
         } else {
         
-          Alert.alert('PSV not in record');
+          Alert.alert('❌ PSV not found in record');
          
         }
       });
@@ -208,7 +213,7 @@ async function checkban (){
     console.log(error);
   }
 }
-  
+} 
 
   return (
     <KeyboardAvoidingView

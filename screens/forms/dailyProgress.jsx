@@ -6,7 +6,6 @@ import '../../config'
 import {Calendar, Clock2, Clock4  } from 'lucide-react-native';
 
 
-import SelectDropdown from 'react-native-select-dropdown';
 import axios from 'axios';
 import { retrieveUserSession } from '../../config/functions';
 
@@ -120,7 +119,7 @@ return (
               {dobdate.toLocaleDateString()}
             </Text>
             <TouchableOpacity onPress={() => setdobOpen(true)}>
-              <Calendar stroke="black" fill="white" size={30}></Calendar>
+              <Calendar stroke="black" fill="white" size={30} strokeWidth={1}></Calendar>
             </TouchableOpacity>
           </View>
             </View>
@@ -150,7 +149,7 @@ return (
                       {enddate.toLocaleDateString()}
                     </Text>
                     <TouchableOpacity onPress={() => setdOpen(true)}>
-                      <Calendar stroke="black" fill="white" size={30}></Calendar>
+                      <Calendar stroke="black" fill="white" size={30} strokeWidth={1}></Calendar>
                     </TouchableOpacity>
                   </View>
                     </View>
@@ -165,7 +164,7 @@ return (
               mode="time"
               open={timeopen}
               date={timeset}
-              is24hourSource='locale'
+              // is24hourSource='locale'
               onConfirm={value => {
                 setTime(false);
                 setTimes(value);
@@ -178,7 +177,7 @@ return (
                       {timeset.toLocaleTimeString()}
                     </Text>
                     <TouchableOpacity onPress={() => setTime(true)}>
-                      <Clock2 stroke="black" fill="white" size={30} />
+                      <Clock2 stroke="black" fill="white" size={30} strokeWidth={1}/>
                     </TouchableOpacity>
               
 </View>
@@ -195,7 +194,7 @@ return (
               mode="time"
               open={timeopenend}
               date={timesetend}
-              is24hourSource='locale'
+              // is24hourSource='locale'
               onConfirm={value => {
                 setendTime(false);
                 setendTimes(value);
@@ -208,7 +207,7 @@ return (
                       {timesetend.toLocaleTimeString()}
                     </Text>
                     <TouchableOpacity onPress={() => setendTime(true)}>
-                      <Clock4 stroke="black" fill="white" size={30} />
+                      <Clock4 stroke="black" fill="white" size={30} strokeWidth={1} />
                     </TouchableOpacity>
               
 </View>

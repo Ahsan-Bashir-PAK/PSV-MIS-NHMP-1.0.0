@@ -324,7 +324,7 @@ async function retrieveUserSession() {
               <View className="w-4/6 items-center">
               <TextInput
                   placeholderTextColor={'grey'}
-                  placeholder='3.5 - 2.0'
+                  placeholder='LTV(1.6) HTV(2.6)'
                   maxLength={4}
                   onChangeText={e=>setTread(e)}
                   value ={tread}
