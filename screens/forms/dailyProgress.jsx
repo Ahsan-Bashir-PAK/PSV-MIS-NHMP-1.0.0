@@ -164,7 +164,7 @@ return (
               mode="time"
               open={timeopen}
               date={timeset}
-              // is24hourSource='locale'
+              is24hourSource='locale'
               onConfirm={value => {
                 setTime(false);
                 setTimes(value);
@@ -194,7 +194,7 @@ return (
               mode="time"
               open={timeopenend}
               date={timesetend}
-              // is24hourSource='locale'
+              is24hourSource='locale'
               onConfirm={value => {
                 setendTime(false);
                 setendTimes(value);

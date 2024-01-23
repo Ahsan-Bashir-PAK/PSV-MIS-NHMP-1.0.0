@@ -19,7 +19,7 @@ import InspectionReport from '../screens/reports/inspectionHistory';
 import DailyProgress from '../screens/forms/dailyProgress';
 import Addcompany from '../screens/forms/addCompany';
 import AddCommVehicle from '../screens/forms/addCommercialVehicle';
-
+import ResetPassword from '../screens/resetPassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -110,7 +110,7 @@ const MyStack = () => {
          <Stack.Screen name="Add Documentation" component={AddDocumentation} />
          <Stack.Screen name="Add Condition" component={AddCondition} />
          <Stack.Screen name="Other Info" component={AddOtherInfo} />
-
+         <Stack.Screen name="Reset Password" component={ResetPassword} />
       </Stack.Navigator>
      </NavigationContainer>
   );

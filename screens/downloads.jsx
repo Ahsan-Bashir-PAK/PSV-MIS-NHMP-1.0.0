@@ -17,9 +17,9 @@ const Downloads = () => {
                     {/* Vehicle Information Design Tab */}
                     <View className=" mt-1 w-full  divide-dotted divide-red-600 ">
 
-                        <View className="  bg-yellow-400  rounded-md p-5  w-fit items-center justify-center flex flex-row">
+                        <View className="  bg-yellow-400  rounded-md p-3  w-fit items-center justify-center flex flex-row">
                            
-                            <Text className="text-black text-xl rounded-md font-bold ">E-Library</Text>
+                            <Text className="text-black text-xl rounded-md font-bold ">E-Library / Downloads</Text>
                         </View>
 
                         {/* NHSO */}
@@ -73,6 +73,34 @@ const Downloads = () => {
                                 </Text>
                             </TouchableOpacity>
                         </View>   
+                        
+                        {/* NHMP Accident Handling Proforma*/}
+                        <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4">
+                            <Text className="text-black text-sm"> Accident Handling Proforma For NHMP OFFICIAL VEHICLES</Text>
+                            </View>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1gDnsPFFvgYwdNG0VLADvxdEEu-DIDP6f/view?usp=sharing')}>
+                            <Text className="text-white">
+                                    Download 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>   
+
+                        
+                        {/* Standing Order No. 2 (2022 Official Vehicle Accident Handling)*/}
+                        <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
+                         <View className="w-3/4">
+                            <Text className="text-black text-sm"> Standing Order No. 2 (2022) Accident Handling of Officials Vehicles</Text>
+                            </View>
+                            {/* <Text></Text> */}
+                            <TouchableOpacity className="bg-green-600 p-2 ml-2 rounded-md justify-center items-center w-1/4" onPress={() => Linking.openURL('https://drive.google.com/file/d/1gDnsPFFvgYwdNG0VLADvxdEEu-DIDP6f/view?usp=sharing')}>
+                            <Text className="text-white">
+                                    Download 
+                                </Text>
+                            </TouchableOpacity>
+                        </View>   
+
 
                         {/* FIRs Pattern*/}
                         <View className="bg-slate-100 p-2  mt-1 flex flex-row items-center">
