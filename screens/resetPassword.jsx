@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Alert } from 'react-native';
 import { Linking } from 'react-native';
 import EncryptedStorage from 'react-native-encrypted-storage';
-import { CircleDot, FileDown, FileSymlink, User, UserCircle,Dot, Circle, Pencil, PencilLine } from 'lucide-react-native';
+import { Calendar } from 'lucide-react-native';
 import { retrieveUserSession } from '../config/functions';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-
+import DatePicker from 'react-native-date-picker';
 
 
 const ResetPassword = () => {
@@ -17,7 +17,9 @@ const ResetPassword = () => {
     const [cellno, setCellNumber] = useState('');
     const [newpwd, setNewPwd] = useState('');
     const [currentUser,setCurrentUser] = useState('')
-
+      // Start Date
+const [dobopen, setdobOpen] = useState(false)
+const [dobdate, setdobDate] = useState(new Date("1975-01-01"))
         
 
     useEffect(()=>{
@@ -37,13 +39,18 @@ function clearAll(){
 // }
 
 function generate() {
-    // const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    //  const charactersLength = characters.length;
-            var a = Math.random().toString(20).substring(2,5)
+    if(cnic === "" || cnic.length <13) {
+        Alert.alert("Please Entrer your CNIC")
+    } else if (cellno === "" || cellno.length < 11) {
+        Alert.alert("Please Entrer your Cell Number")
+    } else if (dobdate) {
+        console.warn(dobdate + new Date()) 
+    }else {
+            var a = Math.random().toString(20).substring(2,6)
             // console.warn(Math.random().toString())
 
             setNewPwd(a)
-  }; 
+        }}; 
    
     return (
         <ScrollView >
@@ -62,15 +69,18 @@ function generate() {
               
                     {/* CNIC */}
                     <View className={styles.outerview}>
-                        <View className={styles.labelstyle}><Text className="text-black font-bold ">CNIC </Text></View>
+                        <View className="w-2/6 justify-center items-center rounded-md bg-slate-300"><Text className="text-black  ">CNIC </Text></View>
                     <View className="w-4/6 justify-start">
                     <TextInput
                             onChangeText={text => setCnic(text)}
                             value={cnic}
                             style={{padding: 10}}
-                            className="text-black font-bold mt-0"
+                            className="text-black font-bold pl-5"
                             keyboardType='numeric'
                             maxLength={13}
+                            placeholder='0000000000000'
+                            placeholderTextColor={'grey'}
+                            
                         />
 
                     </View>
@@ -78,30 +88,61 @@ function generate() {
 
                      {/* Cell Number */}
                      <View className={styles.outerview}>
-                        <View className={styles.labelstyle}><Text className="text-black font-bold ">Cell Number</Text></View>
+                        <View className="w-2/6 justify-center items-center rounded-md bg-slate-300"><Text className="text-black  ">Cell Number</Text></View>
                     <View className="w-4/6 justify-start">
                     <TextInput
                             onChangeText={text => setCellNumber(text)}
                             value={cellno}
                             style={{padding: 10}}
-                            className="text-black font-bold mt-0"
+                            className="text-black font-bold pl-5"
                             keyboardType='numeric'
                             maxLength={11}
+                            placeholder='0300xxxxxxx'
+                            placeholderTextColor={'grey'}
                         />
 
                     </View>
                     </View> 
  
+
+                       {/* Start Date*/}
+   <View className={styles.outerview}>
+   <View className=" w-2/6 justify-center items-center rounded-md bg-slate-300" ><Text className="text-black">Date Of Birth </Text></View>
+            <View className="w-4/6 items-center ">
+            <View className="flex flex-row gap-1">
+            
+            <DatePicker
+              modal
+              mode="date"
+              open={dobopen}
+              date={dobdate}
+              onConfirm={value => {
+                setdobOpen(false);
+                setdobDate(value);
+              }}
+              onCancel={() => {
+                setdobOpen(false);
+              }}
+            />
+
+            <Text className="rounded-md  w-4/6   text-black text-center font-bold p-2">
+              {dobdate.toLocaleDateString()}
+            </Text>
+            <TouchableOpacity onPress={() => setdobOpen(true)}>
+              <Calendar stroke="black" fill="white" size={30} strokeWidth={1}></Calendar>
+            </TouchableOpacity>
+          </View>
+            </View>
+          </View>
+                    
+
                       {/* New Auto Generated Password */}
                       <View className={styles.outerview}>
-                        <View className={styles.labelstyle}><Text className="text-black font-bold ">New Password (One Time)</Text></View>
+                        <View className="w-2/6 justify-center items-center rounded-md bg-slate-300"><Text className="text-black  ">New Password (One Time)</Text></View>
                     <View className="w-4/6 justify-center pl-10">
                     <Text className="text-black font-bold text-lg"> {newpwd == "" ? '' : newpwd}</Text>
                     </View>
                     </View>
-
-                       
-                    
 
                     <View className='flex flex-row mt-3 justify-center'>
                         <TouchableOpacity onPress={() => clearAll()} className='bg-[#fc4343] px-5 py-2 rounded-md m-2'><Text className='text-white font-extrabold'>Clear</Text></   TouchableOpacity>

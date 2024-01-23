@@ -178,7 +178,7 @@ async function checkban (){
   //============================================================checking
   async function rptSessionProps() {
     if(reg == "" || year== "" || number== "" || dvrCnic== "") {
-      Alert.alert("⚠️ Missing Fields...Registeration, Year, Number or CNIC")
+      Alert.alert("⚠️ Missing Fields Registeration, Year, Number or CNIC.")
   } else {     
 
     try {
