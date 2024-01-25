@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Alert } from 'react-native';
 import { Linking } from 'react-native';
 import EncryptedStorage from 'react-native-encrypted-storage';
-import { Calendar } from 'lucide-react-native';
+import { Calendar, Lock, Unlock } from 'lucide-react-native';
 import { retrieveUserSession } from '../config/functions';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
@@ -60,8 +60,8 @@ function generate() {
                     <View className=" mt-1 w-full  ">
 
                         <View className=" p-5  bg-yellow-400  rounded-md  w-fit items-center justify-center flex ">
-                           <Text className="text-black  text-xl">Reset Your Password</Text>
-                          
+                           <Text className="text-black  text-xl">Forget Password</Text>
+                            <Unlock size={25} stroke='black' strokeWidth={20} />
                             
                         </View>
                     </View>    
