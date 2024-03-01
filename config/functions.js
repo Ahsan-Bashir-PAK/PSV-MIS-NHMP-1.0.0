@@ -81,7 +81,7 @@ async function retrieveVehicleSession(setter) {
         const userData = response.data
         if(userData !=""){
         
-          Alert.alert("User already registered")
+          Alert.alert('⚠️ Alert','User has already been registered against given CNIC')
           func()
         }
       }
