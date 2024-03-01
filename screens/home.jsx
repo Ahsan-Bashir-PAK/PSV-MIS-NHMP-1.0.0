@@ -501,7 +501,7 @@ async function checkban (){
         <View className="p-1 w-2/4">
         <TouchableOpacity
           onPress={() => navigation.navigate('Profile')}
-          className=" h-10 rounded-lg  justify-center items-center bg-[#258f3c] ">
+          className=" h-10 rounded-lg  justify-center items-center bg-[#40b63c] ">
           <View className="justify-center flex flex-row items-center  w-full ">
             <KeySquare stroke="white" size={20} strokeWidth={1} />
             <Text className="font-white pl-1  text-md text-white">

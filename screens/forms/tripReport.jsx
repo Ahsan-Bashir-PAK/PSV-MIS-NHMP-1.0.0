@@ -321,14 +321,14 @@ function setTripData(tripdata){
       // inputRef.current.style.backgroundColor="red";
       
     } else if (actionTaken == "" || actionTaken == undefined) {
-      Alert.alert("Please Take action against PSV")
+      Alert.alert("⚠️ Alert", "Please select any action against PSV")
     } else {
     await axios
       .post(`${global.BASE_URL}/rpt/addinspection`, reportData)
       .then(response => {
-        Alert.alert('Trip Report Saved', ' ', [
+        Alert.alert('✅ Trip Report Saved', ' ', [
              
-          {text: 'Home', onPress: () =>  navigation.navigate("Home")},
+          {text: 'Back to Home', onPress: () =>  navigation.navigate("Home")},
         ]);
           
       })

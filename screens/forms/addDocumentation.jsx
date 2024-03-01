@@ -481,11 +481,7 @@ async function retrieveUserSession() {
 
               {/* Buttons Save - Clear -Update */}
               <View className="flex-row items-center justify-center ">
-                <View className=" ">
-                  <TouchableOpacity onPress={()=>updatePsvDocs()} className="bg-[#227935]  px-8 py-2 rounded-md m-2">
-                    <Text className="text-white  text-lg">Save</Text>
-                  </TouchableOpacity>
-                </View>
+               
 
               
 {/* 
@@ -496,11 +492,15 @@ async function retrieveUserSession() {
                 </View> */}
 
                 <View className="" >
-                  <TouchableOpacity onPress={()=>clearAll()} className="bg-[#a54932] px-8 py-2 rounded-md m-2">
+                  <TouchableOpacity onPress={()=>clearAll()} className="bg-red-700 px-8 py-2 rounded-md m-2">
                     <Text className="text-white text-lg">Clear</Text>
                   </TouchableOpacity>
                 </View>
-
+                <View className=" ">
+                  <TouchableOpacity onPress={()=>updatePsvDocs()} className="bg-[#227935]  px-8 py-2 rounded-md m-2">
+                    <Text className="text-white  text-lg">Save</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
 

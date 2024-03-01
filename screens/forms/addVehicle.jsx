@@ -328,7 +328,7 @@ const getPsv = async()=>{
 
         
         await  storeVehicleSession(Vehicle_letter_ext?Vehicle_letter+Vehicle_letter_ext:Vehicle_letter,Vehicle_year,Vehicle_number)
-        Alert.alert('PSV Initial information Saved', ' ', [
+        Alert.alert('✅ PSV Initial information Saved', ' ', [
              
           {text: 'Next', onPress: () =>  navigation.navigate("Add Documentation")},
         ]);
@@ -730,7 +730,7 @@ if(value != ""){
             <View className={styles.labelstyle}>
               <Text className="text-black font-bold">Company Name</Text>
             </View>
-                <View className = "w-3/5 pl-3">
+                <View className = "w-3/5 pl-2 ">
 
                  
             <Dropdown 
@@ -766,7 +766,7 @@ if(value != ""){
 
 <View className="">
 <TouchableOpacity onPress={()=>navigation.navigate('Addcompany',{params:"company"})}>
-<PlusSquare stroke='white' fill='black' size={35} ></PlusSquare>
+<PlusSquare stroke='white' fill='black' size={30} ></PlusSquare>
 </TouchableOpacity>
 </View>
           </View>
@@ -776,7 +776,7 @@ if(value != ""){
             <View className={styles.labelstyle}>
               <Text className="text-black font-bold">Terminal</Text>
             </View>
-                <View className = " w-3/5 pl-3">
+                <View className = " w-3/5 pl-2">
             <Dropdown 
                   ref={selectTerminalBox}
                   data={subCompanyData}
@@ -804,7 +804,7 @@ if(value != ""){
 </View>
 <View className="">
   <TouchableOpacity onPress={()=>navigation.navigate('Addcompany',{params:"terminal"})}>
-<PlusSquare stroke='white' fill='black' size={35} ></PlusSquare>
+<PlusSquare stroke='white' fill='black' size={30}  ></PlusSquare>
 </TouchableOpacity>
 </View>
           </View>
@@ -813,6 +813,14 @@ if(value != ""){
 
            {/* Buttons Save - Clear -Update */}
            <View className="flex-row items-center justify-center ">
+                
+                <View className="" >
+                  <TouchableOpacity onPress={()=>clearAllData()} 
+                  className="bg-red-700 px-8 py-2 rounded-md m-2">
+                    <Text className="text-white text-lg">Clear</Text>
+                  </TouchableOpacity>
+                </View>
+                  
                 <View className=" ">
                   <TouchableOpacity  onPress ={()=>addPsvFormOne()} className="bg-[#227935]  px-8 py-2 rounded-md m-2" style={{display:`${saveBtn}`}}>
                     <Text className="text-white  text-lg">Save</Text>
@@ -825,13 +833,6 @@ if(value != ""){
                     <Text className="text-white  text-lg">Save</Text>
                   </TouchableOpacity>
                 </View>
-                <View className="" >
-                  <TouchableOpacity onPress={()=>clearAllData()} 
-                  className="bg-[#a54932] px-8 py-2 rounded-md m-2">
-                    <Text className="text-white text-lg">Clear</Text>
-                  </TouchableOpacity>
-                </View>
-
 
               </View>
 

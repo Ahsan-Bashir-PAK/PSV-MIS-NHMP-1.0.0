@@ -203,8 +203,8 @@ return (
         <View className="   w-full p-1  ">
 
           <View className="p-2 m-1 w-fit items-center justify-center flex ">
-            <Text className="text-blue-800 text-2xl rounded-md font-bold ">E-Leave</Text>
-            <Text className="text-blue-800 text-2xl rounded-md font-bold ">User Sign Up</Text>
+            
+            <Text className="text-white selection:text-2xl rounded-md font-bold bg-teal-600 p-1 px-8 ">Create New User</Text>
             
           </View>
         </View>
@@ -212,8 +212,8 @@ return (
 
 {/*   officer CNIC */}
 <View className={styles.outerview} >
-          <View className={`${styles.labelstyle} flex-row`}><Text className="text-black  font-bold">Officer CNIC</Text>
-          <Text className="text-red-600 font-bold">*</Text>
+          <View className={`${styles.labelstyle} flex-row`}><Text className="text-black  font-bold">Officer CNIC*</Text>
+          
           </View>
           <View className=" w-4/6  items-center">
             <TextInput
@@ -484,11 +484,7 @@ return (
 
          {/* Buttons Save - Clear -Update */}
          <View className="flex-row items-center justify-center ">
-              <View className=" ">
-                <TouchableOpacity onPress= {()=>saveUser()} className="bg-[#227935]  px-8 py-2 rounded-md m-2">
-                  <Text className="text-white  text-lg">Save</Text>
-                </TouchableOpacity>
-              </View>
+              
 
 {/* 
               <View className="">
@@ -497,12 +493,16 @@ return (
                 </TouchableOpacity>
               </View> */}
               <View className="">
-                <TouchableOpacity onPress={()=>clearAll()} className="bg-[#a54932] px-8 py-2 rounded-md m-2">
+                <TouchableOpacity onPress={()=>clearAll()} className="bg-red-700 px-8 py-2 rounded-md m-2">
                   <Text className="text-white text-lg">Clear</Text>
                 </TouchableOpacity>
               </View>
 
-
+              <View className=" ">
+                <TouchableOpacity onPress= {()=>saveUser()} className="bg-[#227935]  px-8 py-2 rounded-md m-2">
+                  <Text className="text-white  text-lg">Save</Text>
+                </TouchableOpacity>
+              </View>
             </View>
 
 

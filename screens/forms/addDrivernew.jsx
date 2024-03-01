@@ -771,25 +771,25 @@ getSubCompany()
 
            {/* Buttons Save - Clear -Update */}
            <View className="flex-row items-center justify-center ">
-                <View className=" ">
-                  <TouchableOpacity onPress={()=>saveData()} className="bg-[#227935]  px-8 py-2 rounded-md m-2" style={{display:`${saveBtn}`}}>
-                    <Text className="text-white  text-lg">Save</Text>
+                
+
+
+                
+                <View className="">
+                  <TouchableOpacity onPress={()=>clearAll()} className="bg-red-700 px-8 py-2 rounded-md m-2">
+                    <Text className="text-white text-lg">Clear</Text>
                   </TouchableOpacity>
                 </View>
-
-
                 <View className="">
                   <TouchableOpacity onPress={()=>updateDriver()}className="bg-[#29378a] px-7 py-2 rounded-md m-2" style={{display:`${updateBtn}`}}>
                     <Text className="text-white  text-lg">Save</Text>
                   </TouchableOpacity>
                 </View>
-                <View className="">
-                  <TouchableOpacity onPress={()=>clearAll()} className="bg-[#a54932] px-8 py-2 rounded-md m-2">
-                    <Text className="text-white text-lg">Clear</Text>
+                <View className=" ">
+                  <TouchableOpacity onPress={()=>saveData()} className="bg-[#227935]  px-8 py-2 rounded-md m-2" style={{display:`${saveBtn}`}}>
+                    <Text className="text-white  text-lg">Save</Text>
                   </TouchableOpacity>
                 </View>
-
-
               </View>
 
 

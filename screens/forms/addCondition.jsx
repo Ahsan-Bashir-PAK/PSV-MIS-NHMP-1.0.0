@@ -324,7 +324,7 @@ async function retrieveUserSession() {
               <View className="w-4/6 items-center">
               <TextInput
                   placeholderTextColor={'grey'}
-                  placeholder='LTV(1.6) HTV(2.6)'
+                  placeholder='Min HTV(3.5)'
                   maxLength={4}
                   onChangeText={e=>setTread(e)}
                   value ={tread}
@@ -435,14 +435,10 @@ async function retrieveUserSession() {
 
               {/* Buttons Save - Clear -Update */}
               <View className="flex-row items-center justify-center ">
-                <View className=" ">
-                  <TouchableOpacity onPress={()=>updatePsvCondition()} className="bg-[#227935]  px-8 py-2 rounded-md m-2">
-                    <Text className="text-white  text-lg">Save</Text>
-                  </TouchableOpacity>
-                </View>
+                
 
                 <View className="">
-                  <TouchableOpacity onPress={()=>clearAll()} className="bg-[#60a532] px-8 py-2 rounded-md m-2">
+                  <TouchableOpacity onPress={()=>clearAll()} className="bg-red-700 px-8 py-2 rounded-md m-2">
                     <Text className="text-white text-lg">Clear</Text>
                   </TouchableOpacity>
                 </View>
@@ -452,7 +448,11 @@ async function retrieveUserSession() {
                     <Text className="text-white  text-lg">Update</Text>
                   </TouchableOpacity>
                 </View> */}
-
+                <View className=" ">
+                  <TouchableOpacity onPress={()=>updatePsvCondition()} className="bg-[#227935]  px-8 py-2 rounded-md m-2">
+                    <Text className="text-white  text-lg">Save</Text>
+                  </TouchableOpacity>
+                </View>
 
               </View>
             </View>

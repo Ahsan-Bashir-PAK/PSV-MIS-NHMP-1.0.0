@@ -247,7 +247,7 @@ function clearAll(){
 
 
                 <View className=" p-1 w-full mt-5 flex flex-row gap-2  justify-center items-center">
-                    <Text className="text-blue-100 font-medium" onPress={()=>navigation.navigate('Reset Password')}>Forgot Password?</Text>
+                    {/* <Text className="text-blue-100 font-medium" onPress={()=>navigation.navigate('Reset Password')}>Forgot Password?</Text> */}
                     <TouchableOpacity onPress={()=>signIn()} 
                     className='p-3 bg-yellow-400 text-center rounded-md w-6/12  border-yellow-500' >
                     <Text className='text-white  text-center font-bold text-lg'>Login</Text>

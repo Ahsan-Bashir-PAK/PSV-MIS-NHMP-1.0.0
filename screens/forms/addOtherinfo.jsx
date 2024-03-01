@@ -435,6 +435,15 @@ async function clearPsvSession() {
 
               {/* Buttons Save - Clear -Update */}
               <View className="flex-row items-center justify-center ">
+                
+
+                <View className="">
+                  <TouchableOpacity
+                    onPress={() => clearAll()}
+                    className="bg-red-700 px-8 py-2 rounded-md m-2">
+                    <Text className="text-white text-lg">Clear</Text>
+                  </TouchableOpacity>
+                </View>
                 <View className=" ">
                   <TouchableOpacity
                     onPress={() => updatePvsOthers()}
@@ -442,22 +451,7 @@ async function clearPsvSession() {
                     <Text className="text-white  text-lg">Save</Text>
                   </TouchableOpacity>
                 </View>
-
-                <View className="">
-                  <TouchableOpacity
-                    onPress={() => clearAll()}
-                    className="bg-[#60a532] px-8 py-2 rounded-md m-2">
-                    <Text className="text-white text-lg">Clear</Text>
-                  </TouchableOpacity>
-                </View>
-
-                {/* <View className="">
-                  <TouchableOpacity
-                    onPress={() => updatePvsOthers()}
-                    className="bg-[#29378a] px-7 py-2 rounded-md m-2">
-                    <Text className="text-white  text-lg">Update</Text>
-                  </TouchableOpacity>
-                </View> */}
+                
               </View>
             </View>
           </View>

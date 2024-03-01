@@ -26,13 +26,31 @@ const MyTabs = () => {
   const navigation = useNavigation();
   return (
     // <NavigationContainer>
-    <Tab.Navigator>
+    <Tab.Navigator
+    screenOptions={{
+      tabBarStyle:{
+         borderColor:'#0c25ad',
+         borderTopWidth:1
+          
+      },
+      
+      tabBarInactiveBackgroundColor:'#ffffff',
+      tabBarActiveBackgroundColor:'#b6d6f2',
+      tabBarActiveTintColor: '#051c4a',
+      tabBarInactiveTintColor: '#69696b',
+     
+      tabBarLabelStyle:{
+        fontSize:12,
+      },
+      
+    }}
+    >
       <Tab.Screen name="Add Driver " component={AddDrivernew} 
       options={{  
         headerShown:false,
         unmountOnBlur:true,
         tabBarIcon:()=>(
-          <User  stroke="#0332BB" size={25} fill='white'/>
+          <User  stroke="#0332BB" size={25} />
         )
     }}
   
@@ -42,17 +60,17 @@ const MyTabs = () => {
           headerShown:false,
           unmountOnBlur:true,
           tabBarIcon:()=>(
-            <PlusCircle  stroke="#0332BB" size={25} fill='white' />
+            <PlusCircle  stroke="#0332BB" size={25}  />
           )
       }}
         
         />
-        <Tab.Screen name="Add Documentation"  component={AddDocumentation}
+        <Tab.Screen name="Add Doc"  component={AddDocumentation}
         options={{
           headerShown:false,
           unmountOnBlur:true,
           tabBarIcon:()=>(
-            <FilePlus  stroke="#0332BB" size={25} fill='white' />
+            <FilePlus  stroke="#0332BB" size={25}  />
           )
       }}
         
@@ -63,7 +81,7 @@ const MyTabs = () => {
           unmountOnBlur:true,
          
           tabBarIcon:()=>(
-            <ShieldQuestion stroke="#0332BB" size={25} fill='white' />
+            <ShieldQuestion stroke="#0332BB" size={25}  />
           )
       }}
         
@@ -74,7 +92,7 @@ const MyTabs = () => {
           headerShown:false,
           unmountOnBlur:true,
           tabBarIcon:()=>(
-            <BadgeInfo  stroke="#0332BB" size={25} fill='white' />
+            <BadgeInfo  stroke="#0332BB" size={25}  />
           )
       }}
         
