@@ -153,9 +153,7 @@ function clearAll(){
                      zone:zone,
                      sector:sector,
                      beat:beat,
-                    
-                     
-                    
+                                       
                  })
              );
            

@@ -40,6 +40,7 @@ const dvrInspectionHistory =()=>{
         async response =>{
             const result = response.data
             result?setData(result):Alert.alert("No checking history of driver")
+            
         }
     )
 }
@@ -49,6 +50,7 @@ const psvInspectionHistory =()=>{
         async response =>{
             const result = response.data
             result?setData(result):Alert.alert("No inspection history of Vehicle")
+            // console.log(result)
         }
     )
 }
@@ -67,13 +69,11 @@ if(rptPsv && rptDriver){
     return (
                
         <View >
-
-            
+       
                 <View className=" bg-yellow-400  rounded-md p-2 m-1 w-fit items-center justify-center flex-row-reverse ">
                     <Text className="text-black font-bold text-lg">{rptName} History</Text>
                 </View>
-        
-        
+    
         <FlatList className="bg-gray-300 mb-16"
             
             data={historyData}
@@ -85,16 +85,16 @@ if(rptPsv && rptDriver){
     <View className="m-2  bg-gray-200 p-2 text-black rounded-md shadow-md border border-gray-600  shadow-black ">
                     <View className="bg-grey-800 p-1 flex flex-row rounded-md">
                         <Text className={styles.container}> Date </Text>
-                        <Text className="text-black font-bold">{item.date +"  "+ " Time:- " + item.time}</Text>
+                        <Text className="text-black font-bold">{item.date +"  "+ " Time: " + item.time}</Text>
                     </View>
                    
                     <View className="bg-gray-100 p-1 flex flex-row rounded-t-md " >
                         <Text className={styles.container}> Beat </Text>
-                        <Text className="text-black font-bold">{item.beat}</Text>
+                        <Text className="text-black font-bold">{item.beat} {item.sector}</Text>
                     </View>
                     <View className="bg-gray-100 p-1 flex flex-row">
                         <Text className={styles.container}> Location </Text>
-                        <Text className="text-black font-bold">{item.location}</Text>
+                        <Text className="text-black font-bold">{item.location} </Text>
                     </View>
                     <View className={` bg-gray-100 p-1 flex flex-row`} style={{display:psv}}>
                         <Text className={styles.container}> Vehicle No </Text>
@@ -111,7 +111,7 @@ if(rptPsv && rptDriver){
                     </View>
                     <View className="bg-gray-100 p-1 flex flex-row rounded-b-md ">
                         <Text className={styles.container}> Inspected By </Text>
-                        <Text className="text-black font-bold">{item.officer}</Text>
+                        <Text className="text-black font-bold">{item.rank} {item.officer} {item.beltNo}</Text>
                     </View>
                 </View>
              
@@ -119,8 +119,6 @@ if(rptPsv && rptDriver){
             )
             }
         />
-
-
 </View>
 
     )

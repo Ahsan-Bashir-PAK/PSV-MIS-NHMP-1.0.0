@@ -60,12 +60,10 @@ const getProgress = async()=>{
       setinspectionData(result.inspection[0])
       // setinspectionData(result.inspections[0])
         setReport(false)
-      // console.log('dvr',driverData["added"],'vhcle',vehicleData,'insp',inspectionData)
+      console.log('dvr',driverData,'vehicle',vehicleData,'insp',inspectionData)
       }
       else {
         Alert.alert("Not Record Found.")
-       
-        
       }
   })
 
